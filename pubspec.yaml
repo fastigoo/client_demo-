@@ -21,34 +21,36 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.2.6 <4.0.0'
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
 
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  # application icon and splash
+  flutter_native_splash: ^2.1.6
+  flutter_launcher_icons: ^0.11.0
+
+
   cupertino_icons: ^1.0.2
 
   dartz: ^0.10.1
   get: ^4.6.6
   dio: ^5.4.3+1
+  font_awesome_flutter: ^10.8.0
+  flutter_svg: ^2.0.10+1
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.0
+  wc_form_validators: ^1.0.1
+  flutter_screenutil: ^5.9.3
+  shared_preferences: ^2.2.3
+  url_launcher: ^6.3.1
+  google_fonts: ^6.2.1
+  waterfall_flow: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the

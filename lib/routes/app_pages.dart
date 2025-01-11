@@ -1,32 +1,19 @@
 import 'package:get/get.dart';
-import 'package:learning/features/post/presentation/bindings/post_binding.dart';
-import 'package:learning/features/post/presentation/screens/posts_screen.dart';
-import 'package:learning/features/profile/presentation/screens/profile_screen.dart';
-import 'package:learning/features/splash/presentation/bindings/splash_binding.dart';
-import 'package:learning/features/splash/presentation/screens/splash_screen.dart';
+import 'package:learning/features/home/presentation/bindings/home_binding.dart';
+import 'package:learning/features/home/presentation/screens/home_screen.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.INITIAL;
+  static const HOME = Routes.HOME;
 
   static final routes = [
     GetPage(
-      name: _Paths.INITIAL,
-      page: () => const SplashScreen(),
-      binding: SplashBinding(),
-    ),
-    GetPage(
-      name: _Paths.POSTS,
-      page: () => const PostsScreen(),
-      binding: PostBinding(),
-    ),
-    GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileScreen(),
-      binding: PostBinding(),
+      name: _Paths.HOME,
+      page: () => const HomeScreen(),
+      binding: HomeBinding(),
     ),
   ];
 }

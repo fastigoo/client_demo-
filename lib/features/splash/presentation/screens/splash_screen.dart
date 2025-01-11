@@ -12,7 +12,7 @@ class SplashScreen extends GetView<SplashController> {
       body: Center(
         child: GestureDetector(
           onTap: () {
-            Get.offNamed(Routes.POSTS);
+            Get.offNamed(Routes.HOME);
           },
           child: const Text('Splash Screen'),
         ),
