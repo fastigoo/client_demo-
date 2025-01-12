@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/images.dart';
 import 'package:learning/core/resources/language_strings.dart';
+import 'package:learning/core/services/resource_manager.dart';
+import 'package:learning/features/cart/presentation/screens/cart_screen.dart';
+import 'package:learning/features/home/presentation/widgets/product_component.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/features/home/presentation/states/home_controller.dart';
@@ -14,6 +20,17 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> _list = [
+      "https://www.cookwithnabeela.com/wp-content/uploads/2024/02/FrenchFries.webp",
+      "https://w0.peakpx.com/wallpaper/47/200/HD-wallpaper-food-sandwich.jpg",
+      "https://res.allmacwallpaper.com/get/Retina-MacBook-Air-13-inch-wallpapers/The-delicious-sandwiches-2560x1600/3920-11.jpg",
+      "https://www.allrecipes.com/thmb/UsNtGp9OgIsKw6cPqGQ-CxLmnTE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-72657-best-hamburger-ever-ddmfs-4x3-hero-878e801ab30445988d007461782b3c25.jpg",
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8fDA%3D",
+      "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
+      "https://img.freepik.com/free-photo/close-up-delicious-tacos_23-2150831119.jpg",
+      "https://static.vecteezy.com/system/resources/thumbnails/028/139/670/small_2x/side-view-shawarma-with-fried-potatoes-in-board-cookware-photo.jpg",
+    ];
+
     return Scaffold(
       extendBody: true,
       body: DefaultTabController(
@@ -50,6 +67,19 @@ class HomeScreen extends GetView<HomeController> {
                   ),
                 ],
               ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    ResourceManager.getAssetResource(heartIcon, type: ResourceType.svg),
+                    width: 20.w,
+                    colorFilter: const ColorFilter.mode(
+                      MainColors.whiteColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ],
               elevation: 0,
               bottom: TabBar(
                 tabAlignment: TabAlignment.start,
@@ -93,45 +123,23 @@ class HomeScreen extends GetView<HomeController> {
             children: [
               Scaffold(
                 backgroundColor: MainColors.backgroundColor(context),
-                body: GridView.builder(
-                  padding: EdgeInsets.all(10.r),
-                  itemCount: 8,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.r,
-                    mainAxisSpacing: 10.r,
-                    childAspectRatio: 1 / 1.25,
-                  ),
+                body: WaterfallFlow.builder(
+                  itemCount: _list.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 200.h,
-                      width: 200.w,
-                      color: Colors.red,
+                    return ProductComponent(
+                      imageUrl: _list[index],
                     );
                   },
+                  padding: EdgeInsets.all(kSpacingSmall.r),
+                  gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: kSpacingMedium.r,
+                    mainAxisSpacing: kSpacingMedium.r,
+                    lastChildLayoutTypeBuilder: (index) =>
+                        index == _list.length ? LastChildLayoutType.foot : LastChildLayoutType.none,
+                  ),
                 ),
               ),
-              // Scaffold(
-              //   backgroundColor: MainColors.backgroundColor(context),
-              //   body: WaterfallFlow.builder(
-              //     itemBuilder: (context, index) {
-              //       return Container(
-              //         height: 200.h,
-              //         width: 200.w,
-              //         color: Colors.red,
-              //       );
-              //     },
-              //     padding: const EdgeInsets.all(5.0),
-              //     gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-              //       crossAxisCount: 2,
-              //       crossAxisSpacing: 5.0,
-              //       mainAxisSpacing: 5.0,
-              //       lastChildLayoutTypeBuilder: (index) {
-              //         return LastChildLayoutType.foot;
-              //       }
-              //     ),
-              //   ),
-              // ),
               for (int i = 0; i < 8; i++) ...{
                 GridView.builder(
                   padding: EdgeInsets.all(10.r),
@@ -152,6 +160,26 @@ class HomeScreen extends GetView<HomeController> {
                 ),
               },
             ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const CartScreen());
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kRadiusXLarge.r),
+        ),
+        backgroundColor: MainColors.primaryColor,
+        child: SvgPicture.asset(
+          ResourceManager.getAssetResource(
+            addCartIcon,
+            type: ResourceType.svg,
+          ),
+          width: 20.w,
+          colorFilter: const ColorFilter.mode(
+            MainColors.whiteColor,
+            BlendMode.srcIn,
           ),
         ),
       ),
