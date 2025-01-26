@@ -10,9 +10,10 @@ const String addCartIcon = "add_cart.svg";
 //
 //
 // Images
-const String logoImg = "logo.png";
+const String logoImg = "logo.webp";
 const String noneImg = 'no-photo.png';
 const String emptyImage = 'empty.png';
+const String offerBg = 'offer_bg.jpg';
 
 //
 //

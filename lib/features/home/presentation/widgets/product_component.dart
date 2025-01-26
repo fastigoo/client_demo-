@@ -29,11 +29,11 @@ class ProductComponent extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(kRadiusMedium.r),
+          color: MainColors.cardColor(context),
+          borderRadius: BorderRadius.circular(kRadiusMedium.r / 2),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(.5),
+              color: Colors.grey.withOpacity(.3),
               blurRadius: 5,
               offset: const Offset(0, 3),
             ),
@@ -49,13 +49,13 @@ class ProductComponent extends StatelessWidget {
               ),
             ),
             Text(
-              "${Random().nextInt(10)}00 DA",
+              "${Random().nextInt(10) + 1}00 DA",
               style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                fontSize: 20.sp,
+                fontSize: 18.sp,
                 color: MainColors.primaryColor,
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 5.h),
             ClipRRect(
               borderRadius: BorderRadius.circular(kRadiusSmall.r),
               child: Hero(
@@ -67,7 +67,7 @@ class ProductComponent extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: kSpacingSmall.r),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -103,7 +103,7 @@ class ProductComponent extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10.w),
+                SizedBox(width: kSpacingSmall.r),
                 Container(
                   width: 40.w,
                   height: 40.h,

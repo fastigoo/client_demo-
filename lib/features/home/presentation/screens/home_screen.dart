@@ -21,7 +21,6 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     List<String> _list = [
-      "https://www.cookwithnabeela.com/wp-content/uploads/2024/02/FrenchFries.webp",
       "https://w0.peakpx.com/wallpaper/47/200/HD-wallpaper-food-sandwich.jpg",
       "https://res.allmacwallpaper.com/get/Retina-MacBook-Air-13-inch-wallpapers/The-delicious-sandwiches-2560x1600/3920-11.jpg",
       "https://www.allrecipes.com/thmb/UsNtGp9OgIsKw6cPqGQ-CxLmnTE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-72657-best-hamburger-ever-ddmfs-4x3-hero-878e801ab30445988d007461782b3c25.jpg",
@@ -30,7 +29,6 @@ class HomeScreen extends GetView<HomeController> {
       "https://img.freepik.com/free-photo/close-up-delicious-tacos_23-2150831119.jpg",
       "https://static.vecteezy.com/system/resources/thumbnails/028/139/670/small_2x/side-view-shawarma-with-fried-potatoes-in-board-cookware-photo.jpg",
     ];
-
     return Scaffold(
       extendBody: true,
       body: DefaultTabController(
@@ -51,15 +49,15 @@ class HomeScreen extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'FastiGoo',
+                    "Evolve coffee snack",
                     style: GoogleFonts.fredoka(
-                      fontSize: 24.sp,
+                      fontSize: 22.sp,
                       color: MainColors.whiteColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    "Welcome Pawat Taknouchiya",
+                    "Hey! Welcome back!",
                     style: GoogleFonts.fredoka(
                       fontSize: 15.sp,
                       color: MainColors.whiteColor.withOpacity(.75),
@@ -141,22 +139,21 @@ class HomeScreen extends GetView<HomeController> {
                 ),
               ),
               for (int i = 0; i < 8; i++) ...{
-                GridView.builder(
-                  padding: EdgeInsets.all(10.r),
-                  itemCount: 9,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.r,
-                    mainAxisSpacing: 10.r,
-                    childAspectRatio: 1 / 1.25,
-                  ),
+                WaterfallFlow.builder(
+                  itemCount: _list.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 200.h,
-                      width: 200.w,
-                      color: Colors.red,
+                    return ProductComponent(
+                      imageUrl: _list[index],
                     );
                   },
+                  padding: EdgeInsets.all(kSpacingSmall.r),
+                  gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: kSpacingMedium.r,
+                    mainAxisSpacing: kSpacingMedium.r,
+                    lastChildLayoutTypeBuilder: (index) =>
+                    index == _list.length ? LastChildLayoutType.foot : LastChildLayoutType.none,
+                  ),
                 ),
               },
             ],

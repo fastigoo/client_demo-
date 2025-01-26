@@ -5,19 +5,26 @@ import 'package:learning/features/home/presentation/bindings/home_binding.dart';
 import 'package:learning/features/home/presentation/bindings/product_detail_binding.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/home/presentation/screens/product_detail_screen.dart';
+import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
+import 'package:learning/features/resto/presentation/screens/resto_screen.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const HOME = Routes.HOME;
+  static const RESTO = Routes.RESTO;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeScreen(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESTO,
+      page: () => const RestoScreen(),
+      binding: RestoBinding(),
     ),
     GetPage(
       name: _Paths.PRODUCT_DETAIL,

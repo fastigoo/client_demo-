@@ -7,6 +7,7 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
 import 'package:learning/features/cart/presentation/widgets/cart_component.dart';
+import 'package:learning/features/cart/presentation/widgets/confirm_order_component.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({Key? key}) : super(key: key);
@@ -14,12 +15,12 @@ class CartScreen extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     List<String> _list = [
-      "https://www.cookwithnabeela.com/wp-content/uploads/2024/02/FrenchFries.webp",
       "https://w0.peakpx.com/wallpaper/47/200/HD-wallpaper-food-sandwich.jpg",
       "https://static.vecteezy.com/system/resources/thumbnails/028/139/670/small_2x/side-view-shawarma-with-fried-potatoes-in-board-cookware-photo.jpg",
     ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false, // Prevents the Scaffold from resizing
       appBar: AppBar(
         title: Text(
           "Cart",
@@ -123,7 +124,15 @@ class CartScreen extends GetView<CartController> {
                       borderRadius: BorderRadius.circular(kRadiusSmall.r),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => ConfirmOrderComponent(
+                        phoneController: TextEditingController(text: "0"),
+                      ),
+                    );
+                  },
                   child: Text(
                     LanguageStrings.confirmOrder,
                     style: TextStyles.mediumLabelTextStyle(context).copyWith(
