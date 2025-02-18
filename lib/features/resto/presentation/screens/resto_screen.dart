@@ -62,38 +62,24 @@ class RestoScreen extends GetView<RestoController> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextInputComponent(
-                              controller: controller.searchController,
-                              hint: "Search for a restaurant ...",
-                              contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                              borderRadius: kRadiusMedium.r,
-                              onChange: (value) {
-                                controller.onSearchChanged();
-                              },
-                            ),
-                          ),
-                          SizedBox(width: kSpacingSmall.r),
-                          Container(
+                      child: Expanded(
+                        child: TextInputComponent(
+                          controller: controller.searchController,
+                          hint: "Search for a restaurant ...",
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
+                          borderRadius: kRadiusMedium.r,
+                          onChange: (value) {
+                            controller.onSearchChanged();
+                          },
+                          suffix: SizedBox(
                             width: 50.r,
-                            height: 50.r,
-                            decoration: BoxDecoration(
-                              color: MainColors.primaryColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(kRadiusMedium.r),
-                              ),
-                            ),
-                            child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.magnifyingGlass,
-                                size: 20.r,
-                                color: MainColors.whiteColor,
-                              ),
+                            child: Icon(
+                              FontAwesomeIcons.magnifyingGlass,
+                              color: MainColors.disableColor(context),
+                              size: 20.r,
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                     // SizedBox(height: kSpacingMedium.r),
