@@ -42,7 +42,8 @@ class CartComponent extends StatelessWidget {
                 Text(
                   "Name here",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.sp,
                   ),
                 ),
                 Row(
@@ -52,12 +53,19 @@ class CartComponent extends StatelessWidget {
                       '1000 DA',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         color: MainColors.primaryColor,
+                        fontSize: 15.sp,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationColor: MainColors.primaryColor,
+                        decorationThickness: 2,
                       ),
                     ),
                     Text(
                       '2000 DA',
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         color: MainColors.textColor(context),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 13.sp,
                       ),
                     ),
                   ],
@@ -72,8 +80,8 @@ class CartComponent extends StatelessWidget {
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            width: 35.r,
-                            height: 35.r,
+                            width: 30.r,
+                            height: 30.r,
                             decoration: BoxDecoration(
                               color: MainColors.backgroundColor(context),
                               borderRadius: BorderRadius.only(
@@ -96,7 +104,7 @@ class CartComponent extends StatelessWidget {
                         ),
                         Container(
                           constraints: BoxConstraints(
-                            minWidth: 35.r,
+                            minWidth: 30.r,
                           ),
                           decoration: BoxDecoration(
                             color: MainColors.transparentColor,
@@ -111,7 +119,7 @@ class CartComponent extends StatelessWidget {
                               ),
                             ),
                           ),
-                          height: 35.r,
+                          height: 30.r,
                           padding: EdgeInsets.symmetric(horizontal: 10.w),
                           child: Center(
                             child: Text(
@@ -125,8 +133,8 @@ class CartComponent extends StatelessWidget {
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            width: 35.r,
-                            height: 35.r,
+                            width: 30.r,
+                            height: 30.r,
                             decoration: BoxDecoration(
                               color: MainColors.backgroundColor(context),
                               borderRadius: BorderRadius.only(
@@ -152,8 +160,8 @@ class CartComponent extends StatelessWidget {
                     GestureDetector(
                       onTap: () {},
                       child: Container(
-                        width: 35.r,
-                        height: 35.r,
+                        width: 30.r,
+                        height: 30.r,
                         decoration: BoxDecoration(
                           color: MainColors.primaryColor,
                           borderRadius: BorderRadius.circular(5.r),

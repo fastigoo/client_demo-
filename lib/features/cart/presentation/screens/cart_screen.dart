@@ -20,7 +20,7 @@ class CartScreen extends GetView<CartController> {
     ];
 
     return Scaffold(
-      resizeToAvoidBottomInset: false, // Prevents the Scaffold from resizing
+      resizeToAvoidBottomInset: true, // Prevents the Scaffold from resizing
       appBar: AppBar(
         title: Text(
           "Cart",
@@ -28,34 +28,40 @@ class CartScreen extends GetView<CartController> {
             color: Colors.white,
           ),
         ),
+        titleSpacing: 5.w,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Get.back();
           },
         ),
-        toolbarHeight: 60.h,
+        toolbarHeight: 55.h,
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.separated(
               itemCount: _list.length,
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(kSpacingSmall.r),
               itemBuilder: (context, index) {
                 return CartComponent(imageUrl: _list[index]);
               },
               separatorBuilder: (context, index) {
-                return SizedBox(height: 10.h);
+                return SizedBox(height: kSpacingSmall.h);
               },
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: kSpacingMedium.h),
           Container(
-            height: 155.h,
             padding: EdgeInsets.all(kSpacingSmall.r),
             decoration: BoxDecoration(
               color: MainColors.cardColor(context),
+              border: Border(
+                top: BorderSide(
+                  color: MainColors.primaryColor.withOpacity(.2),
+                  width: 1,
+                ),
+              ),
             ),
             child: Column(
               children: [
@@ -65,15 +71,17 @@ class CartScreen extends GetView<CartController> {
                     Text(
                       "Cost",
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       '900 DA',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.dotted,
-                        decorationThickness: 3,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationThickness: 2,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ],
@@ -84,15 +92,17 @@ class CartScreen extends GetView<CartController> {
                     Text(
                       "Delivery fee",
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       '100 DA',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.dotted,
-                        decorationThickness: 3,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationThickness: 2,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ],
@@ -103,25 +113,28 @@ class CartScreen extends GetView<CartController> {
                     Text(
                       "Total",
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       '1000 DA',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.dotted,
-                        decorationThickness: 3,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationThickness: 2,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: kSpacingSmall.h),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MainColors.primaryColor,
-                    minimumSize: Size(double.infinity, 45.h),
+                    minimumSize: Size(double.infinity, 50.h),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                      borderRadius: BorderRadius.circular(kRadiusMedium.r),
                     ),
                   ),
                   onPressed: () {
@@ -137,6 +150,7 @@ class CartScreen extends GetView<CartController> {
                     LanguageStrings.confirmOrder,
                     style: TextStyles.mediumLabelTextStyle(context).copyWith(
                       color: Colors.white,
+                      fontSize: 16.sp,
                     ),
                   ),
                 ),

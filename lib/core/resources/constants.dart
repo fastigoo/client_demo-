@@ -31,3 +31,6 @@ const double kRadiusSmall = 8.0;
 const double kRadiusMedium = 16.0;
 const double kRadiusLarge = 24.0;
 const double kRadiusXLarge = 32.0;
+
+// Fonts
+const String kFontFamily = 'shu';

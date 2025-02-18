@@ -46,6 +46,7 @@ class ProductComponent extends StatelessWidget {
               "Product Name",
               style: TextStyles.mediumBodyTextStyle(context).copyWith(
                 fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
               ),
             ),
             Text(
@@ -53,6 +54,9 @@ class ProductComponent extends StatelessWidget {
               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                 fontSize: 18.sp,
                 color: MainColors.primaryColor,
+                decoration: TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.dashed,
+                decorationColor: MainColors.primaryColor,
               ),
             ),
             SizedBox(height: 5.h),

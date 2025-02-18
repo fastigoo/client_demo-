@@ -1,27 +1,16 @@
 import 'package:get/get.dart';
-// import 'package:learning/features/post/data/datasources/post_datasource.dart';
-// import 'package:learning/features/post/data/repositories/posts_repository_imp.dart';
-// import 'package:learning/features/post/domain/repositories/post_repository.dart';
-// import 'package:learning/features/post/domain/usecases/get_posts_usecase.dart';
+import 'package:learning/features/resto/data/datasources/restaurant_data_source.dart';
+import 'package:learning/features/resto/data/repositories/restaurant_repository_implement.dart';
+import 'package:learning/features/resto/domain/repositories/restaurant_repository.dart';
+import 'package:learning/features/resto/domain/usecases/all_restaurant_usecase.dart';
 
 Future<void> injectionInit() async {
 
-  /**
-   * USECASES
-   */
+  // Restaurant
+  Get.put<RestaurantDataSource>(RestaurantDataSourceImplement());
+  Get.put<RestaurantRepository>(RestaurantRepositoryImplement(remote: Get.find<RestaurantDataSource>()));
 
-  // Get.lazyPut(() => GetPostsUseCase(postRepository: Get.find<PostRepository>()));
+  Get.put<AllRestaurantUsecase>(AllRestaurantUsecase(repository: Get.find<RestaurantRepository>()));
 
-  /**
-   * REPOSITORIES
-   */
-
-  // Get.lazyPut<PostRepository>(() => PostsRepositoryImplement(postsDataSource: Get.find<PostDataSource>()));
-
-  /**
-   * DATASOURCES
-   */
-
-  // Get.lazyPut<PostDataSource>(() => PostDataSourceImp());
 
 }

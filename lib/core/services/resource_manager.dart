@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:learning/core/resources/apis.dart';
 import 'package:learning/core/resources/images.dart';
 
 class ResourceManager {
@@ -51,6 +52,10 @@ class ResourceManager {
   static getAssetResource(String name, {ResourceType? type}) {
     List<String> nameStringList = name.split('.');
     return 'assets/${_getResourceDirectory(nameStringList[nameStringList.length - 1], type: type)}/$name';
+  }
+
+  static getNetworkResource(String name) {
+    return "$host:$port$name";
   }
 }
 
