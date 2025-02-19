@@ -33,9 +33,9 @@ class ProductComponent extends StatelessWidget {
           borderRadius: BorderRadius.circular(kRadiusMedium.r / 2),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(.3),
-              blurRadius: 5,
-              offset: const Offset(0, 3),
+              color: Colors.grey.withOpacity(.1),
+              blurRadius: 10,
+              offset: const Offset(0, 0),
             ),
           ],
         ),
@@ -101,6 +101,8 @@ class ProductComponent extends StatelessWidget {
                           "Add to cart",
                           style: TextStyles.mediumBodyTextStyle(context).copyWith(
                             color: Colors.white,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],

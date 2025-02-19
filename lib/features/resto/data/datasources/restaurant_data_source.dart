@@ -11,7 +11,6 @@ class RestaurantDataSourceImplement implements RestaurantDataSource {
   Future<RestaurantsModel> getRestaurants({required int page, required int perPage, String name = ""}) async {
     try {
       Dio dio = Dio();
-      print(name);
       Response response = await dio.get(
         '$allRestaurantUrl?page_number=$page&page_size=$perPage&name=$name',
         options: Options(headers: {

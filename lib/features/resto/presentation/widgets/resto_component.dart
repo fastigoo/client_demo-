@@ -7,6 +7,7 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
+import 'package:learning/routes/app_pages.dart';
 
 class RestoComponent extends StatelessWidget {
   final RestaurantEntity item;
@@ -20,7 +21,7 @@ class RestoComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const HomeScreen());
+        Get.toNamed(Routes.HOME);
       },
       child: Container(
         padding: EdgeInsets.all(kSpacingSmall.r),
