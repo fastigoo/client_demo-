@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:learning/features/cart/presentation/bindings/cart_binding.dart';
 import 'package:learning/features/cart/presentation/screens/cart_screen.dart';
+import 'package:learning/features/cart/presentation/screens/order_place_screen.dart';
 import 'package:learning/features/home/presentation/bindings/home_binding.dart';
 import 'package:learning/features/home/presentation/bindings/product_detail_binding.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
@@ -35,6 +36,10 @@ class AppPages {
       name: _Paths.CART,
       page: () => const CartScreen(),
       binding: CartBinding(),
+    ),
+    GetPage(
+      name: _Paths.PLACE_ORDER,
+      page: () => const PlaceOrderScreen(),
     ),
   ];
 }

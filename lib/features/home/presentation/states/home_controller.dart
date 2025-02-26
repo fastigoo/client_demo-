@@ -1,38 +1,68 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
+import 'package:learning/features/home/domain/entities/restaurant_menu_entity.dart';
+import 'package:learning/features/home/domain/usecases/get_all_restaurant_menus_usecase.dart';
+import 'package:learning/features/home/domain/usecases/get_restaurant_menu_items_usecase.dart';
 
 class HomeController extends GetxController {
+  int? restaurantId;
+  RxBool menuIsLoading = false.obs;
+  RxBool itemsIsLoading = false.obs;
 
-  ScrollController scrollController = ScrollController();
+  final _getAllRestaurantMenusUseCase = Get.find<GetAllRestaurantMenusUseCase>();
+  final _getMenuItemsUseCase = Get.find<GetRestaurantMenuItemsUseCase>();
 
+  List<RestaurantMenuEntity> restaurantMenus = [];
+  List<MenuItemEntity> menuItems = [];
 
-// final List<PostEntity> _posts = [];
-  //
-  // List<PostEntity> get getPostsList => _posts;
-  //
-  // final _getPostUseCase = Get.find<GetPostsUseCase>();
-  //
-  // RxBool isLoading = false.obs;
-  //
-  // // init
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   getPosts();
-  // }
-  //
-  // Future<Either<String, List<PostEntity>>> getPosts() async {
-  //   isLoading.value = true;
-  //   Either<String, List<PostEntity>> response = await _getPostUseCase.call();
-  //   response.fold(
-  //     (l) {
-  //       // print(l);
-  //     },
-  //     (List<PostEntity> posts) {
-  //       _posts.addAll(posts);
-  //     },
-  //   );
-  //   isLoading.value = false;
-  //   return response;
-  // }
+  int _selectedMenuId = 0;
+  int get selectedMenuId => _selectedMenuId;
+
+  @override
+  void onInit() {
+    super.onInit();
+    restaurantId = Get.arguments;
+    menuItems.clear();
+    getRestaurantMenus();
+  }
+
+  void setSelectedMenuId(int menuId) {
+    _selectedMenuId = menuId;
+    getMenuItems();
+  }
+
+  void getRestaurantMenus() async {
+    try {
+      menuIsLoading.value = true;
+      final response = await _getAllRestaurantMenusUseCase.execute(restaurantId: restaurantId!);
+      response.fold(
+        (l) {},
+        (List<RestaurantMenuEntity> menus) {
+          restaurantMenus.addAll(menus);
+          _selectedMenuId = restaurantMenus.first.menuId;
+          getMenuItems();
+        },
+      );
+    } catch (e) {} finally {
+      menuIsLoading.value = false;
+    }
+  }
+
+  void getMenuItems() async {
+    try {
+      itemsIsLoading.value = true;
+      final response = await _getMenuItemsUseCase.execute(menuId: selectedMenuId);
+      response.fold(
+        (l) {},
+        (List<MenuItemEntity> menus) {
+          menuItems.clear();
+          menuItems.addAll(menus);
+        },
+      );
+    } catch (e) {
+      print("error: $e");
+    } finally {
+      itemsIsLoading.value = false;
+    }
+  }
 }

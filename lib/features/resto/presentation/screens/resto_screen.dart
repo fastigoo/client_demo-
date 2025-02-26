@@ -22,7 +22,7 @@ class RestoScreen extends GetView<RestoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MainColors.backgroundColor(context),
+      // backgroundColor: MainColors.backgroundColor(context),
       body: SafeArea(
         child: Obx(
           () => RefreshIndicator(
@@ -62,22 +62,20 @@ class RestoScreen extends GetView<RestoController> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
-                      child: Expanded(
-                        child: TextInputComponent(
-                          controller: controller.searchController,
-                          hint: "Search for a restaurant ...",
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                          borderRadius: kRadiusMedium.r,
-                          onChange: (value) {
-                            controller.onSearchChanged();
-                          },
-                          suffix: SizedBox(
-                            width: 50.r,
-                            child: Icon(
-                              FontAwesomeIcons.magnifyingGlass,
-                              color: MainColors.disableColor(context),
-                              size: 20.r,
-                            ),
+                      child: TextInputComponent(
+                        controller: controller.searchController,
+                        hint: "Search for a restaurant ...",
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
+                        borderRadius: kRadiusMedium.r,
+                        onChange: (value) {
+                          controller.onSearchChanged();
+                        },
+                        suffix: SizedBox(
+                          width: 50.r,
+                          child: Icon(
+                            FontAwesomeIcons.magnifyingGlass,
+                            color: MainColors.disableColor(context),
+                            size: 20.r,
                           ),
                         ),
                       ),

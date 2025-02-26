@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:nb_utils/nb_utils.dart';
+
 dynamic getResponseData(Response response) {
   return response.data is String ? jsonDecode(response.data) : response.data;
 }
@@ -34,3 +36,17 @@ TimeOfDay restToMidnight(TimeOfDay start, TimeOfDay end) {
 TimeOfDay parseTimeOfDayFromString(String d) {
   return TimeOfDay(hour: int.parse(d.split(':')[0]), minute: int.parse(d.split(':')[1]));
 }
+
+
+void showToast({
+  String message = '',
+  ToastGravity gravity = ToastGravity.BOTTOM,
+  Toast length = Toast.LENGTH_SHORT,
+}) {
+  toast(
+    message,
+    gravity: gravity,
+    length: length,
+  );
+}
+

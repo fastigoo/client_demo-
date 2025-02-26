@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,22 +7,26 @@ import 'package:learning/core/resources/images.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/home/presentation/screens/product_detail_screen.dart';
+import 'package:learning/features/cart/domain/entities/cart_entity.dart';
+import 'package:learning/features/cart/presentation/states/cart_controller.dart';
+import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
+import 'package:learning/features/home/presentation/states/product_detail_controller.dart';
+import 'package:learning/routes/app_pages.dart';
 
 class ProductComponent extends StatelessWidget {
-  final String imageUrl;
-  const ProductComponent({super.key, required this.imageUrl});
+  final MenuItemEntity item;
+
+  const ProductComponent({
+    super.key,
+    required this.item,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(
-          () => const ProductDetailScreen(),
-          arguments: {
-            "image": imageUrl,
-          },
-        );
+        Get.find<ProductDetailController>().setItemId(item.menuItemId);
+        Get.toNamed(Routes.PRODUCT_DETAIL);
       },
       child: Container(
         padding: EdgeInsets.all(10.r),
@@ -43,14 +45,14 @@ class ProductComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Product Name",
+              item.name,
               style: TextStyles.mediumBodyTextStyle(context).copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
-              "${Random().nextInt(10) + 1}00 DA",
+              "${item.price} DA",
               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                 fontSize: 18.sp,
                 color: MainColors.primaryColor,
@@ -63,9 +65,9 @@ class ProductComponent extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(kRadiusSmall.r),
               child: Hero(
-                tag: imageUrl,
+                tag: item.imageUrl,
                 child: Image.network(
-                  imageUrl,
+                  ResourceManager.getNetworkResource(item.imageUrl),
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -76,36 +78,48 @@ class ProductComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      color: MainColors.primaryColor,
-                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          ResourceManager.getAssetResource(
-                            addCartIcon,
-                            type: ResourceType.svg,
+                  child: GestureDetector(
+                    onTap: () {
+                      CartEntity ce = CartEntity(
+                        name: item.name,
+                        itemId: item.menuItemId,
+                        price: item.price,
+                        quantity: 1,
+                        image: item.imageUrl,
+                      );
+                      Get.find<CartController>().addToCart(ce);
+                    },
+                    child: Container(
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: MainColors.primaryColor,
+                        borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            ResourceManager.getAssetResource(
+                              addCartIcon,
+                              type: ResourceType.svg,
+                            ),
+                            width: 15.w,
+                            colorFilter: const ColorFilter.mode(
+                              MainColors.whiteColor,
+                              BlendMode.srcIn,
+                            ),
                           ),
-                          width: 15.w,
-                          colorFilter: const ColorFilter.mode(
-                            MainColors.whiteColor,
-                            BlendMode.srcIn,
+                          SizedBox(width: 5.w),
+                          Text(
+                            "Add to cart",
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              color: Colors.white,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 5.w),
-                        Text(
-                          "Add to cart",
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            color: Colors.white,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
