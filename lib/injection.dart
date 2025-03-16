@@ -3,6 +3,8 @@ import 'package:learning/features/cart/data/datasources/order_data_source.dart';
 import 'package:learning/features/cart/data/repositories/order_repository_implement.dart';
 import 'package:learning/features/cart/domain/repositories/order_repository.dart';
 import 'package:learning/features/cart/domain/usecases/calculate_delivery_fee_usecase.dart';
+import 'package:learning/features/cart/domain/usecases/order_detail_usecase.dart';
+import 'package:learning/features/cart/domain/usecases/order_detail_usecase.dart';
 import 'package:learning/features/cart/domain/usecases/place_order_usecase.dart';
 import 'package:learning/features/home/data/datasources/home_datasource.dart';
 import 'package:learning/features/home/data/repositories/home_repository_implement.dart';
@@ -36,4 +38,5 @@ Future<void> injectionInit() async {
 
   Get.put<PlaceOrderUseCase>(PlaceOrderUseCase(repository: Get.find<OrderRepository>()));
   Get.put<CalculateDeliveryFeeUseCase>(CalculateDeliveryFeeUseCase(repository: Get.find<OrderRepository>()));
+  Get.put<OrderDetailUseCase>(OrderDetailUseCase(repository: Get.find<OrderRepository>()));
 }

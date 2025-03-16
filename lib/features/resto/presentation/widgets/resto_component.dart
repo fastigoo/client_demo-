@@ -1,4 +1,8 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
@@ -24,69 +28,80 @@ class RestoComponent extends StatelessWidget {
         Get.toNamed(Routes.HOME, arguments: item.restaurantId);
       },
       child: Container(
-        padding: EdgeInsets.all(kSpacingSmall.r),
+        width: 1.sw,
         decoration: BoxDecoration(
           color: MainColors.cardColor(context),
-          borderRadius: BorderRadius.circular(kRadiusMedium.r / 2),
+          borderRadius: BorderRadius.circular(kRadiusMedium.r),
           border: Border.all(
             color: Colors.grey.withOpacity(.2),
             width: 1,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(kRadiusSmall.r / 1.5),
-              child: Hero(
-                tag: item.imageUrl,
-                child: Image.network(
-                  ResourceManager.getNetworkResource(item.imageUrl),
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+            SizedBox(
+              width: 1.sw,
+              height: 200.h,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                child: Hero(
+                  tag: item.imageUrl,
+                  child: Image.network(
+                    ResourceManager.getNetworkResource(item.imageUrl),
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: kSpacingSmall.h),
-            Text(
-              item.name,
-              style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                fontWeight: FontWeight.w500,
-                fontSize: 16.sp,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    text: "Status: ",
-                    style: TextStyles.smallBodyTextStyle(context).copyWith(
-                      color: Colors.grey,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
+            Positioned(
+              bottom: 10.h,
+              left: 10.w,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                  child: Container(
+                    width: 1.sw - 55.r,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: kSpacingMedium.w,
+                      vertical: kSpacingSmall.h,
                     ),
-                    children: [
-                      TextSpan(
-                        text: item.isOpen ? "open" : "closed",
-                        style: TextStyles.smallBodyTextStyle(context).copyWith(
-                          color: item.isOpen ? Colors.green : Colors.red,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          item.name,
+                          style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                            color: MainColors.whiteColor,
+                            fontSize: 16.sp,
+                          ),
                         ),
-                      ),
-                    ],
+                        Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.circle_fill,
+                              color: MainColors.successColor(context),
+                              size: 12.r,
+                            ),
+                            SizedBox(width: kSpacingXSmall.w),
+                            Text(
+                              "Open",
+                              style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                                color: MainColors.successColor(context),
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: kSpacingXSmall.r,
-                    vertical: kSpacingXSmall.r,
-                  ),
-                  decoration: BoxDecoration(
-                    color: item.isOpen ? Colors.green : Colors.grey,
-                    borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

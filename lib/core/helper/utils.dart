@@ -50,3 +50,21 @@ void showToast({
   );
 }
 
+String getNormalizedDistance(double distance) {
+  if (distance < 1000) {
+    return '${distance.toStringAsFixed(0)} m';
+  } else {
+    return '${(distance / 1000).toStringAsFixed(2)} km';
+  }
+}
+
+String getNormalizedTime(double time) {
+  if (time < 60) {
+    return '${time.toStringAsFixed(0)} sec';
+  } else if (time < 3600) {
+    return '${(time / 60).toStringAsFixed(0)} min';
+  } else {
+    return '${(time / 3600).toStringAsFixed(2)} hr';
+  }
+}
+

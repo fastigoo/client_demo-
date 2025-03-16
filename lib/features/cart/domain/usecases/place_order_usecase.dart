@@ -17,6 +17,8 @@ class PlaceOrderUseCase {
     required double lat,
     required double long,
     required List<CartItemEntity> cartItems,
+    required int deliveryFee,
+    required double distance,
   }) async {
     return await repository.placeOrder(
       restaurantId: restaurantId,
@@ -24,6 +26,8 @@ class PlaceOrderUseCase {
       lat: lat,
       long: long,
       cartItems: cartItems,
+      deliveryFee: deliveryFee,
+      distance: distance,
     );
   }
 }

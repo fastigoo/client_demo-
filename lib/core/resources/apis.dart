@@ -17,5 +17,6 @@ const String itemDetailUrl = '$baseUrl/restaurant_menu_item';
 // Order
 const String placeOrderUrl = '$baseUrl/order/place_order';
 const String calculateDeliveryFeeUrl = '$baseUrl/order/estimate_delivery_fee';
+const String getOrderDetailUrl = '$baseUrl/order/get';
 
 

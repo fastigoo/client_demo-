@@ -98,7 +98,7 @@ class CartController extends GetxController {
     update();
   }
 
-  void placeOrder() async {
+  void placeOrder({required int deliveryFee, required double distance}) async {
     List<CartItemEntity> items = [];
     for (var item in cartItems) {
       items.add(CartItemEntity(
@@ -116,6 +116,8 @@ class CartController extends GetxController {
         cartItems: items,
         lat: lat,
         long: long,
+        deliveryFee: deliveryFee,
+        distance: distance,
       );
       response.fold(
         (l) {
@@ -125,7 +127,7 @@ class CartController extends GetxController {
           orderEntity = order;
           clearCart();
           showToast(message: 'Order placed successfully');
-          Get.toNamed(Routes.PLACE_ORDER);
+          Get.toNamed(Routes.PLACE_ORDER, arguments: order.orderId);
         },
       );
     } catch (e) {

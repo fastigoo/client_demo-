@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
 
 class RestaurantAnimation extends StatelessWidget {
   const RestaurantAnimation({super.key});
@@ -16,7 +15,7 @@ class RestaurantAnimation extends StatelessWidget {
       height: 1.sh * 0.8,
       child: SingleChildScrollView(
         padding: EdgeInsets.all(kSpacingSmall.r),
-        child: WaterfallFlow.builder(
+        child: ListView.separated(
           itemCount: 9,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -34,11 +33,9 @@ class RestaurantAnimation extends StatelessWidget {
               ),
             );
           },
-          gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: kSpacingMedium.r / 2,
-            mainAxisSpacing: kSpacingMedium.r / 2,
-          ),
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: kSpacingSmall);
+          },
         ),
       ),
     );

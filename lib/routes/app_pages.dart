@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 import 'package:learning/features/cart/presentation/bindings/cart_binding.dart';
+import 'package:learning/features/cart/presentation/bindings/place_order_binding.dart';
 import 'package:learning/features/cart/presentation/screens/cart_screen.dart';
 import 'package:learning/features/cart/presentation/screens/order_place_screen.dart';
 import 'package:learning/features/home/presentation/bindings/home_binding.dart';
 import 'package:learning/features/home/presentation/bindings/product_detail_binding.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/home/presentation/screens/product_detail_screen.dart';
+import 'package:learning/features/resto/presentation/bindings/free_order_binding.dart';
 import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
+import 'package:learning/features/resto/presentation/screens/free_order_screen.dart';
 import 'package:learning/features/resto/presentation/screens/resto_screen.dart';
 
 part 'app_routes.dart';
@@ -28,6 +31,11 @@ class AppPages {
       binding: RestoBinding(),
     ),
     GetPage(
+      name: _Paths.FREE_ORDER,
+      page: () => const FreeOrderScreen(),
+      binding: FreeOrderBinding(),
+    ),
+    GetPage(
       name: _Paths.PRODUCT_DETAIL,
       page: () => const ProductDetailScreen(),
       binding: ProductDetailBinding(),
@@ -40,6 +48,7 @@ class AppPages {
     GetPage(
       name: _Paths.PLACE_ORDER,
       page: () => const PlaceOrderScreen(),
+      binding: PlaceOrderBinding(),
     ),
   ];
 }

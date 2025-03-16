@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/main_colors.dart';
@@ -113,7 +114,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                     minimumSize: Size(45.w, 45.h),
                   ),
                   child: FaIcon(
-                    FontAwesomeIcons.mapMarkerAlt,
+                    FontAwesomeIcons.locationDot,
                     color: Colors.white,
                     size: 20.r,
                   ),
@@ -124,10 +125,10 @@ class ConfirmOrderComponent extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(kSpacingSmall),
               decoration: BoxDecoration(
-                color: MainColors.warningColor(context)!.withOpacity(.1),
+                color: MainColors.secondColor.withOpacity(.1),
                 borderRadius: BorderRadius.circular(kRadiusSmall),
                 border: Border.all(
-                  color: MainColors.warningColor(context)!.withOpacity(.2),
+                  color: MainColors.secondColor.withOpacity(.3),
                   width: 2.r,
                 ),
               ),
@@ -144,13 +145,13 @@ class ConfirmOrderComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Items",
+                  "Distance",
                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                     fontSize: 16.sp,
                   ),
                 ),
                 Text(
-                  "1300 DA",
+                  "${deliveryFeeEntity.distance} m",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
@@ -162,6 +163,35 @@ class ConfirmOrderComponent extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: kSpacingSmall),
+            GetBuilder(
+              init: Get.find<CartController>(),
+              builder: (controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Items",
+                      style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                    Text(
+                      "${controller.getTotalPrice()} DA",
+                      style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: MainColors.primaryColor,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationThickness: 3,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: MainColors.primaryColor,
+                      ),
+                    ),
+                  ],
+                );
+              }
             ),
             const SizedBox(height: kSpacingSmall),
             Row(
@@ -188,83 +218,92 @@ class ConfirmOrderComponent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: kSpacingSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Total",
-                  style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                    fontSize: 16.sp,
-                  ),
-                ),
-                Text(
-                  "1400 DA",
-                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    decoration: TextDecoration.underline,
-                    decorationColor: MainColors.primaryColor,
-                    decorationStyle: TextDecorationStyle.dashed,
-                    decorationThickness: 3,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: MainColors.primaryColor,
-                  ),
-                ),
-              ],
+            GetBuilder(
+              init: Get.find<CartController>(),
+              builder: (controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Total",
+                      style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                    Text(
+                      "${controller.getTotalPrice() + deliveryFeeEntity.deliveryFee} ${deliveryFeeEntity.currency}",
+                      style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: MainColors.primaryColor,
+                        decorationStyle: TextDecorationStyle.dashed,
+                        decorationThickness: 3,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: MainColors.primaryColor,
+                      ),
+                    ),
+                  ],
+                );
+              }
             ),
             const SizedBox(height: kSpacingSmall),
             GetBuilder(
-                init: Get.find<CartController>(),
-                builder: (controller) {
-                  return Obx(
-                    () => controller.isPlacingOrder.isFalse
-                        ? ElevatedButton(
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                controller.placeOrder();
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: MainColors.primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(kRadiusSmall),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: kSpacingSmall,
-                              ),
-                              minimumSize: Size(double.infinity, 45.h),
+              init: Get.find<CartController>(),
+              builder: (controller) {
+                return Obx(
+                  () => controller.isPlacingOrder.isFalse
+                      ? ElevatedButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              controller.placeOrder(
+                                deliveryFee: deliveryFeeEntity.deliveryFee,
+                                distance: deliveryFeeEntity.distance,
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: MainColors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(kRadiusSmall),
                             ),
-                            child: Text(
-                              'Confirm Order',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          )
-                        : Container(
-                            height: 45.h + kSpacingSmall / 2,
                             padding: const EdgeInsets.symmetric(
                               vertical: kSpacingSmall,
                             ),
-                            decoration: BoxDecoration(
-                              color: MainColors.backgroundColor(context),
-                              borderRadius: BorderRadius.circular(kRadiusSmall),
+                            minimumSize: Size(double.infinity, 45.h),
+                          ),
+                          child: Text(
+                            'Confirm Order',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
                             ),
-                            child: Center(
-                              child: SizedBox(
-                                height: 20.h,
-                                width: 20.w,
-                                child: const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    MainColors.primaryColor,
-                                  ),
-                                  strokeWidth: 3,
+                          ),
+                        )
+                      : Container(
+                          height: 45.h + kSpacingSmall / 2,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: kSpacingSmall,
+                          ),
+                          decoration: BoxDecoration(
+                            color: MainColors.backgroundColor(context),
+                            borderRadius: BorderRadius.circular(kRadiusSmall),
+                          ),
+                          child: Center(
+                            child: SizedBox(
+                              height: 20.h,
+                              width: 20.w,
+                              child: const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  MainColors.primaryColor,
                                 ),
+                                strokeWidth: 3,
                               ),
                             ),
                           ),
-                  );
-                }),
+                        ),
+                );
+              },
+            ),
           ],
         ),
       ),

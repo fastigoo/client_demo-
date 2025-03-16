@@ -3,6 +3,7 @@ import 'package:learning/core/error/failures.dart';
 import 'package:learning/features/cart/data/datasources/order_data_source.dart';
 import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
+import 'package:learning/features/cart/domain/entities/order_detail_entity.dart';
 import 'package:learning/features/cart/domain/entities/place_order_entity.dart';
 import 'package:learning/features/cart/domain/repositories/order_repository.dart';
 
@@ -18,6 +19,8 @@ class OrderRepositoryImplement implements OrderRepository {
     required double lat,
     required double long,
     required List<CartItemEntity> cartItems,
+    required int deliveryFee,
+    required double distance,
   }) async {
     try {
       final result = await orderDataSource.placeOrder(
@@ -26,6 +29,8 @@ class OrderRepositoryImplement implements OrderRepository {
         lat: lat,
         long: long,
         cartItems: cartItems,
+        deliveryFee: deliveryFee,
+        distance: distance,
       );
       return Right(result);
     } on Exception {
@@ -47,6 +52,18 @@ class OrderRepositoryImplement implements OrderRepository {
         lat: lat,
         long: long,
       );
+      return Right(result);
+    } on Exception {
+      return Left(ServerFailure());
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, OrderDetailEntity>> getOrderDetail({required int orderId}) async {
+    try {
+      final result = await orderDataSource.getOrderDetail(orderId: orderId);
       return Right(result);
     } on Exception {
       return Left(ServerFailure());

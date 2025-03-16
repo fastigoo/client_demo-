@@ -10,6 +10,7 @@ import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/resto/presentation/states/resto_controller.dart';
 import 'package:learning/features/resto/presentation/widgets/restaurant_animation.dart';
 import 'package:learning/features/resto/presentation/widgets/resto_component.dart';
+import 'package:learning/routes/app_pages.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,150 +32,148 @@ class RestoScreen extends GetView<RestoController> {
             },
             child: Scrollbar(
               child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: kSpacingSmall.r),
+                padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: kSpacingMedium.r),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(kRadiusLarge),
-                          child: Image.asset(
-                            ResourceManager.getAssetResource(
-                              logoImg,
-                            ),
-                            width: 40.r,
-                          ),
-                        ),
-                        SizedBox(width: kSpacingSmall.r),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(kRadiusLarge),
+                        //   child: Image.asset(
+                        //     ResourceManager.getAssetResource(
+                        //       logoImg,
+                        //     ),
+                        //     width: 50.r,
+                        //     height: 50.r,
+                        //     fit: BoxFit.cover,
+                        //   ),
+                        // ),
+                        Row(
                           children: [
-                            Text('Fasti Goo', style: TextStyles.mediumLabelTextStyle(context)),
-                            Text("Pick up a restaurant and start ordering", style: TextStyles.smallBodyTextStyle(context)),
+                            FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
+                            SizedBox(width: kSpacingSmall.r),
+                            Text(
+                              "Mila, Mila, Algeria",
+                              style: TextStyles.mediumBodyTextStyle(context),
+                            ),
                           ],
+                        ),
+                        Container(
+                          width: 50.r,
+                          height: 50.r,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: MainColors.whiteColor,
+                          ),
+                          child: Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.ellipsis,
+                              color: MainColors.primaryColor,
+                              size: 20.r,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(height: kSpacingMedium.r),
                     Container(
+                      width: Get.width,
                       decoration: BoxDecoration(
+                        color: MainColors.primaryColor,
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
-                      child: TextInputComponent(
-                        controller: controller.searchController,
-                        hint: "Search for a restaurant ...",
-                        contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                        borderRadius: kRadiusMedium.r,
-                        onChange: (value) {
-                          controller.onSearchChanged();
-                        },
-                        suffix: SizedBox(
-                          width: 50.r,
-                          child: Icon(
-                            FontAwesomeIcons.magnifyingGlass,
-                            color: MainColors.disableColor(context),
-                            size: 20.r,
+                      padding: EdgeInsets.all(kSpacingMedium.r),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.plus,
+                                size: 20.r,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: kSpacingSmall.r),
+                              Text(
+                                "Free order",
+                                style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                                  color: MainColors.whiteColor,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                          Text(
+                            'In case you have an order outside of the existing stores in the app, you can create a free order and we will make sure to delivery it as soon as possible',
+                            style: TextStyles.smallBodyTextStyle(context).copyWith(
+                              color: MainColors.whiteColor,
+                            ),
+                          ),
+                          SizedBox(height: kSpacingMedium.r),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.FREE_ORDER);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(kSpacingMedium.r - 3),
+                              decoration: BoxDecoration(
+                                color: MainColors.secondColor,
+                                borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Free order",
+                                    style: TextStyles.smallLabelTextStyle(context).copyWith(
+                                      color: MainColors.primaryColor,
+                                    ),
+                                  ),
+                                  FaIcon(FontAwesomeIcons.chevronRight, size: 20.r),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    // SizedBox(height: kSpacingMedium.r),
-                    // Stack(
-                    //   children: [
-                    //     Positioned.fill(
-                    //       child: ClipRRect(
-                    //         borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                    //         child: Image.asset(
-                    //           ResourceManager.getAssetResource(
-                    //             offerBg,
-                    //             type: ResourceType.image,
-                    //           ),
-                    //           fit: BoxFit.cover,
-                    //           height: 200.r,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Positioned.fill(
-                    //       child: Container(
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.white.withOpacity(.8),
-                    //           borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       padding: EdgeInsets.all(kSpacingMedium.r),
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                    //         border: Border.all(color: MainColors.primaryColor.withOpacity(.3), width: 1),
-                    //         color: MainColors.primaryColor.withOpacity(.1),
-                    //       ),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Column(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               Text(
-                    //                 "Evolve coffee snack",
-                    //                 style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                    //                   color: Colors.black,
-                    //                 ),
-                    //               ),
-                    //               Text(
-                    //                 "You can't miss it",
-                    //                 style: TextStyles.smallBodyTextStyle(context).copyWith(color: Colors.black),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       right: 0,
-                    //       top: 0,
-                    //       child: Container(
-                    //         padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 5.r),
-                    //         decoration: BoxDecoration(
-                    //           color: MainColors.primaryColor,
-                    //           borderRadius: BorderRadius.only(
-                    //             topRight: Radius.circular(kRadiusMedium.r),
-                    //             bottomLeft: Radius.circular(kRadiusMedium.r),
-                    //           ),
-                    //         ),
-                    //         child: Text(
-                    //           "50%",
-                    //           style: TextStyles.smallBodyTextStyle(context).copyWith(
-                    //             color: MainColors.whiteColor,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       bottom: 10,
-                    //       child: SizedBox(
-                    //         height: 5.r,
-                    //         child: ListView.builder(
-                    //           itemCount: 5,
-                    //           scrollDirection: Axis.horizontal,
-                    //           itemBuilder: (context, index) {
-                    //             return Container(
-                    //               margin: EdgeInsets.only(right: kSpacingSmall.r),
-                    //               width: index == 0 ? 30.r : 5.r,
-                    //               height: 5.r,
-                    //               decoration: BoxDecoration(
-                    //                 color: MainColors.primaryColor,
-                    //                 borderRadius: BorderRadius.circular(2.5.r),
-                    //               ),
-                    //             );
-                    //           },
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
+                    SizedBox(height: kSpacingMedium.r),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                            ),
+                            child: TextInputComponent(
+                              controller: controller.searchController,
+                              hint: "Search for a restaurant ...",
+                              contentPadding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
+                              borderRadius: kRadiusMedium.r,
+                              onChange: (value) {
+                                controller.onSearchChanged();
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: kSpacingSmall.r),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                            color: MainColors.primaryColor,
+                          ),
+                          child: Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.magnifyingGlass,
+                              color: MainColors.whiteColor,
+                              size: 20.r,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: kSpacingMedium.r),
                     Container(
                       margin: EdgeInsets.only(bottom: kSpacingMedium.r),
@@ -182,24 +181,14 @@ class RestoScreen extends GetView<RestoController> {
                         minHeight: Get.height,
                       ),
                       child: controller.isLoading.isFalse
-                          ? WaterfallFlow.builder(
+                          ? ListView.separated(
+                              itemBuilder: (c, i) => RestoComponent(
+                                item: controller.getRestaurantsList[i],
+                              ),
+                              separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
                               itemCount: controller.getRestaurantsList.length,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              controller: controller.scrollController,
-                              itemBuilder: (context, index) {
-                                return RestoComponent(
-                                  item: controller.getRestaurantsList[index],
-                                );
-                              },
-                              gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: kSpacingMedium.r / 2,
-                                mainAxisSpacing: kSpacingMedium.r / 2,
-                                lastChildLayoutTypeBuilder: (index) => index == controller.getRestaurantsList.length
-                                    ? LastChildLayoutType.foot
-                                    : LastChildLayoutType.none,
-                              ),
                             )
                           : const RestaurantAnimation(),
                     ),
