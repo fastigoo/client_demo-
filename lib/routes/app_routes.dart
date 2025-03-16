@@ -3,6 +3,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const INITIAL = _Paths.INITIAL;
+  static const MAP = _Paths.MAP;
   static const RESTO = _Paths.RESTO;
   static const FREE_ORDER = _Paths.FREE_ORDER;
   static const HOME = _Paths.HOME;
@@ -15,6 +16,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const INITIAL = '/splash';
+  static const MAP = '/map';
   static const RESTO = '/restaurants';
   static const FREE_ORDER = '/free-order';
   static const HOME = '/home';

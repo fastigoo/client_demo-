@@ -12,6 +12,11 @@ import 'package:learning/features/home/domain/repositories/home_repository.dart'
 import 'package:learning/features/home/domain/usecases/get_all_restaurant_menus_usecase.dart';
 import 'package:learning/features/home/domain/usecases/get_item_detail_usecase.dart';
 import 'package:learning/features/home/domain/usecases/get_restaurant_menu_items_usecase.dart';
+import 'package:learning/features/map/data/datasources/map_data_source.dart';
+import 'package:learning/features/map/data/datasources/map_data_source.dart';
+import 'package:learning/features/map/data/repositories/map_repository_implement.dart';
+import 'package:learning/features/map/domain/repositories/map_repository.dart';
+import 'package:learning/features/map/domain/usecases/get_address_from_latlng_usecase.dart';
 import 'package:learning/features/resto/data/datasources/restaurant_data_source.dart';
 import 'package:learning/features/resto/data/repositories/restaurant_repository_implement.dart';
 import 'package:learning/features/resto/domain/repositories/restaurant_repository.dart';
@@ -31,6 +36,12 @@ Future<void> injectionInit() async {
   Get.put<GetAllRestaurantMenusUseCase>(GetAllRestaurantMenusUseCase(repository: Get.find<HomeRepository>()));
   Get.put<GetRestaurantMenuItemsUseCase>(GetRestaurantMenuItemsUseCase(repository: Get.find<HomeRepository>()));
   Get.put<GetItemDetailUseCase>(GetItemDetailUseCase(repository: Get.find<HomeRepository>()));
+
+  // Map
+  Get.put<MapDataSource>(MapDataSourceImplement());
+  Get.put<MapRepository>(MapRepositoryImplement(mapDataSource: Get.find<MapDataSource>()));
+
+  Get.put<GetAddressFromLatLngUseCase>(GetAddressFromLatLngUseCase(repository: Get.find<MapRepository>()));
 
   // Home
   Get.put<OrderDataSource>(OrderDataSourceImplement());

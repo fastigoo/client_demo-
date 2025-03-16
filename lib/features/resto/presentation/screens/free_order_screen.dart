@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/resto/presentation/states/free_order_controller.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning/routes/app_pages.dart';
 
 class FreeOrderScreen extends GetView<FreeOrderController> {
   const FreeOrderScreen({
@@ -25,148 +26,173 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: 50.r,
-                            height: 50.r,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: MainColors.whiteColor,
-                            ),
-                            child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.ellipsis,
-                                color: MainColors.primaryColor,
-                                size: 20.r,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: kSpacingMedium.r),
-                      Container(
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                          color: MainColors.primaryColor,
-                          borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                        ),
-                        padding: EdgeInsets.all(kSpacingMedium.r),
-                        child: Column(
+                  child: GetBuilder(
+                      init: controller,
+                      builder: (controller) {
+                        return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Choose Location",
-                              style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                                color: MainColors.whiteColor,
-                              ),
-                            ),
-                            Text(
-                              'Please select your location where you want to order to be delivered as soon as possible',
-                              style: TextStyles.smallBodyTextStyle(context).copyWith(
-                                color: MainColors.whiteColor,
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: 50.r,
+                                  height: 50.r,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: MainColors.whiteColor,
+                                  ),
+                                  child: Center(
+                                    child: FaIcon(
+                                      FontAwesomeIcons.ellipsis,
+                                      color: MainColors.primaryColor,
+                                      size: 20.r,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: kSpacingMedium.r),
                             Container(
-                              padding: EdgeInsets.all(kSpacingMedium.r - 3),
+                              width: Get.width,
                               decoration: BoxDecoration(
-                                color: MainColors.secondColor,
-                                borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                                color: MainColors.primaryColor,
+                                borderRadius: BorderRadius.circular(kRadiusMedium.r),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Current Location",
-                                    style: TextStyles.smallLabelTextStyle(context).copyWith(
-                                      color: MainColors.primaryColor,
-                                    ),
-                                  ),
-                                  FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: kSpacingMedium.r),
-                      Text("  Phone number", style: TextStyles.smallBodyTextStyle(context)),
-                      SizedBox(height: kSpacingXSmall.r),
-                      TextFormField(
-                        controller: controller.phoneController,
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Ex: 0777676767",
-                          hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
-                            color: MainColors.disableColor(context),
-                          ),
-                          prefixIcon: Icon(
-                            Icons.phone,
-                            color: MainColors.disableColor(context),
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: kSpacingMedium.r,
-                            vertical: kSpacingMedium.r,
-                          ),
-                          filled: true,
-                          fillColor: MainColors.whiteColor,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: kSpacingMedium.r),
-                      Text("Order List", style: TextStyles.smallBodyTextStyle(context)),
-                      SizedBox(height: kSpacingXSmall.r),
-                      ListView.separated(
-                        itemBuilder: (c, i) => Container(
-                          decoration: BoxDecoration(
-                            color: MainColors.whiteColor,
-                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                          ),
-                          padding: EdgeInsets.all(kSpacingMedium.r),
-                          child: Row(
-                            children: [
-                              Column(
+                              padding: EdgeInsets.all(kSpacingMedium.r),
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Chicken Burger",
-                                    style: TextStyles.smallLabelTextStyle(context),
+                                    "Choose Location",
+                                    style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                                      color: MainColors.whiteColor,
+                                    ),
                                   ),
                                   Text(
-                                    "2.5 Kg",
-                                    style: TextStyles.smallBodyTextStyle(context),
+                                    'Please select your location where you want to order to be delivered as soon as possible',
+                                    style: TextStyles.smallBodyTextStyle(context).copyWith(
+                                      color: MainColors.whiteColor,
+                                    ),
                                   ),
+                                  SizedBox(height: kSpacingMedium.r),
+                                  GetBuilder(
+                                      init: controller,
+                                      builder: (controller) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Get.toNamed(Routes.MAP);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(kSpacingMedium.r - 3),
+                                            decoration: BoxDecoration(
+                                              color: MainColors.secondColor,
+                                              borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  controller.address == null
+                                                      ? "Current Location"
+                                                      : "${controller.address!.city} - ${controller.address!.road}",
+                                                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                                    color: MainColors.primaryColor,
+                                                  ),
+                                                ),
+                                                FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }),
                                 ],
                               ),
-                              const Spacer(),
-                              Text(
-                                "#-${i + 1}",
-                                style: TextStyles.smallLabelTextStyle(context),
+                            ),
+                            SizedBox(height: kSpacingMedium.r),
+                            Text("  Phone number", style: TextStyles.smallBodyTextStyle(context)),
+                            SizedBox(height: kSpacingXSmall.r),
+                            TextFormField(
+                              controller: controller.phoneController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Ex: 0777676767",
+                                hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
+                                  color: MainColors.disableColor(context),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.phone,
+                                  color: MainColors.disableColor(context),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: kSpacingMedium.r,
+                                  vertical: kSpacingMedium.r,
+                                ),
+                                filled: true,
+                                fillColor: MainColors.whiteColor,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
-                        separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
-                        itemCount: 4,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                      ),
-                      SizedBox(height: kSpacingMedium.r),
-                    ],
-                  ),
+                            ),
+                            SizedBox(height: kSpacingMedium.r),
+                            Text("Order List", style: TextStyles.smallBodyTextStyle(context)),
+                            SizedBox(height: kSpacingXSmall.r),
+                            controller.items.isNotEmpty
+                                ? ListView.separated(
+                                    itemBuilder: (c, i) => Container(
+                                      decoration: BoxDecoration(
+                                        color: MainColors.whiteColor,
+                                        borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                                      ),
+                                      padding: EdgeInsets.all(kSpacingSmall.r + 2),
+                                      child: Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                controller.items[i].name,
+                                                style: TextStyles.smallLabelTextStyle(context),
+                                              ),
+                                              Text(
+                                                "${controller.items[i].quantity} ${controller.items[i].unite}",
+                                                style: TextStyles.smallBodyTextStyle(context),
+                                              ),
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          GestureDetector(
+                                            onTap: () {
+                                              controller.removeItem(i);
+                                            },
+                                            child: FaIcon(
+                                              FontAwesomeIcons.trash,
+                                              color: MainColors.errorColor(context),
+                                              size: 20.r,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
+                                    itemCount: controller.items.length,
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                  )
+                                : const Center(
+                                    child: EmptyComponent(),
+                                  ),
+                            SizedBox(height: kSpacingMedium.r),
+                          ],
+                        );
+                      }),
                 ),
               ),
               SizedBox(height: kSpacingMedium.r),
@@ -181,7 +207,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
                     ),
                     onPressed: () {
-                      controller.reset();
+                      // controller.reset();
                     },
                     child: Text(
                       "Place Order",
@@ -280,13 +306,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                             width: 40.r,
                                             height: 40.r,
                                             decoration: BoxDecoration(
-                                              color: MainColors.secondColor,
+                                              color: MainColors.primaryColor,
                                               borderRadius: BorderRadius.circular(kRadiusMedium.r),
                                             ),
                                             child: Center(
                                               child: FaIcon(
                                                 FontAwesomeIcons.minus,
-                                                color: MainColors.primaryColor,
+                                                color: MainColors.secondColor,
                                                 size: 20.r,
                                               ),
                                             ),
@@ -301,13 +327,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                             width: 40.r,
                                             height: 40.r,
                                             decoration: BoxDecoration(
-                                              color: MainColors.secondColor,
+                                              color: MainColors.primaryColor,
                                               borderRadius: BorderRadius.circular(kRadiusMedium.r),
                                             ),
                                             child: Center(
                                               child: FaIcon(
                                                 FontAwesomeIcons.plus,
-                                                color: MainColors.primaryColor,
+                                                color: MainColors.secondColor,
                                                 size: 20.r,
                                               ),
                                             ),
@@ -328,7 +354,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                       for (var i = 0; i < controller.unites.length; i++)
                                         GestureDetector(
                                           onTap: () {
-                                            controller.selectedUnite.value = controller.unites[i];
+                                            controller.setSelectedUnit(controller.unites[i]);
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -364,8 +390,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     minimumSize: Size(1.sw, 50.r),
                                   ),
                                   onPressed: () {
-                                    controller.reset();
-                                    Get.back();
+                                    controller.addItem();
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

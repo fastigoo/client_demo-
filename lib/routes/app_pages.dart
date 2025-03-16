@@ -7,6 +7,8 @@ import 'package:learning/features/home/presentation/bindings/home_binding.dart';
 import 'package:learning/features/home/presentation/bindings/product_detail_binding.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/home/presentation/screens/product_detail_screen.dart';
+import 'package:learning/features/map/presentation/bindings/map_binding.dart';
+import 'package:learning/features/map/presentation/screens/map_screen.dart';
 import 'package:learning/features/resto/presentation/bindings/free_order_binding.dart';
 import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
 import 'package:learning/features/resto/presentation/screens/free_order_screen.dart';
@@ -24,6 +26,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeScreen(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP,
+      page: () => const MapScreen(),
+      binding: MapBinding(),
     ),
     GetPage(
       name: _Paths.RESTO,

@@ -13,6 +13,9 @@ const String allRestaurantMenuUrl = '$baseUrl/restaurant_menu/get_all';
 const String allRestaurantMenuItemsUrl = '$baseUrl/restaurant_menu_item/get_all';
 const String itemDetailUrl = '$baseUrl/restaurant_menu_item';
 
+// Address
+const String getAddressFromLatlngUrl = '$baseUrl/place_info';
+
 
 // Order
 const String placeOrderUrl = '$baseUrl/order/place_order';
