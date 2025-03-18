@@ -104,7 +104,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                       child: Column(
                         children: [
                           Text(
-                            "Order will be delivered to",
+                            "Order will be delivered from",
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                               fontSize: 17.sp,
@@ -119,7 +119,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           ),
                           SizedBox(height: kSpacingSmall.h),
                           Text(
-                            "Order will be delivered from",
+                            "Order will be delivered to",
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                               fontSize: 17.sp,

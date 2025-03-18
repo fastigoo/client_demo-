@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
@@ -39,17 +40,6 @@ class RestoScreen extends GetView<RestoController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(kRadiusLarge),
-                        //   child: Image.asset(
-                        //     ResourceManager.getAssetResource(
-                        //       logoImg,
-                        //     ),
-                        //     width: 50.r,
-                        //     height: 50.r,
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        // ),
                         Row(
                           children: [
                             FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
@@ -60,18 +50,23 @@ class RestoScreen extends GetView<RestoController> {
                             ),
                           ],
                         ),
-                        Container(
-                          width: 50.r,
-                          height: 50.r,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: MainColors.whiteColor,
-                          ),
-                          child: Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.ellipsis,
-                              color: MainColors.primaryColor,
-                              size: 20.r,
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.ORDERS);
+                          },
+                          child: Container(
+                            width: 50.r,
+                            height: 50.r,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: MainColors.whiteColor,
+                            ),
+                            child: Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.ellipsis,
+                                color: MainColors.primaryColor,
+                                size: 20.r,
+                              ),
                             ),
                           ),
                         ),

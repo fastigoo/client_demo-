@@ -9,6 +9,8 @@ import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/home/presentation/screens/product_detail_screen.dart';
 import 'package:learning/features/map/presentation/bindings/map_binding.dart';
 import 'package:learning/features/map/presentation/screens/map_screen.dart';
+import 'package:learning/features/orders/presentation/bindings/orders_binding.dart';
+import 'package:learning/features/orders/presentation/screens/orders_screen.dart';
 import 'package:learning/features/resto/presentation/bindings/free_order_binding.dart';
 import 'package:learning/features/resto/presentation/bindings/free_orders_list_binding.dart';
 import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
@@ -48,6 +50,11 @@ class AppPages {
       name: _Paths.FREE_ORDERS,
       page: () => const FreeOrdersListScreen(),
       binding: FreeOrdersBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDERS,
+      page: () => const OrdersScreen(),
+      binding: OrdersBinding(),
     ),
     GetPage(
       name: _Paths.PRODUCT_DETAIL,
