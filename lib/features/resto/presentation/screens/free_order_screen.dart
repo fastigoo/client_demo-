@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -33,20 +34,57 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  width: 50.r,
-                                  height: 50.r,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: MainColors.whiteColor,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    width: 50.r,
+                                    height: 50.r,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: MainColors.whiteColor,
+                                      border: Border.fromBorderSide(
+                                        BorderSide(
+                                          color: MainColors.primaryColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: FaIcon(
+                                        FontAwesomeIcons.chevronLeft,
+                                        color: MainColors.primaryColor,
+                                        size: 20.r,
+                                      ),
+                                    ),
                                   ),
-                                  child: Center(
-                                    child: FaIcon(
-                                      FontAwesomeIcons.ellipsis,
-                                      color: MainColors.primaryColor,
-                                      size: 20.r,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.FREE_ORDERS);
+                                  },
+                                  child: Container(
+                                    width: 50.r,
+                                    height: 50.r,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: MainColors.whiteColor,
+                                      border: Border.fromBorderSide(
+                                        BorderSide(
+                                          color: MainColors.primaryColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: FaIcon(
+                                        FontAwesomeIcons.fileZipper,
+                                        color: MainColors.primaryColor,
+                                        size: 20.r,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -77,40 +115,44 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                   ),
                                   SizedBox(height: kSpacingMedium.r),
                                   GetBuilder(
-                                      init: controller,
-                                      builder: (controller) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Get.toNamed(Routes.MAP);
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(kSpacingMedium.r - 3),
-                                            decoration: BoxDecoration(
-                                              color: MainColors.secondColor,
-                                              borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  controller.address == null
-                                                      ? "Current Location"
-                                                      : "${controller.address!.city} - ${controller.address!.road}",
-                                                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                                    color: MainColors.primaryColor,
-                                                  ),
-                                                ),
-                                                FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
-                                              ],
-                                            ),
+                                    init: controller,
+                                    builder: (controller) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(Routes.MAP);
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.all(kSpacingMedium.r - 3),
+                                          decoration: BoxDecoration(
+                                            color: MainColors.secondColor,
+                                            borderRadius: BorderRadius.circular(kRadiusSmall.r),
                                           ),
-                                        );
-                                      }),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                controller.address == null
+                                                    ? "Current Location"
+                                                    : "${controller.address!.city} - ${controller.address!.road}",
+                                                style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                                  color: MainColors.primaryColor,
+                                                ),
+                                              ),
+                                              FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ],
                               ),
                             ),
                             SizedBox(height: kSpacingMedium.r),
-                            Text("  Phone number", style: TextStyles.smallBodyTextStyle(context)),
+                            Text(
+                              "  Phone number",
+                              style: TextStyles.smallBodyTextStyle(context),
+                            ),
                             SizedBox(height: kSpacingXSmall.r),
                             TextFormField(
                               controller: controller.phoneController,

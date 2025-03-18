@@ -6,6 +6,7 @@ abstract class Routes {
   static const MAP = _Paths.MAP;
   static const RESTO = _Paths.RESTO;
   static const FREE_ORDER = _Paths.FREE_ORDER;
+  static const FREE_ORDERS = _Paths.FREE_ORDERS;
   static const HOME = _Paths.HOME;
   static const PRODUCT_DETAIL = _Paths.PRODUCT_DETAIL;
   static const CART = _Paths.CART;
@@ -19,6 +20,7 @@ abstract class _Paths {
   static const MAP = '/map';
   static const RESTO = '/restaurants';
   static const FREE_ORDER = '/free-order';
+  static const FREE_ORDERS = '/free-orders';
   static const HOME = '/home';
   static const PRODUCT_DETAIL = '/product-detail';
   static const CART = '/cart';

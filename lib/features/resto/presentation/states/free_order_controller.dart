@@ -53,6 +53,7 @@ class FreeOrderController extends GetxController {
 
   void updateAddress(OrderCustomerLocationEntity address) {
     this.address = address;
+    // print(address.road);
     update();
   }
 }

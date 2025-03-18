@@ -15,6 +15,7 @@ class MapState extends GetxController {
 
   bool get serviceEnabled => _serviceEnabled.value;
   Position? currentPos;
+  LatLng? orderPos;
   LocationPermission _permission = LocationPermission.denied;
 
   final mapController = MapController();
@@ -128,10 +129,10 @@ class MapState extends GetxController {
     }
   }
 
-  void getAddressFromLatLng() async {
+  Future<void> getAddressFromLatLng() async {
     try {
       isLoadingAddress.value = true;
-      final response = await _getAddressesUseCase.call(latLng: LatLng(currentPos!.latitude, currentPos!.longitude));
+      final response = await _getAddressesUseCase.call(latLng: getMarkerPosition());
       response.fold(
         (l) {
           showToast(message: l.toString());
@@ -146,5 +147,15 @@ class MapState extends GetxController {
     } finally {
       isLoadingAddress.value = false;
     }
+  }
+
+  void setOrderPos(LatLng point) async {
+    orderPos = point;
+    mapController.move(point, 15);
+    update();
+  }
+  LatLng getMarkerPosition() {
+    final result = orderPos ?? LatLng(currentPos!.latitude, currentPos!.longitude);
+    return result;
   }
 }

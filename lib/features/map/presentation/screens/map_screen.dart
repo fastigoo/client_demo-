@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
@@ -26,22 +27,6 @@ class MapScreen extends GetView<MapState> {
                 color: MainColors.whiteColor,
               ),
             ),
-            Obx(
-              () => controller.isLoadingAddress.isFalse
-                  ? Text(
-                     "${controller.address!.city} - ${controller.address!.road}",
-                      style: TextStyles.smallBodyTextStyle(context).copyWith(
-                        color: MainColors.whiteColor,
-                      ),
-                    )
-                  : SizedBox(
-                      height: 20.h,
-                      width: 20.w,
-                      child: const CircularProgressIndicator(
-                        color: MainColors.whiteColor,
-                      ),
-                    ),
-            ),
           ],
         ),
         leading: IconButton(
@@ -49,12 +34,16 @@ class MapScreen extends GetView<MapState> {
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () => Get.back(),
+          onPressed: () {
+            controller.getAddressFromLatLng();
+            Get.back();
+          }
         ),
         titleSpacing: 0,
         actions: [
           GestureDetector(
             onTap: () {
+              controller.getAddressFromLatLng();
               Get.back();
             },
             child: Container(
@@ -85,7 +74,7 @@ class MapScreen extends GetView<MapState> {
                     mapController: controller.mapController,
                     options: MapOptions(
                       onTap: (TapPosition pos, LatLng point) {
-                        // controller.setOrderPos(point);
+                        controller.setOrderPos(point);
                       },
                       initialZoom: 15,
                       minZoom: 4,
@@ -96,30 +85,35 @@ class MapScreen extends GetView<MapState> {
                       TileLayer(
                         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       ),
-                      MarkerLayer(
-                        markers: [
-                          Marker(
-                            width: 25,
-                            height: 25,
-                            point: LatLng(controller.currentPos!.latitude, controller.currentPos!.longitude),
-                            child: Container(
-                              width: 25.w,
-                              height: 25.h,
-                              decoration: BoxDecoration(
-                                color: MainColors.primaryColor,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 3.r,
+                      GetBuilder(
+                        init: controller,
+                        builder: (controller) {
+                          return MarkerLayer(
+                            markers: [
+                              Marker(
+                                width: 25,
+                                height: 25,
+                                point: controller.getMarkerPosition(),
+                                child: Container(
+                                  width: 25.w,
+                                  height: 25.h,
+                                  decoration: BoxDecoration(
+                                    color: MainColors.primaryColor,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 3.r,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ],
+                            ],
+                          );
+                        }
                       ),
                     ],
                   )
-                : Center(
+                : const Center(
                     child: CircularProgressIndicator(
                       color: MainColors.primaryColor,
                     ),
