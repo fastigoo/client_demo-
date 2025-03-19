@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
 import 'package:learning/features/map/domain/usecases/get_address_from_latlng_usecase.dart';
-import 'package:learning/features/resto/presentation/states/free_order_controller.dart';
+import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 
 class MapState extends GetxController {
   final isMapReady = false.obs;

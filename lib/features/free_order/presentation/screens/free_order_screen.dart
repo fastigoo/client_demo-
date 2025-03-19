@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/resto/presentation/states/free_order_controller.dart';
+import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning/features/free_order/presentation/widgets/add_item_order_popup.dart';
 import 'package:learning/routes/app_pages.dart';
+import 'package:wc_form_validators/wc_form_validators.dart';
 
 class FreeOrderScreen extends GetView<FreeOrderController> {
   const FreeOrderScreen({
@@ -28,9 +28,11 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
               Expanded(
                 child: SingleChildScrollView(
                   child: GetBuilder(
-                      init: controller,
-                      builder: (controller) {
-                        return Column(
+                    init: controller,
+                    builder: (controller) {
+                      return Form(
+                        key: controller.formKey,
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
@@ -157,6 +159,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                             TextFormField(
                               controller: controller.phoneController,
                               keyboardType: TextInputType.phone,
+                              validator: Validators.compose([
+                                Validators.required("Phone number is required"),
+                                Validators.patternRegExp(
+                                  RegExp(r'^(05|06|07)[0-9]{8}$'),
+                                  "Phone number must be 10 digits and start with 05, 06, or 07",
+                                ),
+                              ]),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Ex: 0777676767",
@@ -228,13 +237,20 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
                                   )
-                                : const Center(
-                                    child: EmptyComponent(),
+                                : Center(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _onTap(controller: controller, context: context);
+                                      },
+                                      child: const EmptyComponent(text: "No items added yet"),
+                                    ),
                                   ),
                             SizedBox(height: kSpacingMedium.r),
                           ],
-                        );
-                      }),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
               SizedBox(height: kSpacingMedium.r),
@@ -249,7 +265,19 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
                     ),
                     onPressed: () {
-                      // controller.reset();
+                      if (controller.items.isEmpty) {
+                        Get.snackbar(
+                          "Error",
+                          "Please add items to your order",
+                          backgroundColor: MainColors.errorColor(context),
+                          colorText: MainColors.whiteColor,
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                        return;
+                      }
+                      if (controller.formKey.currentState!.validate()) {
+                        controller.addFreeOrder();
+                      }
                     },
                     child: Text(
                       "Place Order",
@@ -262,202 +290,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                   SizedBox(width: kSpacingSmall.r),
                   GestureDetector(
                     onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (c) => SafeArea(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(kRadiusMedium.r),
-                                topRight: Radius.circular(kRadiusMedium.r),
-                              ),
-                            ),
-                            padding: EdgeInsets.all(kSpacingMedium.r),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                TextFormField(
-                                  controller: controller.nameController,
-                                  decoration: InputDecoration(
-                                    hintText: "Item Name",
-                                    hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
-                                      color: MainColors.disableColor(context),
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.edit,
-                                      color: MainColors.disableColor(context),
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(
-                                      horizontal: kSpacingMedium.r,
-                                      vertical: kSpacingMedium.r,
-                                    ),
-                                    filled: true,
-                                    fillColor: MainColors.whiteColor,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: kSpacingMedium.r),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormField(
-                                        controller: controller.quantityController,
-                                        keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
-                                          hintText: "Quantity",
-                                          hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
-                                            color: MainColors.disableColor(context),
-                                          ),
-                                          prefixIcon: Icon(
-                                            Icons.numbers,
-                                            color: MainColors.disableColor(context),
-                                          ),
-                                          contentPadding: EdgeInsets.symmetric(
-                                            horizontal: kSpacingMedium.r,
-                                            vertical: kSpacingMedium.r,
-                                          ),
-                                          filled: true,
-                                          fillColor: MainColors.whiteColor,
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: kSpacingSmall.r),
-                                    Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            controller.removeQuantity();
-                                          },
-                                          child: Container(
-                                            width: 40.r,
-                                            height: 40.r,
-                                            decoration: BoxDecoration(
-                                              color: MainColors.primaryColor,
-                                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                            ),
-                                            child: Center(
-                                              child: FaIcon(
-                                                FontAwesomeIcons.minus,
-                                                color: MainColors.secondColor,
-                                                size: 20.r,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: kSpacingSmall.r),
-                                        GestureDetector(
-                                          onTap: () {
-                                            controller.addQuantity();
-                                          },
-                                          child: Container(
-                                            width: 40.r,
-                                            height: 40.r,
-                                            decoration: BoxDecoration(
-                                              color: MainColors.primaryColor,
-                                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                            ),
-                                            child: Center(
-                                              child: FaIcon(
-                                                FontAwesomeIcons.plus,
-                                                color: MainColors.secondColor,
-                                                size: 20.r,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: kSpacingMedium.r),
-                                Obx(
-                                  () => Wrap(
-                                    crossAxisAlignment: WrapCrossAlignment.center,
-                                    runAlignment: WrapAlignment.center,
-                                    spacing: kSpacingSmall.r,
-                                    runSpacing: kSpacingSmall.r,
-                                    children: [
-                                      for (var i = 0; i < controller.unites.length; i++)
-                                        GestureDetector(
-                                          onTap: () {
-                                            controller.setSelectedUnit(controller.unites[i]);
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: MainColors.secondColor,
-                                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                              border: controller.unites[i] == controller.selectedUnite.value
-                                                  ? Border.all(
-                                                      color: MainColors.primaryColor,
-                                                      width: 2.w,
-                                                    )
-                                                  : null,
-                                            ),
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: kSpacingMedium.r,
-                                              vertical: kSpacingXSmall.r,
-                                            ),
-                                            child: Text(
-                                              controller.unites[i],
-                                              style: TextStyles.smallBodyTextStyle(context),
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: kSpacingMedium.r),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: MainColors.primaryColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                    ),
-                                    minimumSize: Size(1.sw, 50.r),
-                                  ),
-                                  onPressed: () {
-                                    controller.addItem();
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.plus,
-                                        size: 20.r,
-                                        color: MainColors.whiteColor,
-                                      ),
-                                      SizedBox(width: kSpacingSmall.r),
-                                      Text(
-                                        "Add Item",
-                                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                          color: MainColors.whiteColor,
-                                          fontSize: 16.r,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                      _onTap(controller: controller, context: context);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -481,6 +314,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
           ).paddingSymmetric(horizontal: kSpacingMedium.r),
         ),
       ),
+    );
+  }
+
+  _onTap({required FreeOrderController controller, required BuildContext context}) {
+    showModalBottomSheet(
+      context: context,
+      builder: (c) => AddFreeOrderItemPopup(controller: controller),
     );
   }
 }

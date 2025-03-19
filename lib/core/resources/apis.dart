@@ -23,3 +23,9 @@ const String calculateDeliveryFeeUrl = '$baseUrl/order/estimate_delivery_fee';
 const String getOrderDetailUrl = '$baseUrl/order/get';
 
 
+// Free Order
+const String addFreeOrderUrl = '$baseUrl/free_order/place_order';
+const String allFreeOrderUrl = '$baseUrl/free_order/get_all';
+const String freeOrderDetailUrl = '$baseUrl/free_order/get';
+
+

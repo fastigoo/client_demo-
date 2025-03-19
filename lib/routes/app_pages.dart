@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
+import 'package:learning/core/screens/success_screen.dart';
 import 'package:learning/features/cart/presentation/bindings/cart_binding.dart';
 import 'package:learning/features/cart/presentation/bindings/place_order_binding.dart';
 import 'package:learning/features/cart/presentation/screens/cart_screen.dart';
 import 'package:learning/features/cart/presentation/screens/order_place_screen.dart';
+import 'package:learning/features/free_order/presentation/bindings/free_orders_list_binding.dart';
+import 'package:learning/features/free_order/presentation/screens/free_orders_list_screen.dart';
 import 'package:learning/features/home/presentation/bindings/home_binding.dart';
 import 'package:learning/features/home/presentation/bindings/product_detail_binding.dart';
 import 'package:learning/features/home/presentation/screens/home_screen.dart';
@@ -11,11 +14,9 @@ import 'package:learning/features/map/presentation/bindings/map_binding.dart';
 import 'package:learning/features/map/presentation/screens/map_screen.dart';
 import 'package:learning/features/orders/presentation/bindings/orders_binding.dart';
 import 'package:learning/features/orders/presentation/screens/orders_screen.dart';
-import 'package:learning/features/resto/presentation/bindings/free_order_binding.dart';
-import 'package:learning/features/resto/presentation/bindings/free_orders_list_binding.dart';
+import 'package:learning/features/free_order/presentation/bindings/free_order_binding.dart';
 import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
-import 'package:learning/features/resto/presentation/screens/free_order_screen.dart';
-import 'package:learning/features/resto/presentation/screens/free_orders_list_screen.dart';
+import 'package:learning/features/free_order/presentation/screens/free_order_screen.dart';
 import 'package:learning/features/resto/presentation/screens/resto_screen.dart';
 
 part 'app_routes.dart';
@@ -50,6 +51,10 @@ class AppPages {
       name: _Paths.FREE_ORDERS,
       page: () => const FreeOrdersListScreen(),
       binding: FreeOrdersBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUCCESS,
+      page: () => const SuccessScreen(),
     ),
     GetPage(
       name: _Paths.ORDERS,

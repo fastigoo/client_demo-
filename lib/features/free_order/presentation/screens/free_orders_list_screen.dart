@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -8,7 +6,9 @@ import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/resto/presentation/states/free_orders_controller.dart';
+import 'package:learning/features/free_order/domain/entities/free_order_item_entity.dart';
+import 'package:learning/features/free_order/presentation/states/free_orders_controller.dart';
+import 'package:learning/features/free_order/presentation/widgets/order_list_detail_component.dart';
 import 'package:learning/routes/app_pages.dart';
 
 class FreeOrdersListScreen extends GetView<FreeOrdersController> {
@@ -20,51 +20,59 @@ class FreeOrdersListScreen extends GetView<FreeOrdersController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
-          height: Get.height - kSpacingMedium.r,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const BackComponent(),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.FREE_ORDER);
-                    },
-                    child: Container(
-                      width: 50.r,
-                      height: 50.r,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: MainColors.whiteColor,
+        child: Obx(
+          () => controller.isLoading.isFalse
+              ? SizedBox(
+                  height: Get.height - kSpacingMedium.r,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const BackComponent(),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.FREE_ORDER);
+                            },
+                            child: Container(
+                              width: 50.r,
+                              height: 50.r,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: MainColors.whiteColor,
+                              ),
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: MainColors.primaryColor,
+                                  size: 20.r,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.plus,
-                          color: MainColors.primaryColor,
-                          size: 20.r,
+                      SizedBox(height: kSpacingMedium.h),
+                      Expanded(
+                        child: ListView.separated(
+                          itemCount: controller.freeOrderResEntity!.orders.length,
+                          itemBuilder: (context, index) {
+                            return ExpandableOrderItem(
+                              freeOrderItemEntity: controller.freeOrderResEntity!.orders[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(height: kSpacingMedium.h);
+                          },
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: kSpacingMedium.h),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return ExpandableOrderItem(index: index);
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(height: kSpacingMedium.h);
-                  },
+                    ],
+                  ).paddingSymmetric(horizontal: kSpacingMedium.r),
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
                 ),
-              ),
-            ],
-          ).paddingSymmetric(horizontal: kSpacingMedium.r),
         ),
       ),
     );
@@ -72,24 +80,27 @@ class FreeOrdersListScreen extends GetView<FreeOrdersController> {
 }
 
 class ExpandableOrderItem extends StatefulWidget {
-  final int index;
+  final FreeOrderItemEntity freeOrderItemEntity;
 
-  const ExpandableOrderItem({Key? key, required this.index}) : super(key: key);
+  const ExpandableOrderItem({
+    Key? key,
+    required this.freeOrderItemEntity,
+  }) : super(key: key);
 
   @override
   _ExpandableOrderItemState createState() => _ExpandableOrderItemState();
 }
 
 class _ExpandableOrderItemState extends State<ExpandableOrderItem> {
-  bool isExpanded = false;
+  final _controller = Get.find<FreeOrdersController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isExpanded = !isExpanded;
-        });
+        if (_controller.openedId != widget.freeOrderItemEntity.freeOrderId) {
+          _controller.freeOrderDetail(id: widget.freeOrderItemEntity.freeOrderId);
+        }
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
@@ -147,57 +158,32 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem> {
                   ],
                 ),
                 Text(
-                  "#${Random().nextInt(200) + 4}",
+                  "#${widget.freeOrderItemEntity.freeOrderId}",
                   style: TextStyles.mediumLabelTextStyle(context),
                 ),
               ],
             ),
             SizedBox(height: kSpacingMedium.h),
             Text(
-              "12/12/2023 12:23 PM",
+              "Order Date: ${widget.freeOrderItemEntity.createdAt.split("T").first} ${widget.freeOrderItemEntity.createdAt.split("T").last.split(".").first}",
               style: TextStyles.mediumBodyTextStyle(context),
             ),
             SizedBox(height: kSpacingXSmall.h),
             Text(
-              "Pending",
+              widget.freeOrderItemEntity.status.value.toString(),
               style: TextStyles.mediumBodyTextStyle(context),
             ),
-            if (isExpanded) ...[
-              SizedBox(height: kSpacingMedium.h),
-              ListView.separated(
-                itemBuilder: (c, i) => Container(
-                  decoration: BoxDecoration(
-                    color: MainColors.blackColor.withOpacity(.05),
-                    borderRadius: BorderRadius.circular(10.r),
-                    border: Border.all(
-                      color: MainColors.blackColor.withOpacity(.1),
-                      width: 1,
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: kSpacingMedium.r,
-                    vertical: kSpacingSmall.r,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Item ${i + 1}",
-                        style: TextStyles.mediumBodyTextStyle(context),
-                      ),
-                      Text(
-                        "1 Kg",
-                        style: TextStyles.mediumBodyTextStyle(context),
-                      ),
-                    ],
-                  ),
-                ),
-                separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
-                itemCount: 3,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              ),
-            ],
+            Obx(
+              () {
+                bool isDetailLoading = _controller.isDetailLoading.value;
+                bool isSelected = _controller.openedId == widget.freeOrderItemEntity.freeOrderId;
+                return !isSelected
+                    ? const SizedBox()
+                    : isDetailLoading
+                        ? const Center(child: CircularProgressIndicator())
+                        : OderListDetailComponent(freeOrderItemList: _controller.freeOrderItemList);
+              },
+            ),
           ],
         ),
       ),
