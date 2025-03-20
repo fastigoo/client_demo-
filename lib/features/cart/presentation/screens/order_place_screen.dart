@@ -12,7 +12,6 @@ import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/presentation/states/place_order_controller.dart';
 import 'package:learning/routes/app_pages.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class PlaceOrderScreen extends GetView<PlaceOrderController> {
   const PlaceOrderScreen({super.key});
@@ -307,11 +306,11 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                 children: [
                                   GestureDetector(
                                     onTap: () async {
-                                      Uri phoneno = Uri.parse('tel:0777656565');
-                                      if(await canLaunchUrl(phoneno)){
-                                        await launchUrl(phoneno);
-                                      }else {
-                                        //cannot launch phone
+                                      final Uri phoneUri = Uri(scheme: 'tel', path: "0770119922");
+                                      if (await canLaunchUrl(phoneUri)) {
+                                        await launchUrl(phoneUri);
+                                      } else {
+                                        throw 'Could not launch $phoneUri';
                                       }
                                     },
                                     child: Container(
