@@ -1,18 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/resto/presentation/states/resto_controller.dart';
 import 'package:learning/features/resto/presentation/widgets/restaurant_animation.dart';
 import 'package:learning/features/resto/presentation/widgets/resto_component.dart';
 import 'package:learning/routes/app_pages.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -168,6 +163,38 @@ class RestoScreen extends GetView<RestoController> {
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(height: kSpacingMedium.r),
+                    SizedBox(
+                      height: 50.r,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (c, i) => Container(
+                          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
+                          decoration: BoxDecoration(
+                            color: i == 0 ? MainColors.primaryColor : MainColors.whiteColor,
+                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                          ),
+                          child: Row(
+                            children: [
+                              FaIcon(
+                                controller.categoriesList[i].image,
+                                size: 20.r,
+                                color: i == 0 ? MainColors.whiteColor : MainColors.primaryColor,
+                              ),
+                              SizedBox(width: kSpacingSmall.r),
+                              Text(
+                                controller.categoriesList[i].name,
+                                style: TextStyles.smallLabelTextStyle(context).copyWith(
+                                  color: i == 0 ? MainColors.whiteColor : MainColors.primaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        separatorBuilder: (c, i) => SizedBox(width: kSpacingMedium.w),
+                        itemCount: controller.categoriesList.length,
+                      ),
                     ),
                     SizedBox(height: kSpacingMedium.r),
                     Container(

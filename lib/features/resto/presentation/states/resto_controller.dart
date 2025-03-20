@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
 import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
@@ -17,6 +18,14 @@ class RestoController extends GetxController {
   RxBool isLoading = false.obs;
 
   final searchController = TextEditingController();
+
+  List<CategoryTest> categoriesList = [
+    CategoryTest(name: 'All', image: FontAwesomeIcons.list),
+    CategoryTest(name: 'Fast Food', image: FontAwesomeIcons.bowlFood),
+    CategoryTest(name: 'Pizza', image: FontAwesomeIcons.pizzaSlice),
+    CategoryTest(name: 'HomeFood', image: FontAwesomeIcons.houseChimney),
+    CategoryTest(name: 'Desert', image: FontAwesomeIcons.iceCream),
+  ];
 
   // Pagination
   int page = 1;
@@ -98,4 +107,14 @@ class RestoController extends GetxController {
       isLoading.value = false;
     }
   }
+}
+
+class CategoryTest {
+  final String name;
+  final IconData image;
+
+  CategoryTest({
+    required this.name,
+    required this.image,
+  });
 }
