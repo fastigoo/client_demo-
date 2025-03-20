@@ -20,7 +20,7 @@ class RestoController extends GetxController {
   final searchController = TextEditingController();
 
   List<CategoryTest> categoriesList = [
-    CategoryTest(name: 'All', image: FontAwesomeIcons.list),
+    CategoryTest(name: 'All', image: FontAwesomeIcons.solidRectangleList),
     CategoryTest(name: 'Fast Food', image: FontAwesomeIcons.bowlFood),
     CategoryTest(name: 'Pizza', image: FontAwesomeIcons.pizzaSlice),
     CategoryTest(name: 'HomeFood', image: FontAwesomeIcons.houseChimney),

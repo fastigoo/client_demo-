@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
+import 'package:learning/routes/app_pages.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
 class ConfirmOrderComponent extends StatelessWidget {
@@ -102,7 +102,9 @@ class ConfirmOrderComponent extends StatelessWidget {
                 ),
                 const SizedBox(width: kSpacingSmall),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.MAP);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: MainColors.primaryColor,
                     shape: RoundedRectangleBorder(

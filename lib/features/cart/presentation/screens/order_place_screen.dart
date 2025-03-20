@@ -11,6 +11,8 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/presentation/states/place_order_controller.dart';
 import 'package:learning/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class PlaceOrderScreen extends GetView<PlaceOrderController> {
   const PlaceOrderScreen({super.key});
@@ -303,18 +305,26 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                               ),
                               Row(
                                 children: [
-                                  Container(
-                                    height: 50.h,
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                      color: MainColors.cardColor(context),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: FaIcon(
-                                        FontAwesomeIcons.commentDots,
+                                  GestureDetector(
+                                    onTap: () async {
+                                      Uri phoneno = Uri.parse('tel:0777656565');
+                                      if(await canLaunchUrl(phoneno)){
+                                        await launchUrl(phoneno);
+                                      }else {
+                                        //cannot launch phone
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 45.h,
+                                      width: 45.h,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: const Icon(
+                                        Icons.phone,
+                                        size: 20,
                                         color: MainColors.primaryColor,
-                                        size: 20.r,
                                       ),
                                     ),
                                   ),

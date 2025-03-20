@@ -168,4 +168,6 @@ class CartController extends GetxController {
       isPlacingOrder.value = false;
     }
   }
+
+
 }

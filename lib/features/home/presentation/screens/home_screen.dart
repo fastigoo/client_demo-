@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   children: [
                                     for (int i = 0; i < controller.restaurantMenus.length; i++) ...{
                                       if (controller.menuItems.isEmpty) ...{
-                                        EmptyComponent(),
+                                        const EmptyComponent(),
                                       } else ...{
                                         WaterfallFlow.builder(
                                           itemCount: controller.menuItems.length,
@@ -210,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   ),
                                 ),
                         ),
-                        if (_cartController.cartItems.isNotEmpty) CartWidget(restaurantId: controller.restaurantId!),
+                        if (_cartController.cartItems.isNotEmpty) SafeArea(child: CartWidget(restaurantId: controller.restaurantId!)),
                       ],
                     ),
                   ),

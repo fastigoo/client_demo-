@@ -192,7 +192,7 @@ class RestoScreen extends GetView<RestoController> {
                             ],
                           ),
                         ),
-                        separatorBuilder: (c, i) => SizedBox(width: kSpacingMedium.w),
+                        separatorBuilder: (c, i) => SizedBox(width: kSpacingSmall.w),
                         itemCount: controller.categoriesList.length,
                       ),
                     ),
