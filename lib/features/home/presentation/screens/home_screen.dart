@@ -109,19 +109,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-                        actions: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(
-                              ResourceManager.getAssetResource(heartIcon, type: ResourceType.svg),
-                              width: 20.w,
-                              colorFilter: const ColorFilter.mode(
-                                MainColors.whiteColor,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                          ),
-                        ],
                         elevation: 0,
                         bottom: TabBar(
                           controller: _tabController,

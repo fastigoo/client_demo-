@@ -79,16 +79,7 @@ class ProductComponent extends StatelessWidget {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
-                      CartEntity ce = CartEntity(
-                        name: item.name,
-                        itemId: item.menuItemId,
-                        price: item.price,
-                        quantity: 1,
-                        image: item.imageUrl,
-                      );
-                      Get.find<CartController>().addToCart(ce);
-                    },
+                    onTap: _addToCart,
                     child: Container(
                       height: 40.h,
                       decoration: BoxDecoration(
@@ -124,23 +115,30 @@ class ProductComponent extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: kSpacingSmall.r),
-                Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: MainColors.primaryColor.withOpacity(.1),
-                    borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      ResourceManager.getAssetResource(
-                        heartIcon,
-                        type: ResourceType.svg,
-                      ),
-                      width: 20.w,
-                      colorFilter: const ColorFilter.mode(
-                        MainColors.primaryColor,
-                        BlendMode.srcIn,
+                GestureDetector(
+                  onTap: () {
+                    Get.find<CartController>().cartItems.clear();
+                    _addToCart();
+                    Get.toNamed(Routes.CART);
+                  },
+                  child: Container(
+                    width: 40.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      color: MainColors.primaryColor.withOpacity(.1),
+                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        ResourceManager.getAssetResource(
+                          arrowSmallRightIcon,
+                          type: ResourceType.svg,
+                        ),
+                        width: 25.w,
+                        colorFilter: const ColorFilter.mode(
+                          MainColors.primaryColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
@@ -151,5 +149,16 @@ class ProductComponent extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _addToCart() {
+    CartEntity ce = CartEntity(
+      name: item.name,
+      itemId: item.menuItemId,
+      price: item.price,
+      quantity: 1,
+      image: item.imageUrl,
+    );
+    Get.find<CartController>().addToCart(ce);
   }
 }

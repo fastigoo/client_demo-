@@ -11,6 +11,8 @@ const String statusCook = "status_cook.svg";
 const String statusDelivery = "status_delivery.svg";
 const String statusDelivred = "status_delivred.svg";
 
+const String arrowSmallRightIcon = "arrow_small_right.svg";
+
 
 
 //
