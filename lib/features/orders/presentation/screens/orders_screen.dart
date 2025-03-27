@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/components/loading_animation.dart';
 import 'package:learning/core/components/others/back_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/storage_keys.dart';
+import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/orders/presentation/states/orders_controller.dart';
 import 'package:learning/features/orders/presentation/widgets/order_component.dart';
@@ -13,47 +16,78 @@ class OrdersScreen extends GetView<OrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.w),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const BackComponent(),
-                  SizedBox(width: kSpacingMedium.w),
-                  Text(
-                    'Orders',
-                    style: TextStyles.mediumLabelTextStyle(context),
-                  ),
-                ],
-              ),
-              SizedBox(height: kSpacingMedium.h),
-              ListView.separated(
-                itemBuilder: (c, i) => const OrderComponent(),
-                separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              ),
-              SizedBox(height: kSpacingMedium.h),
-              Text.rich(
-                TextSpan(
-                  text: 'Total Orders: ',
-                  style: TextStyles.smallBodyTextStyle(context),
-                  children: [
-                    TextSpan(
-                      text: '10',
-                      style: TextStyles.smallBodyTextStyle(context).copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+      body: GetBuilder(
+        init: controller,
+        builder: (OrdersController controller) {
+          return SafeArea(
+            child: controller.isLoading.isFalse
+                ? SingleChildScrollView(
+                    controller: controller.scrollController,
+                    padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.w),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const BackComponent(),
+                            SizedBox(width: kSpacingMedium.w),
+                            Text(
+                              'Orders ${StorageManager.instance.getIntValue(key: StorageKey.userIdKey)}',
+                              style: TextStyles.mediumLabelTextStyle(context),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: kSpacingMedium.h),
+                        ListView.separated(
+                          itemBuilder: (c, i) => OrderComponent(
+                            normalOrder: controller.orderResEntity.orders[i],
+                            controller: controller,
+                          ),
+                          separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
+                          itemCount: controller.orderResEntity.orders.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                        ),
+                        SizedBox(height: kSpacingMedium.h),
+                        Obx(
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (controller.isLoadingMore.isFalse) ...{
+                                Text.rich(
+                                  TextSpan(
+                                    text: 'Total Orders: ',
+                                    style: TextStyles.smallBodyTextStyle(context),
+                                    children: [
+                                      TextSpan(
+                                        text: controller.orderResEntity.totalOrders.toString(),
+                                        style: TextStyles.smallBodyTextStyle(context).copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              } else ...{
+                                Center(
+                                  child: Container(
+                                    padding: EdgeInsets.all(kSpacingMedium.r),
+                                    child: SizedBox(
+                                      width: 30.w,
+                                      height: 30.h,
+                                      child: const LoadingAnimation(),
+                                    ),
+                                  ),
+                                ),
+                              },
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+                  )
+                : const LoadingAnimation(),
+          );
+        },
       ),
     );
   }

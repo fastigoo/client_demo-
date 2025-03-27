@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/storage_keys.dart';
+import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/cart/domain/entities/cart_entity.dart';
 import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
@@ -13,7 +15,7 @@ import 'package:learning/features/cart/presentation/widgets/confirm_order_compon
 import 'package:learning/routes/app_pages.dart';
 
 class CartController extends GetxController {
-  TextEditingController phoneController = TextEditingController(text: "0555555555");
+  TextEditingController phoneController = TextEditingController(text: "0");
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   RxList<CartEntity> cartItems = <CartEntity>[].obs;
@@ -35,6 +37,7 @@ class CartController extends GetxController {
   @override
   void onInit() {
     onMapCreated();
+    phoneController.text = StorageManager.instance.getStringValue(key: StorageKey.userPhoneKey) ?? "0";
     super.onInit();
   }
 
@@ -127,6 +130,8 @@ class CartController extends GetxController {
           orderEntity = order;
           clearCart();
           showToast(message: 'Order placed successfully');
+          StorageManager.instance.setInt(key: StorageKey.userIdKey, value: order.userId);
+          StorageManager.instance.setString(key: StorageKey.userPhoneKey, value: phoneController.text);
           Get.toNamed(Routes.PLACE_ORDER, arguments: order.orderId);
         },
       );
@@ -168,6 +173,4 @@ class CartController extends GetxController {
       isPlacingOrder.value = false;
     }
   }
-
-
 }

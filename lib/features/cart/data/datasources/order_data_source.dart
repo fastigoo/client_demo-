@@ -5,6 +5,7 @@ import 'package:learning/features/cart/data/models/delivery_fee_model.dart';
 import 'package:learning/features/cart/data/models/order_detail_model.dart';
 import 'package:learning/features/cart/data/models/place_order_model.dart';
 import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
+import 'package:learning/features/orders/data/models/order_res_model.dart';
 
 abstract interface class OrderDataSource {
   Future<PlaceOrderModel> placeOrder({
@@ -24,6 +25,16 @@ abstract interface class OrderDataSource {
   });
 
   Future<OrderDetailModel> getOrderDetail({
+    required int orderId,
+  });
+
+  Future<OrderResModel> getOrders({
+    required int userId,
+    required int page,
+    int limit = 10,
+  });
+
+  Future<String> deleteOrder({
     required int orderId,
   });
 }
@@ -51,7 +62,7 @@ class OrderDataSourceImplement implements OrderDataSource {
           'items': cartItems.map((e) => e.toJson()).toList(),
           'delivery_fee': deliveryFee,
           'distance': distance,
-          'fcm': "tfhdfhfgdhfghdfghfgh" * 20,
+          'fcm': "tfhdfhfghdfghfgh" * 20,
         },
         options: Options(
           headers: {
@@ -60,7 +71,7 @@ class OrderDataSourceImplement implements OrderDataSource {
         ),
       );
 
-      print(response.data);
+      // print(response.data);
 
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
         return PlaceOrderModel.fromJson(response.data);
@@ -117,8 +128,51 @@ class OrderDataSourceImplement implements OrderDataSource {
       }
       throw CustomException(msg: response.data['message']);
     } catch (e) {
-      print(e);
       throw CustomException(msg: e.toString());
+    }
+  }
+
+  @override
+  Future<OrderResModel> getOrders({required int userId, required int page, int limit = 10}) async {
+    try {
+      Dio dio = Dio();
+      Response response = await dio.get(
+        "$allOrdersUrl?user_id=$userId&page_num=$page&page_size=$limit",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+
+      if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        return OrderResModel.fromJson(response.data);
+      }
+      throw CustomException(msg: response.data['message']);
+    } catch (e) {
+      throw CustomException(msg: e.toString());
+    }
+  }
+
+  @override
+  Future<String> deleteOrder({required int orderId}) async {
+    try {
+      Dio dio = Dio();
+      Response response = await dio.delete(
+        '$deleteOrderUrl/$orderId',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        return 'Success';
+      } else {
+        return 'Failed';
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }

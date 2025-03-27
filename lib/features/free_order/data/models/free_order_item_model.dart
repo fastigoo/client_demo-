@@ -1,26 +1,34 @@
-import 'package:learning/core/objects/models/order_status_model.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_item_entity.dart';
 
 class FreeOrderItemModel extends FreeOrderItemEntity {
   FreeOrderItemModel({
     required super.freeOrderId,
-    required super.status,
+    required super.orderStatusId,
+    required super.orderStatusValue,
     required super.createdAt,
+    super.road,
+    super.city,
   });
 
   factory FreeOrderItemModel.fromJson(Map<String, dynamic> json) {
     return FreeOrderItemModel(
       freeOrderId: json['free_order_id'],
-      status: OrderStatusModel.fromJson(json['status']),
+      orderStatusId: json['order_status_id'],
+      orderStatusValue: json['order_status_value'],
       createdAt: json['created_at'],
+      road: json['road'],
+      city: json['city'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'free_order_id': freeOrderId,
-      'status': status,
+      'order_status_id': orderStatusId,
+      'order_status_value': orderStatusValue,
       'created_at': createdAt,
+      'road': road,
+      'city': city,
     };
   }
 }

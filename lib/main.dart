@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/theme_styles.dart';
 import 'package:learning/injection.dart';
 import 'package:learning/routes/app_pages.dart';
 
 void main() async  {
   WidgetsFlutterBinding.ensureInitialized();
+  await StorageManager.initStorage();
   await injectionInit();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

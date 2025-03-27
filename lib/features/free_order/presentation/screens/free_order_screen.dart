@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/storage_keys.dart';
+import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 import 'package:learning/core/styles/main_colors.dart';
@@ -64,32 +66,34 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     ),
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.FREE_ORDERS);
-                                  },
-                                  child: Container(
-                                    width: 50.r,
-                                    height: 50.r,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: MainColors.whiteColor,
-                                      border: Border.fromBorderSide(
-                                        BorderSide(
-                                          color: MainColors.primaryColor,
-                                          width: 2,
+                                StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(Routes.FREE_ORDERS);
+                                        },
+                                        child: Container(
+                                          width: 50.r,
+                                          height: 50.r,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: MainColors.whiteColor,
+                                            border: Border.fromBorderSide(
+                                              BorderSide(
+                                                color: MainColors.primaryColor,
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: FaIcon(
+                                              FontAwesomeIcons.fileZipper,
+                                              color: MainColors.primaryColor,
+                                              size: 20.r,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: FaIcon(
-                                        FontAwesomeIcons.fileZipper,
-                                        color: MainColors.primaryColor,
-                                        size: 20.r,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                      )
+                                    : const SizedBox(),
                               ],
                             ),
                             SizedBox(height: kSpacingMedium.r),

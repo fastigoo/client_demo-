@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:learning/core/error/failures.dart';
+import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/repositories/free_order_repository.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 
@@ -8,7 +9,7 @@ class AddFreeOrderUsecase {
 
   AddFreeOrderUsecase({required this.repository});
 
-  Future<Either<Failure, String>> call({
+  Future<Either<Failure, AddFreeOrderResEntity>> call({
     required String phone,
     required double latitude,
     required double longitude,

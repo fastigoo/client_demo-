@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
+import 'package:learning/core/resources/storage_keys.dart';
+import 'package:learning/core/services/storage_manager.dart';
+import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/usecases/add_free_order_usecase.dart';
 import 'package:learning/routes/app_pages.dart';
 
@@ -21,6 +24,12 @@ class FreeOrderController extends GetxController {
   List<FreeOrderItemModel> items = [];
 
   OrderCustomerLocationEntity? address;
+
+  @override
+  void onInit() {
+    phoneController.text = StorageManager.instance.getStringValue(key: StorageKey.userPhoneKey) ?? "0";
+    super.onInit();
+  }
 
   void addQuantity() {
     if (quantityController.text.isEmpty) quantityController.text = "1";
@@ -80,8 +89,9 @@ class FreeOrderController extends GetxController {
         (l) {
           showToast(message: "Error: $l");
         },
-        (String value) {
-          showToast(message: value);
+        (AddFreeOrderResEntity res) {
+          StorageManager.instance.setInt(key: StorageKey.userIdKey, value: res.userId);
+          StorageManager.instance.setString(key: StorageKey.userPhoneKey, value: phoneController.text);
           items.clear();
           Get.offAndToNamed(Routes.SUCCESS);
         },

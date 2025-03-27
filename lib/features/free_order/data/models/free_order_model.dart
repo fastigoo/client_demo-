@@ -3,13 +3,13 @@ import 'package:learning/features/free_order/domain/entities/free_order_res_enti
 
 class FreeOrderResModel extends FreeOrderResEntity {
   FreeOrderResModel({
-    required super.itemsCount,
+    required super.totalOrders,
     required super.orders,
   });
 
   factory FreeOrderResModel.fromJson(Map<String, dynamic> json) {
     return FreeOrderResModel(
-      itemsCount: json['items_count'],
+      totalOrders: json['total_orders'],
       orders: List<FreeOrderItemModel>.from(
         json['orders'].map<FreeOrderItemModel>(
           (x) => FreeOrderItemModel.fromJson(x),
@@ -20,7 +20,7 @@ class FreeOrderResModel extends FreeOrderResEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'items_count': itemsCount,
+      'total_orders': totalOrders,
       'orders': orders,
     };
   }

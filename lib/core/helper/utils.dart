@@ -68,3 +68,17 @@ String getNormalizedTime(double time) {
   }
 }
 
+Color getStatusColor(String status) {
+  switch (status) {
+    case 'Pending':
+      return Colors.orange;
+    case 'Confirmed':
+      return Colors.green;
+    case 'Delivered':
+      return Colors.red;
+    case 'OnDelivery':
+      return Colors.blue;
+    default:
+      return Colors.black;
+  }
+}

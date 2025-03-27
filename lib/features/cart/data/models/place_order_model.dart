@@ -5,6 +5,7 @@ import 'package:learning/features/cart/domain/entities/place_order_entity.dart';
 class PlaceOrderModel extends PlaceOrderEntity {
   PlaceOrderModel({
     required super.orderId,
+    required super.userId,
     required super.orderStatus,
     required super.orderCustomerLocation,
   });
@@ -12,6 +13,7 @@ class PlaceOrderModel extends PlaceOrderEntity {
   factory PlaceOrderModel.fromJson(Map<String, dynamic> json) {
     return PlaceOrderModel(
       orderId: json['order_id'],
+      userId: json['user_id'],
       orderStatus: OrderStatusModel.fromJson(
         json['order_status'],
       ),
@@ -24,6 +26,7 @@ class PlaceOrderModel extends PlaceOrderEntity {
   Map<String, dynamic> toJson() {
     return {
       'order_id': orderId,
+      'user_id': userId,
       'order_status': orderStatus,
       'customer_location': orderCustomerLocation,
     };

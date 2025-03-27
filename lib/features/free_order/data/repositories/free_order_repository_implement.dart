@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:learning/core/error/exceptions.dart';
 import 'package:learning/core/error/failures.dart';
 import 'package:learning/features/free_order/data/datasources/free_order_datasource.dart';
+import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_item_list_entity.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/repositories/free_order_repository.dart';
@@ -13,9 +14,9 @@ class FreeOrderRepositoryImplement implements FreeOrderRepository {
   FreeOrderRepositoryImplement({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, FreeOrderResEntity>> getFreeOrders({required int page, int limit = 10}) async {
+  Future<Either<Failure, FreeOrderResEntity>> getFreeOrders({required int userId, required int page, int limit = 10}) async {
     try {
-      final result = await remoteDataSource.getFreeOrders(page: page, limit: limit);
+      final result = await remoteDataSource.getFreeOrders(userId: userId, page: page, limit: limit);
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());
@@ -33,7 +34,7 @@ class FreeOrderRepositoryImplement implements FreeOrderRepository {
   }
 
   @override
-  Future<Either<Failure, String>> addFreeOrder({
+  Future<Either<Failure, AddFreeOrderResEntity>> addFreeOrder({
     required String phone,
     required double latitude,
     required double longitude,
@@ -48,6 +49,16 @@ class FreeOrderRepositoryImplement implements FreeOrderRepository {
         fcm: fcm,
         items: items,
       );
+      return Right(result);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> deleteFreeOrders({required int orderId}) async {
+    try {
+      final result = await remoteDataSource.deleteFreeOrders(orderId: orderId);
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());

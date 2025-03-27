@@ -7,6 +7,7 @@ import 'package:learning/features/free_order/domain/entities/free_order_item_lis
 
 class OderListDetailComponent extends StatelessWidget {
   final List<FreeOrderItemListEntity> freeOrderItemList;
+
   const OderListDetailComponent({super.key, required this.freeOrderItemList});
 
   @override
@@ -37,7 +38,11 @@ class OderListDetailComponent extends StatelessWidget {
                 ),
                 Text(
                   "${freeOrderItemList[i].quantity} ${freeOrderItemList[i].unit}",
-                  style: TextStyles.mediumBodyTextStyle(context),
+                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: MainColors.primaryColor,
+                    fontSize: 12.sp,
+                  ),
                 ),
               ],
             ),

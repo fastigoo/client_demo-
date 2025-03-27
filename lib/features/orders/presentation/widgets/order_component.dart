@@ -1,13 +1,24 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learning/core/components/popups/confirm_popup.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
+import 'package:learning/features/orders/domain/entities/normal_order_entity.dart';
+import 'package:learning/features/orders/presentation/states/orders_controller.dart';
 
 class OrderComponent extends StatelessWidget {
-  const OrderComponent({super.key});
+  final NormalOrderEntity normalOrder;
+  final OrdersController controller;
+
+  const OrderComponent({
+    super.key,
+    required this.normalOrder,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +43,11 @@ class OrderComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "ID: #${Random().nextInt(10000)}",
+                "ID: #${normalOrder.orderId}",
                 style: TextStyles.mediumLabelTextStyle(context),
               ),
               Text(
-                "12-12-2021 12:12 AM",
+                normalOrder.createdAt,
                 style: TextStyles.smallBodyTextStyle(context).copyWith(
                   color: MainColors.disableColor(context),
                   fontSize: 10.sp,
@@ -51,7 +62,7 @@ class OrderComponent extends StatelessWidget {
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
-                  text: 'King Burger',
+                  text: normalOrder.restaurantName,
                   style: TextStyles.smallBodyTextStyle(context).copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -66,7 +77,7 @@ class OrderComponent extends StatelessWidget {
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
-                  text: 'in front of the park',
+                  text: '${normalOrder.city ?? "N/A"}, ${normalOrder.road ?? "N/A"}',
                   style: TextStyles.smallBodyTextStyle(context).copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -81,7 +92,7 @@ class OrderComponent extends StatelessWidget {
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
-                  text: 'Delivered',
+                  text: normalOrder.orderStatusValue,
                   style: TextStyles.smallBodyTextStyle(context).copyWith(
                     fontWeight: FontWeight.bold,
                     color: MainColors.successColor(context),
@@ -96,18 +107,36 @@ class OrderComponent extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 40.w,
-                    height: 40.w,
-                    decoration: BoxDecoration(
-                      color: MainColors.errorColor(context),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.trash,
-                        color: MainColors.whiteColor,
-                        size: 16.sp,
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => ConfirmPopupComponent(
+                          title: 'Delete Order',
+                          content: 'Are you sure you want to delete this order?',
+                          onConfirm: () {
+                            controller.deleteOrder(normalOrder.orderId);
+                            Navigator.pop(context);
+                          },
+                          onCancel: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 40.w,
+                      height: 40.w,
+                      decoration: BoxDecoration(
+                        color: MainColors.errorColor(context),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.trash,
+                          color: MainColors.whiteColor,
+                          size: 16.sp,
+                        ),
                       ),
                     ),
                   ),
@@ -130,7 +159,7 @@ class OrderComponent extends StatelessWidget {
                 ],
               ),
               Text(
-                "${Random().nextInt(100)}00 DZD",
+                "${normalOrder.totalAmount} DZD\$",
                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18.sp,

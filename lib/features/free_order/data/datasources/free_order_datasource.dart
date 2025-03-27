@@ -1,15 +1,17 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:learning/core/resources/apis.dart';
+import 'package:learning/features/free_order/data/models/add_free_order_res_model.dart';
 import 'package:learning/features/free_order/data/models/free_order_item_list_model.dart';
 import 'package:learning/features/free_order/data/models/free_order_model.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 
 abstract interface class FreeOrderDatasource {
-  Future<FreeOrderResModel> getFreeOrders({required int page, int limit = 10});
-
+  Future<FreeOrderResModel> getFreeOrders({required int userId, required int page, int limit = 10});
+  Future<Unit> deleteFreeOrders({required int orderId});
   Future<List<FreeOrderItemListModel>> getFreeOrderList({required int id});
 
-  Future<String> addFreeOrder({
+  Future<AddFreeOrderResModel> addFreeOrder({
     required String phone,
     required double latitude,
     required double longitude,
@@ -20,11 +22,11 @@ abstract interface class FreeOrderDatasource {
 
 class FreeOrderDatasourceImplement implements FreeOrderDatasource {
   @override
-  Future<FreeOrderResModel> getFreeOrders({required int page, int limit = 10}) async {
+  Future<FreeOrderResModel> getFreeOrders({required int userId, required int page, int limit = 10}) async {
     try {
       Dio dio = Dio();
       Response response = await dio.get(
-        '$allFreeOrderUrl?page_num=$page&page_size=$limit',
+        '$allFreeOrderUrl?user_id=$userId&page_num=$page&page_size=$limit',
         options: Options(
           headers: {
             'Content-Type': 'application/json',
@@ -56,7 +58,7 @@ class FreeOrderDatasourceImplement implements FreeOrderDatasource {
   }
 
   @override
-  Future<String> addFreeOrder({
+  Future<AddFreeOrderResModel> addFreeOrder({
     required String phone,
     required double latitude,
     required double longitude,
@@ -80,7 +82,29 @@ class FreeOrderDatasourceImplement implements FreeOrderDatasource {
           },
         ),
       );
-      return response.data;
+      return AddFreeOrderResModel.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Unit> deleteFreeOrders({required int orderId}) async {
+    try {
+      Dio dio = Dio();
+      Response response = await dio.delete(
+        '$deleteFreeOrderUrl/$orderId',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        return unit;
+      } else {
+        throw Exception('Failed to delete order');
+      }
     } catch (e) {
       rethrow;
     }

@@ -3,12 +3,12 @@ import 'package:learning/core/error/failures.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/repositories/free_order_repository.dart';
 
-class GetAllFreeOrdersUsecase {
+class DeleteFreeOrderUsecase {
   final FreeOrderRepository repository;
 
-  GetAllFreeOrdersUsecase({required this.repository});
+  DeleteFreeOrderUsecase({required this.repository});
 
-  Future<Either<Failure, FreeOrderResEntity>> call({required int userId, required int page, int limit = 10}) async {
-    return await repository.getFreeOrders(page: page, limit: limit, userId: userId);
+  Future<Either<Failure, Unit>> call({required int orderId}) async {
+    return await repository.deleteFreeOrders(orderId: orderId);
   }
 }

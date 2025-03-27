@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/storage_keys.dart';
+import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/resto/presentation/states/resto_controller.dart';
 import 'package:learning/features/resto/presentation/widgets/restaurant_animation.dart';
@@ -45,26 +47,31 @@ class RestoScreen extends GetView<RestoController> {
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.ORDERS);
-                          },
-                          child: Container(
-                            width: 50.r,
-                            height: 50.r,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: MainColors.whiteColor,
-                            ),
-                            child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.ellipsis,
-                                color: MainColors.primaryColor,
-                                size: 20.r,
+                        StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
+                            ? GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(Routes.ORDERS);
+                                },
+                                child: Container(
+                                  width: 50.r,
+                                  height: 50.r,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: MainColors.whiteColor,
+                                  ),
+                                  child: Center(
+                                    child: FaIcon(
+                                      FontAwesomeIcons.ellipsis,
+                                      color: MainColors.primaryColor,
+                                      size: 20.r,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(
+                                height: 50.r,
+                                width: 50.r,
                               ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     SizedBox(height: kSpacingMedium.r),
