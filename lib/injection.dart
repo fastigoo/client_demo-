@@ -45,6 +45,7 @@ Future<void> injectionInit() async {
 
   Get.put<GetAllFreeOrdersUsecase>(GetAllFreeOrdersUsecase(repository: Get.find<FreeOrderRepository>()));
   Get.put<DeleteFreeOrderUsecase>(DeleteFreeOrderUsecase(repository: Get.find<FreeOrderRepository>()));
+
   Get.put<GetFreeOrderDetailUsecase>(GetFreeOrderDetailUsecase(repository: Get.find<FreeOrderRepository>()));
   Get.put<AddFreeOrderUsecase>(AddFreeOrderUsecase(repository: Get.find<FreeOrderRepository>()));
 
