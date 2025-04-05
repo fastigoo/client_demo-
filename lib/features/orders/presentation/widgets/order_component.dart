@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning/core/components/popups/confirm_popup.dart';
@@ -101,30 +102,30 @@ class OrderComponent extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: kSpacingXSmall.h),
+          SizedBox(height: kSpacingSmall.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => ConfirmPopupComponent(
-                          title: 'Delete Order',
-                          content: 'Are you sure you want to delete this order?',
-                          onConfirm: () {
-                            controller.deleteOrder(normalOrder.orderId);
-                            Navigator.pop(context);
-                          },
-                          onCancel: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => ConfirmPopupComponent(
+                      title: 'Delete Order',
+                      content: 'Are you sure you want to delete this order?',
+                      onConfirm: () {
+                        controller.deleteOrder(normalOrder.orderId);
+                        Navigator.pop(context);
+                      },
+                      onCancel: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  );
+                },
+                child: Row(
+                  children: [
+                    Container(
                       width: 40.w,
                       height: 40.w,
                       decoration: BoxDecoration(
@@ -139,24 +140,15 @@ class OrderComponent extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: kSpacingSmall.w),
-                  Container(
-                    width: 40.w,
-                    height: 40.w,
-                    decoration: BoxDecoration(
-                      color: MainColors.successColor(context),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.rotate,
-                        color: MainColors.whiteColor,
-                        size: 16.sp,
+                    SizedBox(width: kSpacingSmall.w),
+                    Text("Delete",
+                      style: TextStyles.smallBodyTextStyle(context).copyWith(
+                        color: MainColors.errorColor(context),
+                        fontSize: 12.sp,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Text(
                 "${normalOrder.totalAmount} DZD\$",

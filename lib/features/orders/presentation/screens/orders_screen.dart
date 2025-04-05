@@ -26,6 +26,7 @@ class OrdersScreen extends GetView<OrdersController> {
                     padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.w),
                     child: Column(
                       children: [
+                        SizedBox(height: kSpacingXSmall.h),
                         Row(
                           children: [
                             const BackComponent(),
