@@ -6,6 +6,6 @@ import 'package:learning/features/resto/presentation/states/resto_controller.dar
 class RestoBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RestoController>(() => RestoController(), fenix: true);
+    Get.lazyPut<RestoController>(() => RestoController());
   }
 }

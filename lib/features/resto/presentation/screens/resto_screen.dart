@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/storage_keys.dart';
@@ -21,7 +22,6 @@ class RestoScreen extends GetView<RestoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: MainColors.backgroundColor(context),
       body: SafeArea(
         child: Obx(
           () => RefreshIndicator(
@@ -30,6 +30,7 @@ class RestoScreen extends GetView<RestoController> {
             },
             child: Scrollbar(
               child: SingleChildScrollView(
+                controller: controller.scrollController,
                 padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,53 +156,26 @@ class RestoScreen extends GetView<RestoController> {
                           ),
                         ),
                         SizedBox(width: kSpacingSmall.r),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                            color: MainColors.primaryColor,
-                          ),
-                          child: Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.magnifyingGlass,
-                              color: MainColors.whiteColor,
-                              size: 20.r,
+                        GestureDetector(
+                          onTap: () {
+                            controller.searchRestaurants();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                              color: MainColors.primaryColor,
+                            ),
+                            child: Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.magnifyingGlass,
+                                color: MainColors.whiteColor,
+                                size: 20.r,
+                              ),
                             ),
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(height: kSpacingMedium.r),
-                    SizedBox(
-                      height: 50.r,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (c, i) => Container(
-                          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
-                          decoration: BoxDecoration(
-                            color: i == 0 ? MainColors.primaryColor : MainColors.whiteColor,
-                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                          ),
-                          child: Row(
-                            children: [
-                              FaIcon(
-                                controller.categoriesList[i].image,
-                                size: 20.r,
-                                color: i == 0 ? MainColors.whiteColor : MainColors.primaryColor,
-                              ),
-                              SizedBox(width: kSpacingSmall.r),
-                              Text(
-                                controller.categoriesList[i].name,
-                                style: TextStyles.smallLabelTextStyle(context).copyWith(
-                                  color: i == 0 ? MainColors.whiteColor : MainColors.primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        separatorBuilder: (c, i) => SizedBox(width: kSpacingSmall.w),
-                        itemCount: controller.categoriesList.length,
-                      ),
                     ),
                     SizedBox(height: kSpacingMedium.r),
                     Container(
@@ -210,16 +184,40 @@ class RestoScreen extends GetView<RestoController> {
                         minHeight: Get.height,
                       ),
                       child: controller.isLoading.isFalse
-                          ? ListView.separated(
-                              itemBuilder: (c, i) => RestoComponent(
-                                item: controller.getRestaurantsList[i],
-                              ),
-                              separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
-                              itemCount: controller.getRestaurantsList.length,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                            )
+                          ? controller.getRestaurantsList.isNotEmpty
+                              ? GetBuilder(
+                                  init: controller,
+                                  id: StorageKey.allRestaurantsKey,
+                                  builder: (controller) {
+                                    return ListView.separated(
+                                      itemBuilder: (c, i) => RestoComponent(
+                                        item: controller.getRestaurantsList[i],
+                                      ),
+                                      separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
+                                      itemCount: controller.getRestaurantsList.length,
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                    );
+                                  },
+                                )
+                              : SizedBox(
+                                  height: 1.sh - 200.h,
+                                  child: const EmptyComponent(),
+                                )
                           : const RestaurantAnimation(),
+                    ),
+                    Obx(
+                      () => Center(
+                        child: controller.isLoadingMore.isTrue
+                            ? Padding(
+                                padding: EdgeInsets.only(bottom: kSpacingMedium.h, top: kSpacingMedium.h),
+                                child: CircularProgressIndicator(
+                                  color: MainColors.primaryColor,
+                                  strokeWidth: 2.r,
+                                ),
+                              )
+                            : const SizedBox(),
+                      ),
                     ),
                   ],
                 ),

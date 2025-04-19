@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
 import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
 import 'package:learning/features/resto/domain/usecases/all_restaurant_usecase.dart';
@@ -16,20 +17,13 @@ class RestoController extends GetxController {
   final _allRestaurantUsecase = Get.find<AllRestaurantUsecase>();
 
   RxBool isLoading = false.obs;
+  RxBool isLoadingMore = false.obs;
 
   final searchController = TextEditingController();
 
-  List<CategoryTest> categoriesList = [
-    CategoryTest(name: 'All', image: FontAwesomeIcons.solidRectangleList),
-    CategoryTest(name: 'Fast Food', image: FontAwesomeIcons.bowlFood),
-    CategoryTest(name: 'Pizza', image: FontAwesomeIcons.pizzaSlice),
-    CategoryTest(name: 'HomeFood', image: FontAwesomeIcons.houseChimney),
-    CategoryTest(name: 'Desert', image: FontAwesomeIcons.iceCream),
-  ];
-
   // Pagination
   int page = 1;
-  int perPage = 10;
+  int perPage = 5;
   int maxPage = 1;
 
   Timer? _debounceTimer;
@@ -44,18 +38,28 @@ class RestoController extends GetxController {
     });
   }
 
-  // init
   @override
   void onInit() {
     super.onInit();
     getRestaurants();
+    scrollController.addListener(() {
+      if (_shouldLoadMore()) {
+        loadMoreRestaurants();
+      }
+    });
   }
 
-  void onScroll() {
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-      if (isLoading.value) return;
-      if (page <= maxPage) getRestaurants();
-    }
+  @override
+  void onClose() {
+    scrollController.dispose();
+    _debounceTimer?.cancel();
+    super.onClose();
+  }
+
+  bool _shouldLoadMore() {
+    return !isLoadingMore.value &&
+        page <= maxPage &&
+        scrollController.position.pixels >= scrollController.position.maxScrollExtent - 200;
   }
 
   void refreshData() {
@@ -70,18 +74,46 @@ class RestoController extends GetxController {
       var response = await _allRestaurantUsecase.execute(page: page, perPage: perPage);
       response.fold(
         (l) {
-          print(l);
+          showToast(message: l.toString());
         },
         (RestaurantsEntity restos) {
-          page += 1;
           maxPage = (restos.totalCount / perPage).ceil();
           _restaurants.addAll(restos.restaurants);
+          update([StorageKey.allRestaurantsKey]);
         },
       );
     } catch (e) {
-      print(e);
+      showToast(message: e.toString());
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  void loadMoreRestaurants() async {
+    if (!isLoadingMore.value) {
+      if (page < maxPage) {
+        page++;
+        try {
+          isLoadingMore.value = true;
+          var response = await _allRestaurantUsecase.execute(
+            page: page,
+            perPage: perPage,
+          );
+          response.fold(
+            (l) {
+              showToast(message: l.toString());
+            },
+            (value) async {
+              _restaurants.addAll(value.restaurants);
+              update([StorageKey.allRestaurantsKey]);
+            },
+          );
+        } catch (e) {
+          showToast(message: e.toString());
+        } finally {
+          isLoadingMore.value = false;
+        }
+      }
     }
   }
 
@@ -93,16 +125,16 @@ class RestoController extends GetxController {
       var response = await _allRestaurantUsecase.execute(page: page, perPage: perPage, name: searchController.text);
       response.fold(
         (l) {
-          print(l);
+          showToast(message: l.toString());
         },
         (RestaurantsEntity restos) {
-          page += 1;
-          maxPage = (restos.totalCount / perPage).ceil();
           _restaurants.addAll(restos.restaurants);
+          maxPage = (restos.totalCount / perPage).ceil();
+          update([StorageKey.allRestaurantsKey]);
         },
       );
     } catch (e) {
-      print(e);
+      showToast(message: e.toString());
     } finally {
       isLoading.value = false;
     }

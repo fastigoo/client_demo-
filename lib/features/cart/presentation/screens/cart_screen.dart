@@ -124,7 +124,7 @@ class CartScreen extends GetView<CartController> {
                           context: context,
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          builder: (context) => const SelectMapPopupComponent(),
+                          builder: (context) => const SafeArea(child: SelectMapPopupComponent()),
                         );
                       },
                       child: Text(

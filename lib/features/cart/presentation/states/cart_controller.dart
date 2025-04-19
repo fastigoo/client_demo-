@@ -159,11 +159,21 @@ class CartController extends GetxController {
             context: Get.context!,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
-            builder: (context) => ConfirmOrderComponent(
-              phoneController: phoneController,
-              formKey: formKey,
-              deliveryFeeEntity: value,
-            ),
+            builder: (context) {
+              final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+              return SafeArea(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: bottomPadding,
+                  ),
+                  child: ConfirmOrderComponent(
+                    phoneController: phoneController,
+                    formKey: formKey,
+                    deliveryFeeEntity: value,
+                  ),
+                ),
+              );
+            }
           );
         },
       );

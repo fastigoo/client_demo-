@@ -266,7 +266,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
-                      minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
+                      minimumSize: Size(1.sw - 10.w - (kSpacingMedium.w * 6).w, 50.r),
                     ),
                     onPressed: () {
                       if (controller.items.isEmpty) {

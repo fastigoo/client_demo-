@@ -6,4 +6,7 @@ class StorageKey {
   static const userPhoneKey = 'userPhoneKey';
   static const isAuthKey = 'isAuth';
   static const languageKey = 'language';
+
+  // Restaurants
+  static const allRestaurantsKey = 'allRestaurantsKey';
 }
