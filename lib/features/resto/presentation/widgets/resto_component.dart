@@ -77,7 +77,7 @@ class RestoComponent extends StatelessWidget {
                           item.name,
                           style: TextStyles.mediumLabelTextStyle(context).copyWith(
                             color: MainColors.whiteColor,
-                            fontSize: 16.sp,
+                            fontSize: 18.sp,
                           ),
                         ),
                         Row(

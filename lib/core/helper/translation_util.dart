@@ -4,7 +4,7 @@ import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 
 class TranslationUtil {
-  static Locale? currentLang = const Locale('en');
+  static Locale? currentLang = const Locale('ar');
 
   static void changeLang({required String lang}) {
     StorageManager.instance.setString(key: StorageKey.languageKey, value: lang);
@@ -21,7 +21,7 @@ class TranslationUtil {
 
   static Future<void> initialize() async {
     await Future.delayed(Duration(milliseconds: 100));
-    String lang = StorageManager.instance.getStringValue(key: StorageKey.languageKey) ?? 'en';
+    String lang = StorageManager.instance.getStringValue(key: StorageKey.languageKey) ?? 'ar';
     try {
       Locale? newLocale = Locale(lang);
       if (newLocale != null) {

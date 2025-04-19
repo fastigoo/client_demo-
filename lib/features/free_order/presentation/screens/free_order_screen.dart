@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
+import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -108,13 +110,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Choose Location",
+                                    LanguageStrings.chooseLocation,
                                     style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                       color: MainColors.whiteColor,
                                     ),
                                   ),
                                   Text(
-                                    'Please select your location where you want to order to be delivered as soon as possible',
+                                    LanguageStrings.chooseLocationDescription,
                                     style: TextStyles.smallBodyTextStyle(context).copyWith(
                                       color: MainColors.whiteColor,
                                     ),
@@ -138,7 +140,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                             children: [
                                               Text(
                                                 controller.address == null
-                                                    ? "Current Location"
+                                                    ? LanguageStrings.currentLocation
                                                     : "${controller.address!.city} - ${controller.address!.road}",
                                                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                                   color: MainColors.primaryColor,
@@ -156,7 +158,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                             ),
                             SizedBox(height: kSpacingMedium.r),
                             Text(
-                              "  Phone number",
+                              "  ${LanguageStrings.phoneNumber}",
                               style: TextStyles.smallBodyTextStyle(context),
                             ),
                             SizedBox(height: kSpacingXSmall.r),
@@ -164,7 +166,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                               controller: controller.phoneController,
                               keyboardType: TextInputType.phone,
                               validator: Validators.compose([
-                                Validators.required("Phone number is required"),
+                                Validators.required(LanguageStrings.phoneNumberIsRequired),
                                 Validators.patternRegExp(
                                   RegExp(r'^(05|06|07)[0-9]{8}$'),
                                   "Phone number must be 10 digits and start with 05, 06, or 07",
@@ -172,7 +174,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                               ]),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Ex: 0777676767",
+                                hintText: LanguageStrings.phoneNumberHint,
                                 hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
                                   color: MainColors.disableColor(context),
                                 ),
@@ -197,7 +199,10 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                               ),
                             ),
                             SizedBox(height: kSpacingMedium.r),
-                            Text("Order List", style: TextStyles.smallBodyTextStyle(context)),
+                            Text(
+                              LanguageStrings.ordersList,
+                              style: TextStyles.smallBodyTextStyle(context),
+                            ),
                             SizedBox(height: kSpacingXSmall.r),
                             controller.items.isNotEmpty
                                 ? ListView.separated(
@@ -246,7 +251,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                       onTap: () {
                                         _onTap(controller: controller, context: context);
                                       },
-                                      child: const EmptyComponent(text: "No items added yet"),
+                                      child: EmptyComponent(text: LanguageStrings.noDataFound),
                                     ),
                                   ),
                             SizedBox(height: kSpacingMedium.r),
@@ -270,13 +275,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                     ),
                     onPressed: () {
                       if (controller.items.isEmpty) {
-                        Get.snackbar(
-                          "Error",
-                          "Please add items to your order",
-                          backgroundColor: MainColors.errorColor(context),
-                          colorText: MainColors.whiteColor,
-                          snackPosition: SnackPosition.BOTTOM,
-                        );
+                        showToast(message: "Please add items to your order");
                         return;
                       }
                       if (controller.formKey.currentState!.validate()) {
@@ -284,7 +283,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       }
                     },
                     child: Text(
-                      "Place Order",
+                      LanguageStrings.placeOrder,
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         color: MainColors.whiteColor,
                         fontSize: 16.r,
@@ -324,7 +323,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
   _onTap({required FreeOrderController controller, required BuildContext context}) {
     showModalBottomSheet(
       context: context,
-      builder: (c) => AddFreeOrderItemPopup(controller: controller),
+      isScrollControlled: true,
+      builder: (c) => SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(c).viewInsets.bottom),
+          child: AddFreeOrderItemPopup(controller: controller),
+        ),
+      ),
     );
   }
 }

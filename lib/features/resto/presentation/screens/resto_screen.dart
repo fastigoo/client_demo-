@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -95,7 +96,7 @@ class RestoScreen extends GetView<RestoController> {
                               ),
                               SizedBox(width: kSpacingSmall.r),
                               Text(
-                                "Free order",
+                                LanguageStrings.freeOrder,
                                 style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                   color: MainColors.whiteColor,
                                 ),
@@ -103,7 +104,7 @@ class RestoScreen extends GetView<RestoController> {
                             ],
                           ),
                           Text(
-                            'In case you have an order outside of the existing stores in the app, you can create a free order and we will make sure to delivery it as soon as possible',
+                            LanguageStrings.freeOrderDescription,
                             style: TextStyles.smallBodyTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                             ),
@@ -123,7 +124,7 @@ class RestoScreen extends GetView<RestoController> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Free order",
+                                    LanguageStrings.freeOrder,
                                     style: TextStyles.smallLabelTextStyle(context).copyWith(
                                       color: MainColors.primaryColor,
                                     ),
@@ -202,7 +203,9 @@ class RestoScreen extends GetView<RestoController> {
                                 )
                               : SizedBox(
                                   height: 1.sh - 200.h,
-                                  child: const EmptyComponent(),
+                                  child: EmptyComponent(
+                                    text: LanguageStrings.noDataFound,
+                                  ),
                                 )
                           : const RestaurantAnimation(),
                     ),

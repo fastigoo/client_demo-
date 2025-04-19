@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/helper/translation_util.dart';
+import 'package:learning/core/localization/translation.dart';
+import 'package:learning/core/localization/translation_reader.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/theme_styles.dart';
 import 'package:learning/injection.dart';
@@ -11,6 +14,8 @@ void main() async  {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.initStorage();
   await injectionInit();
+  await TranslationReader.initialize();
+  await TranslationUtil.initialize();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -47,9 +52,9 @@ class MyApp extends StatelessWidget {
             title: "Fasti Goo",
             initialRoute: AppPages.RESTO,
             getPages: AppPages.routes,
-            // translations: Translation(),
-            // locale: TranslationUtil.currentLang,
-            // fallbackLocale: const Locale('fr'),
+            translations: Translation(),
+            locale: TranslationUtil.currentLang,
+            fallbackLocale: const Locale('ar'),
             // themeMode: ThemeUtil.currentTheme,
             themeMode: ThemeMode.light,
             theme: ThemeStyles.lightTheme,
