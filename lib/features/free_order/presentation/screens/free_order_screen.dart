@@ -169,7 +169,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                 Validators.required(LanguageStrings.phoneNumberIsRequired),
                                 Validators.patternRegExp(
                                   RegExp(r'^(05|06|07)[0-9]{8}$'),
-                                  "Phone number must be 10 digits and start with 05, 06, or 07",
+                                  LanguageStrings.phoneNumberIsNotValid,
                                 ),
                               ]),
                               decoration: InputDecoration(

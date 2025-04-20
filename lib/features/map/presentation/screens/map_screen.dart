@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
@@ -22,7 +21,7 @@ class MapScreen extends GetView<MapState> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Map Screen",
+              LanguageStrings.mapScreen,
               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                 color: MainColors.whiteColor,
               ),

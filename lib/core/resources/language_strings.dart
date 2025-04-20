@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class LanguageStrings {
+
   static String get ok => "OK".tr;
 
   static String get save => "Save".tr;
@@ -54,6 +55,10 @@ class LanguageStrings {
   static String get phoneNumberIsRequired => "Phone number is required".tr;
 
   static String get phoneNumberIsNotValid => "Phone number is not valid".tr;
+
+  // Map Screen
+
+  static String get mapScreen => "Map Screen".tr;
 
   // Free Order
 
