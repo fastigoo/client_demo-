@@ -18,6 +18,8 @@ import 'package:learning/features/free_order/presentation/bindings/free_order_bi
 import 'package:learning/features/resto/presentation/bindings/resto_binding.dart';
 import 'package:learning/features/free_order/presentation/screens/free_order_screen.dart';
 import 'package:learning/features/resto/presentation/screens/resto_screen.dart';
+import 'package:learning/features/settings/presentation/bindings/settings_binding.dart';
+import 'package:learning/features/settings/presentation/screens/settings_screen.dart';
 
 part 'app_routes.dart';
 
@@ -75,6 +77,11 @@ class AppPages {
       name: _Paths.PLACE_ORDER,
       page: () => const PlaceOrderScreen(),
       binding: PlaceOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => const SettingsScreen(),
+      binding: SettingsBinding(),
     ),
   ];
 }

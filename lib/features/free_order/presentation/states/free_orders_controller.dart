@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/cart/domain/usecases/delete_order_usecase.dart';
@@ -47,7 +48,7 @@ class FreeOrdersController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: "Error: $l");
+          showToast(message: "${LanguageStrings.error}: $l");
         },
         (FreeOrderResEntity value) {
           freeOrderResEntity = value;
@@ -56,7 +57,7 @@ class FreeOrdersController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: "Error: $e");
+      showToast(message: "${LanguageStrings.error}: $e");
     } finally {
       isLoading.value = false;
     }
@@ -114,14 +115,14 @@ class FreeOrdersController extends GetxController {
       var response = await _freeOrderDetailUsecase.call(id: id);
       response.fold(
         (l) {
-          showToast(message: "Error: $l");
+          showToast(message: "${LanguageStrings.error}: $l");
         },
         (List<FreeOrderItemListEntity> value) {
           freeOrderItemList = value;
         },
       );
     } catch (e) {
-      showToast(message: "Error: $e");
+      showToast(message: "${LanguageStrings.error}: $e");
     } finally {
       isDetailLoading.value = false;
     }

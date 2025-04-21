@@ -14,6 +14,7 @@ abstract class Routes {
   static const CART = _Paths.CART;
   static const PLACE_ORDER = _Paths.PLACE_ORDER;
   static const PROFILE = _Paths.PROFILE;
+  static const SETTINGS = _Paths.SETTINGS;
 }
 
 abstract class _Paths {
@@ -30,4 +31,5 @@ abstract class _Paths {
   static const CART = '/cart';
   static const PLACE_ORDER = '/place-order';
   static const PROFILE = '/profile';
+  static const SETTINGS = '/settings';
 }

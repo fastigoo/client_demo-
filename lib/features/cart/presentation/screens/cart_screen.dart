@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/images.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
@@ -18,7 +20,7 @@ class CartScreen extends GetView<CartController> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
-          "Cart",
+          LanguageStrings.cartScreen,
           style: TextStyles.mediumLabelTextStyle(context).copyWith(
             color: Colors.white,
           ),
@@ -49,8 +51,8 @@ class CartScreen extends GetView<CartController> {
                           return SizedBox(height: kSpacingSmall.h);
                         },
                       )
-                    : const EmptyComponent(
-                        text: "Cart is empty",
+                    : EmptyComponent(
+                        text: LanguageStrings.cartEmpty,
                       ),
               ),
               SizedBox(height: kSpacingMedium.h),
@@ -71,7 +73,7 @@ class CartScreen extends GetView<CartController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Items",
+                          LanguageStrings.items,
                           style: TextStyles.mediumBodyTextStyle(context).copyWith(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
@@ -92,14 +94,14 @@ class CartScreen extends GetView<CartController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Total",
+                          LanguageStrings.total,
                           style: TextStyles.mediumBodyTextStyle(context).copyWith(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         Text(
-                          '${controller.getTotalPrice()} DA',
+                          '${controller.getTotalPrice()} ${LanguageStrings.dzd}',
                           style: TextStyles.mediumLabelTextStyle(context).copyWith(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.dashed,
@@ -128,7 +130,7 @@ class CartScreen extends GetView<CartController> {
                         );
                       },
                       child: Text(
-                        "Select Address",
+                        LanguageStrings.selectAddress,
                         style: TextStyles.mediumLabelTextStyle(context).copyWith(
                           color: Colors.white,
                           fontSize: 16.sp,

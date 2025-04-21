@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning/core/components/popups/confirm_popup.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/orders/domain/entities/normal_order_entity.dart';
@@ -44,7 +45,7 @@ class OrderComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "ID: #${normalOrder.orderId}",
+                "${LanguageStrings.id}: #${normalOrder.orderId}",
                 style: TextStyles.mediumLabelTextStyle(context),
               ),
               Text(
@@ -59,7 +60,7 @@ class OrderComponent extends StatelessWidget {
           SizedBox(height: kSpacingSmall.h),
           Text.rich(
             TextSpan(
-              text: 'Restaurant: ',
+              text: '${LanguageStrings.restaurant}: ',
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
@@ -74,11 +75,11 @@ class OrderComponent extends StatelessWidget {
           SizedBox(height: kSpacingXSmall.h),
           Text.rich(
             TextSpan(
-              text: 'Location: ',
+              text: '${LanguageStrings.location}: ',
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
-                  text: '${normalOrder.city ?? "N/A"}, ${normalOrder.road ?? "N/A"}',
+                  text: '${normalOrder.city ?? LanguageStrings.nA}, ${normalOrder.road ?? LanguageStrings.nA}',
                   style: TextStyles.smallBodyTextStyle(context).copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -89,7 +90,7 @@ class OrderComponent extends StatelessWidget {
           SizedBox(height: kSpacingXSmall.h),
           Text.rich(
             TextSpan(
-              text: 'Status: ',
+              text: '${LanguageStrings.status}: ',
               style: TextStyles.smallBodyTextStyle(context),
               children: [
                 TextSpan(
@@ -111,8 +112,8 @@ class OrderComponent extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) => ConfirmPopupComponent(
-                      title: 'Delete Order',
-                      content: 'Are you sure you want to delete this order?',
+                      title: '${LanguageStrings.delete} ${LanguageStrings.order}',
+                      content: LanguageStrings.deleteOrderMessage,
                       onConfirm: () {
                         controller.deleteOrder(normalOrder.orderId);
                         Navigator.pop(context);
@@ -141,7 +142,8 @@ class OrderComponent extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: kSpacingSmall.w),
-                    Text("Delete",
+                    Text(
+                      LanguageStrings.delete,
                       style: TextStyles.smallBodyTextStyle(context).copyWith(
                         color: MainColors.errorColor(context),
                         fontSize: 12.sp,
@@ -151,7 +153,7 @@ class OrderComponent extends StatelessWidget {
                 ),
               ),
               Text(
-                "${normalOrder.totalAmount} DZD\$",
+                "${normalOrder.totalAmount} ${LanguageStrings.dzd}",
                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18.sp,

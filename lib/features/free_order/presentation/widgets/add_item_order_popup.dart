@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
@@ -33,10 +34,10 @@ class AddFreeOrderItemPopup extends StatelessWidget {
               TextFormField(
                 controller: controller.nameController,
                 validator: Validators.compose([
-                  Validators.required("Item name is required"),
+                  Validators.required(LanguageStrings.itemNameIsRequired),
                 ]),
                 decoration: InputDecoration(
-                  hintText: "Item Name",
+                  hintText: LanguageStrings.itemName,
                   hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
                     color: MainColors.disableColor(context),
                   ),
@@ -72,11 +73,11 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                     child: TextFormField(
                       controller: controller.quantityController,
                       validator: Validators.compose([
-                        Validators.required("Quantity is required"),
+                        Validators.required(LanguageStrings.quantityIsRequired),
                       ]),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: "Quantity",
+                        hintText: LanguageStrings.quantity,
                         hintStyle: TextStyles.smallBodyTextStyle(context).copyWith(
                           color: MainColors.disableColor(context),
                         ),
@@ -214,7 +215,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                     ),
                     SizedBox(width: kSpacingSmall.r),
                     Text(
-                      "Add Item",
+                      LanguageStrings.addItem,
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         color: MainColors.whiteColor,
                         fontSize: 16.r,

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
 import 'package:learning/routes/app_pages.dart';
@@ -51,7 +52,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Current Location',
+                          LanguageStrings.currentLocation,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: MainColors.disableColor(context),
@@ -86,6 +87,7 @@ class SelectMapPopupComponent extends StatelessWidget {
               const SizedBox(height: kSpacingSmall),
               Container(
                 padding: const EdgeInsets.all(kSpacingSmall),
+                width: 1.sw,
                 decoration: BoxDecoration(
                   color: MainColors.warningColor(context)!.withOpacity(.1),
                   borderRadius: BorderRadius.circular(kRadiusSmall),
@@ -95,7 +97,8 @@ class SelectMapPopupComponent extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'keep in mind that Your order will be delivered to your current location if you don\'t change it',
+                  // 'keep in mind that Your order will be delivered to your current location if you don\'t change it',
+                  LanguageStrings.chooseLocationTitle,
                   style: TextStyle(
                     color: MainColors.disableColor(context),
                     fontSize: 12.sp,
@@ -119,7 +122,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                   minimumSize: Size(double.infinity, 45.h),
                 ),
                 child: Text(
-                  'Confirm Location',
+                  LanguageStrings.confirmLocation,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.sp,
@@ -129,7 +132,7 @@ class SelectMapPopupComponent extends StatelessWidget {
             ],
           ),
         );
-      }
+      },
     );
   }
 }

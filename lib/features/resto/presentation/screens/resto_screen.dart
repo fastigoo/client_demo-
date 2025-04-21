@@ -36,6 +36,7 @@ class RestoScreen extends GetView<RestoController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: kSpacingMedium.r),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -49,31 +50,51 @@ class RestoScreen extends GetView<RestoController> {
                             ),
                           ],
                         ),
-                        StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
-                            ? GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(Routes.ORDERS);
-                                },
-                                child: Container(
-                                  width: 50.r,
-                                  height: 50.r,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: MainColors.whiteColor,
-                                  ),
-                                  child: Center(
-                                    child: FaIcon(
-                                      FontAwesomeIcons.ellipsis,
-                                      color: MainColors.primaryColor,
-                                      size: 20.r,
+                        Row(
+                          children: [
+                            StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(Routes.ORDERS);
+                                    },
+                                    child: Container(
+                                      width: 50.r,
+                                      height: 50.r,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MainColors.cardColor(context),
+                                      ),
+                                      child: Center(
+                                        child: FaIcon(
+                                          FontAwesomeIcons.ellipsis,
+                                          size: 20.r,
+                                        ),
+                                      ),
                                     ),
+                                  )
+                                : const SizedBox(),
+                            SizedBox(width: kSpacingSmall.r),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(Routes.SETTINGS);
+                              },
+                              child: Container(
+                                width: 50.r,
+                                height: 50.r,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: MainColors.cardColor(context),
+                                ),
+                                child: Center(
+                                  child: FaIcon(
+                                    FontAwesomeIcons.gear,
+                                    size: 20.r,
                                   ),
                                 ),
-                              )
-                            : SizedBox(
-                                height: 50.r,
-                                width: 50.r,
                               ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
                     SizedBox(height: kSpacingMedium.r),
@@ -115,7 +136,7 @@ class RestoScreen extends GetView<RestoController> {
                               Get.toNamed(Routes.FREE_ORDER);
                             },
                             child: Container(
-                              padding: EdgeInsets.all(kSpacingMedium.r - 3),
+                              padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
                               decoration: BoxDecoration(
                                 color: MainColors.secondColor,
                                 borderRadius: BorderRadius.circular(kRadiusSmall.r),
@@ -126,10 +147,14 @@ class RestoScreen extends GetView<RestoController> {
                                   Text(
                                     LanguageStrings.freeOrder,
                                     style: TextStyles.smallLabelTextStyle(context).copyWith(
-                                      color: MainColors.primaryColor,
+                                      color: MainColors.whiteColor,
                                     ),
                                   ),
-                                  FaIcon(FontAwesomeIcons.chevronRight, size: 20.r),
+                                  FaIcon(
+                                    FontAwesomeIcons.chevronRight,
+                                    size: 16.r,
+                                    color: MainColors.whiteColor,
+                                  ),
                                 ],
                               ),
                             ),
@@ -147,7 +172,7 @@ class RestoScreen extends GetView<RestoController> {
                             ),
                             child: TextInputComponent(
                               controller: controller.searchController,
-                              hint: "Search for a restaurant ...",
+                              hint: LanguageStrings.searchInputHint,
                               contentPadding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
                               borderRadius: kRadiusMedium.r,
                               onChange: (value) {

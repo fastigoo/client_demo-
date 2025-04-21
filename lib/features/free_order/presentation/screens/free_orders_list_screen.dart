@@ -6,6 +6,7 @@ import 'package:learning/core/components/loading_animation.dart';
 import 'package:learning/core/components/others/back_component.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -72,8 +73,8 @@ class FreeOrdersListScreen extends GetView<FreeOrdersController> {
                               separatorBuilder: (context, index) {
                                 return SizedBox(height: kSpacingMedium.h);
                               },
-                            ) : const EmptyComponent(
-                              text: "No orders found",
+                            ) : EmptyComponent(
+                              text: LanguageStrings.noDataFound,
                             )
                           : const LoadingAnimation(),
                     ),
@@ -196,7 +197,7 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem> {
             ),
             SizedBox(height: kSpacingMedium.h),
             Text(
-              "Order Date: ${widget.freeOrderItemEntity.createdAt.split("T").first} ${widget.freeOrderItemEntity.createdAt.split("T").last.split(".").first}",
+              "${LanguageStrings.orderDate}: ${widget.freeOrderItemEntity.createdAt.split("T").first} ${widget.freeOrderItemEntity.createdAt.split("T").last.split(".").first}",
               style: TextStyles.mediumBodyTextStyle(context),
             ),
             SizedBox(height: kSpacingXSmall.h),

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
@@ -50,8 +51,8 @@ class ConfirmOrderComponent extends StatelessWidget {
             ),
             const SizedBox(height: kSpacingSmall),
             TextInputComponent(
-              hint: 'Ex: 0555555555',
-              label: 'Phone number',
+              hint: LanguageStrings.phoneNumberHint,
+              label: LanguageStrings.phoneNumber,
               isLabelOutside: true,
               filled: true,
               fillColor: MainColors.backgroundColor(context),
@@ -61,10 +62,10 @@ class ConfirmOrderComponent extends StatelessWidget {
                 vertical: kSpacingXSmall,
               ),
               validate: Validators.compose([
-                Validators.required('Phone number is required'),
+                Validators.required(LanguageStrings.phoneNumberIsRequired),
                 Validators.patternString(
                   r'^[0-9]{10}$',
-                  'Phone number must be 10 digits',
+                  LanguageStrings.phoneNumberIsNotValid,
                 ),
               ]),
               controller: phoneController,
@@ -91,7 +92,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Current Location',
+                        LanguageStrings.currentLocation,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: MainColors.disableColor(context),
@@ -126,6 +127,7 @@ class ConfirmOrderComponent extends StatelessWidget {
             const SizedBox(height: kSpacingSmall),
             Container(
               padding: const EdgeInsets.all(kSpacingSmall),
+              width: 1.sw,
               decoration: BoxDecoration(
                 color: MainColors.secondColor.withOpacity(.1),
                 borderRadius: BorderRadius.circular(kRadiusSmall),
@@ -135,7 +137,8 @@ class ConfirmOrderComponent extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'keep in mind that Your order will be delivered to your current location if you don\'t change it',
+                // 'keep in mind that Your order will be delivered to your current location if you don\'t change it',
+                LanguageStrings.chooseLocationTitle,
                 style: TextStyle(
                   color: MainColors.disableColor(context),
                   fontSize: 12.sp,
@@ -147,13 +150,13 @@ class ConfirmOrderComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Distance",
+                  LanguageStrings.distance,
                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                     fontSize: 16.sp,
                   ),
                 ),
                 Text(
-                  "${deliveryFeeEntity.distance} m",
+                  "${deliveryFeeEntity.getNormalizedDistance()} ${deliveryFeeEntity.isNormalizedDistance() ? LanguageStrings.kg : LanguageStrings.m}",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
@@ -168,39 +171,38 @@ class ConfirmOrderComponent extends StatelessWidget {
             ),
             const SizedBox(height: kSpacingSmall),
             GetBuilder(
-              init: Get.find<CartController>(),
-              builder: (controller) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Items",
-                      style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                        fontSize: 16.sp,
+                init: Get.find<CartController>(),
+                builder: (controller) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        LanguageStrings.items,
+                        style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                          fontSize: 16.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "${controller.getTotalPrice()} DA",
-                      style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: MainColors.primaryColor,
-                        decorationStyle: TextDecorationStyle.dashed,
-                        decorationThickness: 3,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: MainColors.primaryColor,
+                      Text(
+                        "${controller.getTotalPrice()} ${LanguageStrings.dzd}",
+                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: MainColors.primaryColor,
+                          decorationStyle: TextDecorationStyle.dashed,
+                          decorationThickness: 3,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: MainColors.primaryColor,
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              }
-            ),
+                    ],
+                  );
+                }),
             const SizedBox(height: kSpacingSmall),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Delivery fee",
+                  LanguageStrings.deliveryFee,
                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                     fontSize: 16.sp,
                   ),
@@ -227,7 +229,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Total",
+                      LanguageStrings.total,
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         fontSize: 16.sp,
                       ),
@@ -246,7 +248,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                     ),
                   ],
                 );
-              }
+              },
             ),
             const SizedBox(height: kSpacingSmall),
             GetBuilder(
@@ -274,7 +276,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                             minimumSize: Size(double.infinity, 45.h),
                           ),
                           child: Text(
-                            'Confirm Order',
+                            LanguageStrings.confirmOrder,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.sp,

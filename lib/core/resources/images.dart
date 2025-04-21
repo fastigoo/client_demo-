@@ -4,6 +4,9 @@
 const String noneSvg = 'none.svg';
 const String heartIcon = "heart.svg";
 const String addCartIcon = "add_cart.svg";
+const String moonIcon = "moon.svg";
+const String closeIcon = "close.svg";
+const String checkIcon = "check.svg";
 
 const String statusPending = "status_pending.svg";
 const String statusConfirmed = "status_confirmed.svg";

@@ -4,6 +4,7 @@ import 'package:learning/core/resources/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learning/core/resources/images.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -16,9 +17,9 @@ class SuccessScreen extends StatelessWidget {
 
   const SuccessScreen({
     super.key,
-    this.successTitle = "Success!",
-    this.successDesc = "Your order has been placed successfully.",
-    this.successBtn = "Back to Home",
+    this.successTitle = "",
+    this.successDesc = "",
+    this.successBtn = "",
   });
 
   @override
@@ -43,14 +44,14 @@ class SuccessScreen extends StatelessWidget {
               SizedBox(height: kSpacingXLarge.r),
               Center(
                 child: Text(
-                  successTitle,
+                  LanguageStrings.success,
                   style: TextStyles.largeLabelTextStyle(context).copyWith(),
                 ),
               ),
               SizedBox(height: kSpacingMedium.r),
               Center(
                 child: Text(
-                  successDesc,
+                  LanguageStrings.successMessage,
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     fontSize: 17.sp,
                   ),
@@ -79,7 +80,7 @@ class SuccessScreen extends StatelessWidget {
                     ),
                     SizedBox(width: kSpacingSmall.w),
                     Text(
-                      successBtn,
+                      LanguageStrings.backHome,
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         color: MainColors.whiteColor,
                         fontSize: 17.sp,

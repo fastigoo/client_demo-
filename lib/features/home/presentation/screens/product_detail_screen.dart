@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/images.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -94,7 +95,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                             ).paddingSymmetric(horizontal: kSpacingMedium.r),
                             SizedBox(height: kSpacingSmall.r),
                             Text(
-                              '${controller.itemDetail!.price} DA',
+                              '${controller.itemDetail!.price} ${LanguageStrings.dzd}',
                               style: TextStyles.largeBodyTextStyle(context).copyWith(
                                 color: MainColors.primaryColor,
                                 fontWeight: FontWeight.bold,
@@ -149,7 +150,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                                 ),
                                                 SizedBox(height: 5.h),
                                                 Text(
-                                                  "${controller.itemDetail!.variants![index].price} DA",
+                                                  "${controller.itemDetail!.variants![index].price} ${LanguageStrings.dzd}",
                                                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                                     color: index != 0 ? MainColors.textColor(context) : MainColors.whiteColor,
                                                     fontSize: 15.sp,
@@ -206,7 +207,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                               ),
                                               SizedBox(width: 5.w),
                                               Text(
-                                                "Add to cart",
+                                                LanguageStrings.addToCart,
                                                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                                   color: Colors.white,
                                                 ),
@@ -242,7 +243,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                 ).paddingSymmetric(horizontal: kSpacingMedium.r),
                               ),
                             ),
-                            SizedBox(height: kSpacingMedium.h),
+                            SizedBox(height: kSpacingXLarge.h * 2),
                           ],
                         ),
                       ),
@@ -250,7 +251,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                   ),
                 ),
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               ),
       ),

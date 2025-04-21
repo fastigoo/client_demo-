@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/images.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -52,7 +53,7 @@ class ProductComponent extends StatelessWidget {
               ),
             ),
             Text(
-              "${item.price} DA",
+              "${item.price} ${LanguageStrings.dzd}",
               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                 fontSize: 18.sp,
                 color: MainColors.primaryColor,
@@ -102,7 +103,7 @@ class ProductComponent extends StatelessWidget {
                           ),
                           SizedBox(width: 5.w),
                           Text(
-                            "Add to cart",
+                            LanguageStrings.addToCart,
                             style: TextStyles.mediumBodyTextStyle(context).copyWith(
                               color: Colors.white,
                               fontSize: 14.sp,

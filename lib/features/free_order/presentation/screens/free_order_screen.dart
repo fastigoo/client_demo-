@@ -143,7 +143,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                                     ? LanguageStrings.currentLocation
                                                     : "${controller.address!.city} - ${controller.address!.road}",
                                                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                                  color: MainColors.primaryColor,
+                                                  color: MainColors.whiteColor,
                                                 ),
                                               ),
                                               FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
@@ -187,7 +187,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                   vertical: kSpacingMedium.r,
                                 ),
                                 filled: true,
-                                fillColor: MainColors.whiteColor,
+                                fillColor: MainColors.inputColor(context),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius: BorderRadius.circular(kRadiusMedium.r),
@@ -275,7 +275,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                     ),
                     onPressed: () {
                       if (controller.items.isEmpty) {
-                        showToast(message: "Please add items to your order");
+                        showToast(message: LanguageStrings.pleaseAddItemsToYourOrder);
                         return;
                       }
                       if (controller.formKey.currentState!.validate()) {
@@ -305,7 +305,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       child: Center(
                         child: FaIcon(
                           FontAwesomeIcons.plus,
-                          color: MainColors.primaryColor,
+                          color: MainColors.whiteColor,
                           size: 20.r,
                         ),
                       ),
@@ -313,6 +313,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                   ),
                 ],
               ),
+              SizedBox(height: kSpacingMedium.r),
             ],
           ).paddingSymmetric(horizontal: kSpacingMedium.r),
         ),

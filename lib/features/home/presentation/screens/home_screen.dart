@@ -1,13 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/services/resource_manager.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
 import 'package:learning/features/home/presentation/states/product_detail_controller.dart';
 import 'package:learning/features/home/presentation/widgets/cart_widget.dart';
@@ -101,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               ),
                             ),
                             Text(
-                              "Hey! Welcome back!",
+                              LanguageStrings.heyWelcomeBack,
                               style: GoogleFonts.fredoka(
                                 fontSize: 15.sp,
                                 color: MainColors.whiteColor.withOpacity(.75),

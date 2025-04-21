@@ -13,8 +13,10 @@ class MainColors {
   static Color? successColor(BuildContext context) => Theme.of(context).extension<ColorsStyles>()?.successColor;
   static Color? warningColor(BuildContext context) => Theme.of(context).extension<ColorsStyles>()?.warningColor;
 
-  static const Color primaryColor = materialColors.Color(0xFF1F1F1F);
-  static const Color secondColor = materialColors.Color(0xFFD0FF00);
+  static const Color primaryColor = materialColors.Color(0xFFED7D31);
+  // static const Color primaryColor = materialColors.Color(0xFFC14600);
+  static const Color secondColor = materialColors.Color(0xFFF39F5A);
+  // static const Color secondColor = materialColors.Color(0xFFD0FF00);
   static const Color whiteColor = materialColors.Colors.white;
   static const Color blackColor = materialColors.Color(0xFF333232);
   static const Color transparentColor = materialColors.Colors.transparent;

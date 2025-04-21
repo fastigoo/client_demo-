@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
@@ -18,8 +19,8 @@ class FreeOrderController extends GetxController {
   final itemFormKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final quantityController = TextEditingController(text: "1");
-  RxString selectedUnite = "Kg".obs;
-  List<String> unites = ["Kg", "Litre", "Metre", "Unit"];
+  List<String> unites = [LanguageStrings.kg, LanguageStrings.litter, LanguageStrings.meter, LanguageStrings.unit];
+  RxString selectedUnite = "".obs;
 
   List<FreeOrderItemModel> items = [];
 
@@ -27,6 +28,7 @@ class FreeOrderController extends GetxController {
 
   @override
   void onInit() {
+    selectedUnite.value = unites[0];
     phoneController.text = StorageManager.instance.getStringValue(key: StorageKey.userPhoneKey) ?? "0";
     super.onInit();
   }
@@ -67,7 +69,7 @@ class FreeOrderController extends GetxController {
   void reset() {
     nameController.clear();
     quantityController.text = "1";
-    selectedUnite.value = "Kg";
+    selectedUnite.value = unites[0];
   }
 
   void updateAddress(OrderCustomerLocationEntity address) {
@@ -87,7 +89,7 @@ class FreeOrderController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: "Error: $l");
+          showToast(message: "${LanguageStrings.error}: $l");
         },
         (AddFreeOrderResEntity res) {
           StorageManager.instance.setInt(key: StorageKey.userIdKey, value: res.userId);
@@ -97,7 +99,7 @@ class FreeOrderController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: "Error: $e");
+      showToast(message: "${LanguageStrings.error}: $e");
     } finally {
       isLoading.value = false;
     }

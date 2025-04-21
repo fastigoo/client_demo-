@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/cart/domain/entities/cart_entity.dart';
@@ -129,7 +130,7 @@ class CartController extends GetxController {
         (PlaceOrderEntity order) async {
           orderEntity = order;
           clearCart();
-          showToast(message: 'Order placed successfully');
+          showToast(message: LanguageStrings.orderPlacedSuccessfully);
           StorageManager.instance.setInt(key: StorageKey.userIdKey, value: order.userId);
           StorageManager.instance.setString(key: StorageKey.userPhoneKey, value: phoneController.text);
           Get.toNamed(Routes.PLACE_ORDER, arguments: order.orderId);

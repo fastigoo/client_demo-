@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:learning/core/components/loading_animation.dart';
 import 'package:learning/core/components/others/back_component.dart';
 import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/orders/presentation/states/orders_controller.dart';
 import 'package:learning/features/orders/presentation/widgets/order_component.dart';
@@ -32,7 +31,7 @@ class OrdersScreen extends GetView<OrdersController> {
                             const BackComponent(),
                             SizedBox(width: kSpacingMedium.w),
                             Text(
-                              'Orders ${StorageManager.instance.getIntValue(key: StorageKey.userIdKey)}',
+                              LanguageStrings.ordersList,
                               style: TextStyles.mediumLabelTextStyle(context),
                             ),
                           ],
@@ -56,7 +55,7 @@ class OrdersScreen extends GetView<OrdersController> {
                               if (controller.isLoadingMore.isFalse) ...{
                                 Text.rich(
                                   TextSpan(
-                                    text: 'Total Orders: ',
+                                    text: '${LanguageStrings.totalOrders}: ',
                                     style: TextStyles.smallBodyTextStyle(context),
                                     children: [
                                       TextSpan(

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:learning/core/components/others/dashed_rect.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/images.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -32,7 +33,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                         children: [
                           Text.rich(
                             TextSpan(
-                              text: "Order ID: ",
+                              text: "${LanguageStrings.orderID}: ",
                               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                 color: MainColors.primaryColor,
                                 fontSize: 15.sp,
@@ -65,7 +66,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                               child: Row(
                                 children: [
                                   Text(
-                                    "Back",
+                                    LanguageStrings.back,
                                     style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                       color: Colors.white,
                                     ),
@@ -105,7 +106,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                       child: Column(
                         children: [
                           Text(
-                            "Order will be delivered from",
+                            "${LanguageStrings.orderWillbeDelivered} ${LanguageStrings.from}}",
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                               fontSize: 17.sp,
@@ -120,7 +121,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           ),
                           SizedBox(height: kSpacingSmall.h),
                           Text(
-                            "Order will be delivered to",
+                            "${LanguageStrings.orderWillbeDelivered} ${LanguageStrings.to}",
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                               fontSize: 17.sp,
@@ -240,7 +241,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Order Status",
+                                      LanguageStrings.orderStatus,
                                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                         color: MainColors.whiteColor,
                                         fontSize: 13.sp,
@@ -262,7 +263,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Order Date",
+                                      LanguageStrings.orderDate,
                                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                         color: MainColors.whiteColor,
                                         fontSize: 13.sp,
@@ -295,7 +296,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                   vertical: kSpacingSmall.r,
                                 ),
                                 child: Text(
-                                  "${controller.orderDetail!.amount.totalAmount} ${controller.orderDetail!.amount.currency}",
+                                  "${controller.orderDetail!.amount.totalAmount} ${LanguageStrings.dzd}",
                                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontSize: 17.sp,

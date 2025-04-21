@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -89,7 +90,7 @@ class RestoComponent extends StatelessWidget {
                             ),
                             SizedBox(width: kSpacingXSmall.w),
                             Text(
-                              "Open",
+                              LanguageStrings.open,
                               style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                 color: MainColors.successColor(context),
                                 fontSize: 12.sp,
