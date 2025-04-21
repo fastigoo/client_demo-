@@ -134,6 +134,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                           decoration: BoxDecoration(
                                             color: MainColors.secondColor,
                                             borderRadius: BorderRadius.circular(kRadiusSmall.r),
+
                                           ),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
