@@ -20,7 +20,7 @@ class PlaceOrderController extends GetxController {
     super.onInit();
   }
 
-  void getOrderDetail() async {
+  Future<void> getOrderDetail() async {
     try {
       isLoading.value = true;
       var response = await orderDetailUseCase.execute(

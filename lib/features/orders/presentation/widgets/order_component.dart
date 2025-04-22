@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:learning/core/components/popups/confirm_popup.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
+import 'package:learning/features/cart/presentation/states/place_order_controller.dart';
 import 'package:learning/features/orders/domain/entities/normal_order_entity.dart';
 import 'package:learning/features/orders/presentation/states/orders_controller.dart';
+import 'package:learning/routes/app_pages.dart';
 
 class OrderComponent extends StatelessWidget {
   final NormalOrderEntity normalOrder;
@@ -24,144 +27,150 @@ class OrderComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(kSpacingMedium.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${LanguageStrings.id}: #${normalOrder.orderId}",
-                style: TextStyles.mediumLabelTextStyle(context),
-              ),
-              Text(
-                normalOrder.createdAt,
-                style: TextStyles.smallBodyTextStyle(context).copyWith(
-                  color: MainColors.disableColor(context),
-                  fontSize: 10.sp,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: kSpacingSmall.h),
-          Text.rich(
-            TextSpan(
-              text: '${LanguageStrings.restaurant}: ',
-              style: TextStyles.smallBodyTextStyle(context),
+    return GestureDetector(
+      onTap: () async {
+        Get.toNamed(Routes.PLACE_ORDER, arguments: normalOrder.orderId);
+        await Get.put(PlaceOrderController()).getOrderDetail();
+      },
+      child: Container(
+        padding: EdgeInsets.all(kSpacingMedium.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextSpan(
-                  text: normalOrder.restaurantName,
+                Text(
+                  "${LanguageStrings.id}: #${normalOrder.orderId}",
+                  style: TextStyles.mediumLabelTextStyle(context),
+                ),
+                Text(
+                  normalOrder.createdAt,
                   style: TextStyles.smallBodyTextStyle(context).copyWith(
-                    fontWeight: FontWeight.bold,
+                    color: MainColors.disableColor(context),
+                    fontSize: 10.sp,
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(height: kSpacingXSmall.h),
-          Text.rich(
-            TextSpan(
-              text: '${LanguageStrings.location}: ',
-              style: TextStyles.smallBodyTextStyle(context),
-              children: [
-                TextSpan(
-                  text: '${normalOrder.city ?? LanguageStrings.nA}, ${normalOrder.road ?? LanguageStrings.nA}',
-                  style: TextStyles.smallBodyTextStyle(context).copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: kSpacingXSmall.h),
-          Text.rich(
-            TextSpan(
-              text: '${LanguageStrings.status}: ',
-              style: TextStyles.smallBodyTextStyle(context),
-              children: [
-                TextSpan(
-                  text: normalOrder.orderStatusValue,
-                  style: TextStyles.smallBodyTextStyle(context).copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: MainColors.successColor(context),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: kSpacingSmall.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => ConfirmPopupComponent(
-                      title: '${LanguageStrings.delete} ${LanguageStrings.order}',
-                      content: LanguageStrings.deleteOrderMessage,
-                      onConfirm: () {
-                        controller.deleteOrder(normalOrder.orderId);
-                        Navigator.pop(context);
-                      },
-                      onCancel: () {
-                        Navigator.pop(context);
-                      },
+            SizedBox(height: kSpacingSmall.h),
+            Text.rich(
+              TextSpan(
+                text: '${LanguageStrings.restaurant}: ',
+                style: TextStyles.smallBodyTextStyle(context),
+                children: [
+                  TextSpan(
+                    text: normalOrder.restaurantName,
+                    style: TextStyles.smallBodyTextStyle(context).copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      width: 40.w,
-                      height: 40.w,
-                      decoration: BoxDecoration(
-                        color: MainColors.errorColor(context),
-                        shape: BoxShape.circle,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: kSpacingXSmall.h),
+            Text.rich(
+              TextSpan(
+                text: '${LanguageStrings.location}: ',
+                style: TextStyles.smallBodyTextStyle(context),
+                children: [
+                  TextSpan(
+                    text: '${normalOrder.city ?? LanguageStrings.nA}, ${normalOrder.road ?? LanguageStrings.nA}',
+                    style: TextStyles.smallBodyTextStyle(context).copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: kSpacingXSmall.h),
+            Text.rich(
+              TextSpan(
+                text: '${LanguageStrings.status}: ',
+                style: TextStyles.smallBodyTextStyle(context),
+                children: [
+                  TextSpan(
+                    text: normalOrder.orderStatusValue,
+                    style: TextStyles.smallBodyTextStyle(context).copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: MainColors.successColor(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: kSpacingSmall.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => ConfirmPopupComponent(
+                        title: '${LanguageStrings.delete} ${LanguageStrings.order}',
+                        content: LanguageStrings.deleteOrderMessage,
+                        onConfirm: () {
+                          controller.deleteOrder(normalOrder.orderId);
+                          Navigator.pop(context);
+                        },
+                        onCancel: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.trash,
-                          color: MainColors.whiteColor,
-                          size: 16.sp,
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40.w,
+                        height: 40.w,
+                        decoration: BoxDecoration(
+                          color: MainColors.errorColor(context),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: FaIcon(
+                            FontAwesomeIcons.trash,
+                            color: MainColors.whiteColor,
+                            size: 16.sp,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: kSpacingSmall.w),
-                    Text(
-                      LanguageStrings.delete,
-                      style: TextStyles.smallBodyTextStyle(context).copyWith(
-                        color: MainColors.errorColor(context),
-                        fontSize: 12.sp,
+                      SizedBox(width: kSpacingSmall.w),
+                      Text(
+                        LanguageStrings.delete,
+                        style: TextStyles.smallBodyTextStyle(context).copyWith(
+                          color: MainColors.errorColor(context),
+                          fontSize: 12.sp,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                "${normalOrder.totalAmount} ${LanguageStrings.dzd}",
-                style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.sp,
+                Text(
+                  "${normalOrder.totalAmount} ${LanguageStrings.dzd}",
+                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

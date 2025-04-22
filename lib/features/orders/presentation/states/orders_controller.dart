@@ -5,6 +5,7 @@ import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/cart/domain/usecases/all_orders_usecase.dart';
 import 'package:learning/features/cart/domain/usecases/delete_order_usecase.dart';
+import 'package:learning/features/cart/presentation/states/place_order_controller.dart';
 import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
 
 class OrdersController extends GetxController {
@@ -36,7 +37,8 @@ class OrdersController extends GetxController {
     try {
       isLoading.value = true;
       var response = await _allOrdersUseCase.execute(
-        userId: StorageManager.instance.getIntValue(key: StorageKey.userIdKey),
+        userId: 46,
+        // userId: StorageManager.instance.getIntValue(key: StorageKey.userIdKey),
         page: page,
         limit: limit,
       );

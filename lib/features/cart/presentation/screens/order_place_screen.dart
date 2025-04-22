@@ -106,7 +106,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                       child: Column(
                         children: [
                           Text(
-                            "${LanguageStrings.orderWillbeDelivered} ${LanguageStrings.from}}",
+                            "${LanguageStrings.orderWillbeDelivered} ${LanguageStrings.from}",
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.whiteColor,
                               fontSize: 17.sp,
@@ -115,7 +115,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           Text(
                             controller.orderDetail!.restaurant.name,
                             style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                              color: MainColors.disableColor(context),
+                              color: MainColors.whiteColor.withOpacity(.75),
                               fontSize: 13.sp,
                             ),
                           ),
@@ -130,14 +130,14 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           Text(
                             "${controller.orderDetail!.customerLocation.country} - ${controller.orderDetail!.customerLocation.road} - ${controller.orderDetail!.customerLocation.city}",
                             style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                              color: MainColors.disableColor(context),
+                              color: MainColors.whiteColor.withOpacity(.75),
                               fontSize: 13.sp,
                             ),
                           ),
                           SizedBox(height: kSpacingXSmall.h),
                           Divider(
                             height: kSpacingXLarge.h,
-                            color: MainColors.secondColor.withOpacity(.2),
+                            color: MainColors.secondColor,
                             endIndent: 30,
                             indent: 30,
                             thickness: .5,
@@ -228,7 +228,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           ),
                           Divider(
                             height: kSpacingXLarge.h,
-                            color: MainColors.secondColor.withOpacity(.2),
+                            color: MainColors.secondColor,
                             endIndent: 30,
                             indent: 30,
                             thickness: .5,
@@ -288,7 +288,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: MainColors.secondColor,
+                                  color: MainColors.cardColor(context),
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                                 padding: EdgeInsets.symmetric(

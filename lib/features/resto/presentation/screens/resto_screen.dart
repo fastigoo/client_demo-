@@ -52,8 +52,8 @@ class RestoScreen extends GetView<RestoController> {
                         ),
                         Row(
                           children: [
-                            StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
-                                ? GestureDetector(
+                            // StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0 ?
+                            GestureDetector(
                                     onTap: () {
                                       Get.toNamed(Routes.ORDERS);
                                     },
@@ -71,8 +71,8 @@ class RestoScreen extends GetView<RestoController> {
                                         ),
                                       ),
                                     ),
-                                  )
-                                : const SizedBox(),
+                                  ),
+                                // : const SizedBox(),
                             SizedBox(width: kSpacingSmall.r),
                             GestureDetector(
                               onTap: () {
