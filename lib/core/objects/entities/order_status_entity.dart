@@ -1,7 +1,7 @@
 
 class OrderStatusEntity {
-  final int id;
-  final String value;
+  late int id;
+  late String value;
 
   OrderStatusEntity({
     required this.id,

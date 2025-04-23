@@ -132,6 +132,7 @@ class CartController extends GetxController {
           clearCart();
           showToast(message: LanguageStrings.orderPlacedSuccessfully);
           StorageManager.instance.setInt(key: StorageKey.userIdKey, value: order.userId);
+          StorageManager.instance.setInt(key: StorageKey.clientIdKey, value: order.clientId);
           StorageManager.instance.setString(key: StorageKey.userPhoneKey, value: phoneController.text);
           Get.toNamed(Routes.PLACE_ORDER, arguments: order.orderId);
         },

@@ -7,6 +7,8 @@ class LanguageStrings {
 
   static String get cancel => "Cancel".tr;
 
+  static String get confirm => "Confirm".tr;
+
   static String get error => "Error".tr;
 
   static String get nA => "N/A".tr;

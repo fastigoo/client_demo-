@@ -5,6 +5,7 @@ import 'package:learning/core/components/loading_animation.dart';
 import 'package:learning/core/components/others/back_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
+import 'package:learning/core/resources/states_ids.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/orders/presentation/states/orders_controller.dart';
 import 'package:learning/features/orders/presentation/widgets/order_component.dart';
@@ -17,6 +18,7 @@ class OrdersScreen extends GetView<OrdersController> {
     return Scaffold(
       body: GetBuilder(
         init: controller,
+        id: StatesIds.ordersList,
         builder: (OrdersController controller) {
           return SafeArea(
             child: controller.isLoading.isFalse

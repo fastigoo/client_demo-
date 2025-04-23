@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning/core/resources/language_strings.dart';
 
 class ConfirmPopupComponent extends StatelessWidget {
   final String title;
@@ -22,11 +23,11 @@ class ConfirmPopupComponent extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: onCancel,
-          child: const Text('Cancel'),
+          child: Text(LanguageStrings.cancel),
         ),
         TextButton(
           onPressed: onConfirm,
-          child: const Text('Confirm'),
+          child: Text(LanguageStrings.confirm),
         ),
       ],
     );

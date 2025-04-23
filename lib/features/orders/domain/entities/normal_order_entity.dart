@@ -2,7 +2,7 @@ class NormalOrderEntity {
   final int orderId;
   final int orderStatusId;
   final String restaurantName;
-  final String orderStatusValue;
+  late String orderStatusValue;
   final double deliveryFee;
   final double totalAmount;
   final String? road;

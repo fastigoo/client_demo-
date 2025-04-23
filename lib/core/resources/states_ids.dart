@@ -1,3 +1,5 @@
 class StatesIds {
-  static const String updateNormalOrderState = 'updateNormalOrderState';
+  static const String ordersList = 'ordersList';
+  static const String orderDetail = 'orderDetail';
+  static const String orderDetailLoading = 'orderDetailLoading';
 }
