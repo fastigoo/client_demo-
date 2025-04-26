@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
+import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
@@ -61,7 +62,9 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     ),
                                     child: Center(
                                       child: FaIcon(
-                                        FontAwesomeIcons.chevronLeft,
+                                        TranslationUtil.isRtl()
+                                            ? FontAwesomeIcons.chevronRight
+                                            : FontAwesomeIcons.chevronLeft,
                                         color: MainColors.primaryColor,
                                         size: 20.r,
                                       ),
@@ -134,7 +137,6 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                           decoration: BoxDecoration(
                                             color: MainColors.secondColor,
                                             borderRadius: BorderRadius.circular(kRadiusSmall.r),
-
                                           ),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,7 +149,11 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                                   color: MainColors.whiteColor,
                                                 ),
                                               ),
-                                              FaIcon(FontAwesomeIcons.locationDot, size: 20.r),
+                                              FaIcon(
+                                                FontAwesomeIcons.locationDot,
+                                                size: 20.r,
+                                                color: MainColors.whiteColor,
+                                              ),
                                             ],
                                           ),
                                         ),

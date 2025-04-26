@@ -121,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           overlayColor: MaterialStateProperty.all(Colors.white.withOpacity(.2)),
                           indicatorPadding: EdgeInsets.symmetric(horizontal: 10.w),
                           labelPadding: EdgeInsets.symmetric(horizontal: 20.w),
+                          dividerHeight: 0.001,
                           onTap: (index) {
                             controller.setSelectedMenuId(controller.restaurantMenus[index].menuId);
                           },

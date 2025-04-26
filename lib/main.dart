@@ -54,11 +54,19 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.routes,
             translations: Translation(),
             locale: TranslationUtil.currentLang,
-            fallbackLocale: const Locale('ar'),
+            fallbackLocale: const Locale('en'),
             // themeMode: ThemeUtil.currentTheme,
             themeMode: ThemeMode.light,
             theme: ThemeStyles.lightTheme,
             darkTheme: ThemeStyles.darkTheme,
+            builder: (context, child) {
+              final locale = Get.locale ?? Get.fallbackLocale;
+              final isRTL = locale?.languageCode == 'ar';
+              return Directionality(
+                textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
+                child: child!,
+              );
+            },
             // builder: EasyLoading.init(),
           ),
         );

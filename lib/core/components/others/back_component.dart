@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/styles/main_colors.dart';
 
 class BackComponent extends StatelessWidget {
-
   const BackComponent({
     super.key,
   });
@@ -25,7 +25,7 @@ class BackComponent extends StatelessWidget {
         ),
         child: Center(
           child: FaIcon(
-            FontAwesomeIcons.chevronLeft,
+            TranslationUtil.isRtl() ? FontAwesomeIcons.chevronRight : FontAwesomeIcons.chevronLeft,
             color: MainColors.primaryColor,
             size: 20.r,
           ),

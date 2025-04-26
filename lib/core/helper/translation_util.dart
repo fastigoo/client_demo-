@@ -4,7 +4,7 @@ import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 
 class TranslationUtil {
-  static Locale? currentLang = const Locale('ar');
+  static Locale? currentLang = const Locale('en');
 
   static void changeLang({required String lang}) {
     StorageManager.instance.setString(key: StorageKey.languageKey, value: lang);
@@ -33,5 +33,9 @@ class TranslationUtil {
     } catch (e) {
       print('Error initializing translation: $e');
     }
+  }
+
+  static bool isRtl() {
+    return currentLang?.languageCode == 'ar' || currentLang?.languageCode == 'he';
   }
 }

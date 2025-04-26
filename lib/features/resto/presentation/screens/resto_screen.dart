@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/components/inputs/input_component.dart';
+import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
@@ -54,25 +55,25 @@ class RestoScreen extends GetView<RestoController> {
                           children: [
                             // StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0 ?
                             GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(Routes.ORDERS);
-                                    },
-                                    child: Container(
-                                      width: 50.r,
-                                      height: 50.r,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: MainColors.cardColor(context),
-                                      ),
-                                      child: Center(
-                                        child: FaIcon(
-                                          FontAwesomeIcons.ellipsis,
-                                          size: 20.r,
-                                        ),
-                                      ),
-                                    ),
+                              onTap: () {
+                                Get.toNamed(Routes.ORDERS);
+                              },
+                              child: Container(
+                                width: 50.r,
+                                height: 50.r,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: MainColors.cardColor(context),
+                                ),
+                                child: Center(
+                                  child: FaIcon(
+                                    FontAwesomeIcons.ellipsis,
+                                    size: 20.r,
                                   ),
-                                // : const SizedBox(),
+                                ),
+                              ),
+                            ),
+                            // : const SizedBox(),
                             SizedBox(width: kSpacingSmall.r),
                             GestureDetector(
                               onTap: () {
@@ -151,7 +152,7 @@ class RestoScreen extends GetView<RestoController> {
                                     ),
                                   ),
                                   FaIcon(
-                                    FontAwesomeIcons.chevronRight,
+                                    TranslationUtil.isRtl() ? FontAwesomeIcons.chevronLeft : FontAwesomeIcons.chevronRight,
                                     size: 16.r,
                                     color: MainColors.whiteColor,
                                   ),
