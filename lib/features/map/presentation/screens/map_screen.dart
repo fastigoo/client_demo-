@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -93,17 +94,10 @@ class MapScreen extends GetView<MapState> {
                                 width: 25,
                                 height: 25,
                                 point: controller.getMarkerPosition(),
-                                child: Container(
-                                  width: 25.w,
-                                  height: 25.h,
-                                  decoration: BoxDecoration(
-                                    color: MainColors.primaryColor,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.white,
-                                      width: 3.r,
-                                    ),
-                                  ),
+                                child: const FaIcon(
+                                  FontAwesomeIcons.mapPin,
+                                  color: MainColors.blackColor,
+                                   size: 35,
                                 ),
                               ),
                             ],

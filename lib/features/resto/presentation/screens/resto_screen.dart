@@ -46,34 +46,34 @@ class RestoScreen extends GetView<RestoController> {
                             FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
                             SizedBox(width: kSpacingSmall.r),
                             Text(
-                              "Mila, Mila, Algeria",
+                              LanguageStrings.milaAlgeria,
                               style: TextStyles.mediumBodyTextStyle(context),
                             ),
                           ],
                         ),
                         Row(
                           children: [
-                            // StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0 ?
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.ORDERS);
-                              },
-                              child: Container(
-                                width: 50.r,
-                                height: 50.r,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: MainColors.cardColor(context),
-                                ),
-                                child: Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.ellipsis,
-                                    size: 20.r,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            // : const SizedBox(),
+                            StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(Routes.ORDERS);
+                                    },
+                                    child: Container(
+                                      width: 50.r,
+                                      height: 50.r,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MainColors.cardColor(context),
+                                      ),
+                                      child: Center(
+                                        child: FaIcon(
+                                          FontAwesomeIcons.ellipsis,
+                                          size: 20.r,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox(),
                             SizedBox(width: kSpacingSmall.r),
                             GestureDetector(
                               onTap: () {

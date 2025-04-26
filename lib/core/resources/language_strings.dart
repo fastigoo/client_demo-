@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 
 class LanguageStrings {
+
+  static String get milaAlgeria => "Mila Algeria".tr;
+
   static String get ok => "OK".tr;
 
   static String get save => "Save".tr;

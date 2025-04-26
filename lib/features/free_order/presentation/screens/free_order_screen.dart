@@ -278,7 +278,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
-                      minimumSize: Size(1.sw - 10.w - (kSpacingMedium.w * 6).w, 50.r),
+                      minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
                     ),
                     onPressed: () {
                       if (controller.items.isEmpty) {
@@ -304,7 +304,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: MainColors.secondColor,
+                        color: const Color(0xFF657C6A),
                         borderRadius: BorderRadius.circular(kRadiusMedium.r),
                       ),
                       width: 50.r,
@@ -320,7 +320,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                   ),
                 ],
               ),
-              SizedBox(height: kSpacingMedium.r),
+              SizedBox(height: kSpacingSmall.r),
             ],
           ).paddingSymmetric(horizontal: kSpacingMedium.r),
         ),

@@ -23,7 +23,7 @@ class RestoController extends GetxController {
 
   // Pagination
   int page = 1;
-  int perPage = 5;
+  int perPage = 15;
   int maxPage = 1;
 
   Timer? _debounceTimer;
