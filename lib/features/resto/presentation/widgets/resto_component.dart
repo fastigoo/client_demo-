@@ -38,19 +38,18 @@ class RestoComponent extends StatelessWidget {
         width: 1.sw,
         decoration: BoxDecoration(
           color: MainColors.cardColor(context),
-          borderRadius: BorderRadius.circular(kRadiusMedium.r),
-          border: Border.all(
-            color: Colors.grey.withOpacity(.2),
-            width: 1,
-          ),
+          borderRadius: BorderRadius.circular(kRadiusSmall.r),
         ),
-        child: Stack(
+        child: Column(
           children: [
             SizedBox(
               width: 1.sw,
               height: 200.h,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(kRadiusSmall.r),
+                  topRight: Radius.circular(kRadiusSmall.r),
+                ),
                 child: Hero(
                   tag: item.imageUrl,
                   child: Image.network(
@@ -61,53 +60,51 @@ class RestoComponent extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 10.h,
-              left: 10.w,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    width: 1.sw - 55.r,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: kSpacingMedium.w,
-                      vertical: kSpacingSmall.h,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          item.name,
-                          style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                            color: MainColors.whiteColor,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              CupertinoIcons.circle_fill,
-                              color: MainColors.successColor(context),
-                              size: 12.r,
-                            ),
-                            SizedBox(width: kSpacingXSmall.w),
-                            Text(
-                              LanguageStrings.open,
-                              style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                                color: MainColors.successColor(context),
-                                fontSize: 12.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+            SizedBox(height: kSpacingXSmall.h),
+            Container(
+              width: 1.sw,
+              height: 40.h,
+              padding: EdgeInsets.symmetric(
+                horizontal: kSpacingMedium.w,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(kRadiusSmall.r),
+                  bottomRight: Radius.circular(kRadiusSmall.r),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      item.name,
+                      style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                        fontSize: 16.sp,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
+                  SizedBox(width: kSpacingSmall.w),
+                  Row(
+                    children: [
+                      Icon(
+                        CupertinoIcons.circle_fill,
+                        color: MainColors.successColor(context),
+                        size: 12.r,
+                      ),
+                      SizedBox(width: kSpacingXSmall.w),
+                      Text(
+                        LanguageStrings.open,
+                        style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                          color: MainColors.successColor(context),
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
