@@ -56,7 +56,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.offAndToNamed(Routes.HOME);
+                                  Get.offAndToNamed(Routes.RESTO);
                                 },
                                 child: Container(
                                   height: 40.w,

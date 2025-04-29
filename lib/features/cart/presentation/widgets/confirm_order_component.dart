@@ -9,7 +9,6 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/routes/app_pages.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
 class ConfirmOrderComponent extends StatelessWidget {
@@ -80,56 +79,11 @@ class ConfirmOrderComponent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: kSpacingSmall),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: 122,
-                    height: 45.h,
-                    decoration: BoxDecoration(
-                      color: MainColors.backgroundColor(context),
-                      borderRadius: BorderRadius.circular(kRadiusSmall),
-                    ),
-                    child: Center(
-                      child: Text(
-                        LanguageStrings.currentLocation,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          color: MainColors.disableColor(context),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: kSpacingSmall),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.MAP);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: MainColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kRadiusSmall),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: kSpacingSmall,
-                    ),
-                    minimumSize: Size(45.w, 45.h),
-                  ),
-                  child: FaIcon(
-                    FontAwesomeIcons.locationDot,
-                    color: Colors.white,
-                    size: 20.r,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: kSpacingSmall),
             Container(
               padding: const EdgeInsets.all(kSpacingSmall),
               width: 1.sw,
               decoration: BoxDecoration(
-                color: MainColors.secondColor.withOpacity(.1),
+                color: MainColors.secondColor.withOpacity(.2),
                 borderRadius: BorderRadius.circular(kRadiusSmall),
                 border: Border.all(
                   color: MainColors.secondColor.withOpacity(.3),
@@ -137,11 +91,10 @@ class ConfirmOrderComponent extends StatelessWidget {
                 ),
               ),
               child: Text(
-                // 'keep in mind that Your order will be delivered to your current location if you don\'t change it',
                 LanguageStrings.chooseLocationTitle,
                 style: TextStyle(
                   color: MainColors.disableColor(context),
-                  fontSize: 12.sp,
+                  fontSize: 14.sp,
                 ),
               ),
             ),
@@ -156,7 +109,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${deliveryFeeEntity.getNormalizedDistance()} ${deliveryFeeEntity.isNormalizedDistance() ? LanguageStrings.kg : LanguageStrings.m}",
+                  "${deliveryFeeEntity.getNormalizedDistance().toStringAsFixed(2)} ${deliveryFeeEntity.isNormalizedDistance() ? LanguageStrings.kg : LanguageStrings.m}",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
@@ -183,7 +136,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "${controller.getTotalPrice()} ${LanguageStrings.dzd}",
+                        "${controller.getTotalPrice().toStringAsFixed(2)} ${LanguageStrings.dzd}",
                         style: TextStyles.mediumBodyTextStyle(context).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: MainColors.primaryColor,
@@ -196,7 +149,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                       ),
                     ],
                   );
-                }),
+                },),
             const SizedBox(height: kSpacingSmall),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -208,7 +161,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${deliveryFeeEntity.deliveryFee} ${deliveryFeeEntity.currency}",
+                  "${deliveryFeeEntity.deliveryFee.toStringAsFixed(2)} ${LanguageStrings.dzd}",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
@@ -235,7 +188,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${controller.getTotalPrice() + deliveryFeeEntity.deliveryFee} ${deliveryFeeEntity.currency}",
+                      "${(controller.getTotalPrice() + deliveryFeeEntity.deliveryFee).toStringAsFixed(2)} ${LanguageStrings.dzd}",
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         decoration: TextDecoration.underline,
                         decorationColor: MainColors.primaryColor,
@@ -279,7 +232,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                             LanguageStrings.confirmOrder,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16.sp,
+                              fontSize: 17.sp,
                             ),
                           ),
                         )

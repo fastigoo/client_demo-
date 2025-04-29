@@ -26,7 +26,13 @@ class RestoComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.HOME, arguments: item.restaurantId);
+        Get.toNamed(
+          Routes.HOME,
+          arguments: {
+            'restaurantId': item.restaurantId,
+            'restaurantName': item.name,
+          },
+        );
       },
       child: Container(
         width: 1.sw,

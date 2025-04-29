@@ -1,11 +1,15 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learning/core/components/empty_component.dart';
+import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
+import 'package:learning/features/cart/presentation/screens/cart_screen.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
 import 'package:learning/features/home/presentation/states/product_detail_controller.dart';
 import 'package:learning/features/home/presentation/widgets/cart_widget.dart';
@@ -87,24 +91,86 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         snap: true,
                         backgroundColor: MainColors.primaryColor,
                         automaticallyImplyLeading: false,
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "Evolve coffee snacks",
-                              style: GoogleFonts.fredoka(
-                                fontSize: 22.sp,
-                                color: MainColors.whiteColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: FaIcon(
+                                    TranslationUtil.isRtl() ? FontAwesomeIcons.chevronRight : FontAwesomeIcons.chevronLeft,
+                                    color: MainColors.whiteColor,
+                                    size: 25.sp,
+                                  ),
+                                ),
+                                SizedBox(width: kSpacingMedium.r),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      controller.restaurantName ?? LanguageStrings.noDataFound,
+                                      style: GoogleFonts.fredoka(
+                                        fontSize: 22.sp,
+                                        color: MainColors.whiteColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      LanguageStrings.heyWelcomeBack,
+                                      style: GoogleFonts.fredoka(
+                                        fontSize: 15.sp,
+                                        color: MainColors.whiteColor.withOpacity(.75),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Text(
-                              LanguageStrings.heyWelcomeBack,
-                              style: GoogleFonts.fredoka(
-                                fontSize: 15.sp,
-                                color: MainColors.whiteColor.withOpacity(.75),
+                            if (_cartController.cartItems.isNotEmpty)
+                              Stack(
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.cartShopping,
+                                    size: 20.sp,
+                                    color: Colors.white,
+                                  ),
+                                  Positioned(
+                                    right: -10.r,
+                                    top: -10.r,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Get.to(() => const CartScreen());
+                                        Get.find<CartController>().setRestaurantId(controller.restaurantId!);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(3.r),
+                                        decoration: BoxDecoration(
+                                          color: MainColors.errorColor(context),
+                                          borderRadius: BorderRadius.circular(20.r),
+                                        ),
+                                        constraints: BoxConstraints(
+                                          minWidth: 15.w,
+                                          minHeight: 15.h,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            _cartController.cartItems.length.toString(),
+                                            style: GoogleFonts.fredoka(
+                                              fontSize: 10.sp,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
                           ],
                         ),
                         elevation: 0,
@@ -196,13 +262,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   ),
                                 ),
                         ),
-                        if (_cartController.cartItems.isNotEmpty) SafeArea(child: CartWidget(restaurantId: controller.restaurantId!)),
+                        if (_cartController.cartItems.isNotEmpty)
+                          SafeArea(child: CartWidget(restaurantId: controller.restaurantId!)),
                       ],
                     ),
                   ),
                 )
-              : const Center(
-                  child: CircularProgressIndicator(),
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: MainColors.primaryColor,
+                    strokeWidth: 2.r,
+                  ),
                 ),
         );
       },

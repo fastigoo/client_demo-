@@ -19,6 +19,7 @@ class PlaceOrderUseCase {
     required List<CartItemEntity> cartItems,
     required int deliveryFee,
     required double distance,
+    String? fcm,
   }) async {
     return await repository.placeOrder(
       restaurantId: restaurantId,
@@ -28,6 +29,7 @@ class PlaceOrderUseCase {
       cartItems: cartItems,
       deliveryFee: deliveryFee,
       distance: distance,
+      fcm: '',
     );
   }
 }

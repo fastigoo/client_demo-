@@ -47,7 +47,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                       width: 122,
                       height: 45.h,
                       decoration: BoxDecoration(
-                        color: MainColors.backgroundColor(context),
+                        color: MainColors.inputColor(context),
                         borderRadius: BorderRadius.circular(kRadiusSmall),
                       ),
                       child: Center(
@@ -89,10 +89,10 @@ class SelectMapPopupComponent extends StatelessWidget {
                 padding: const EdgeInsets.all(kSpacingSmall),
                 width: 1.sw,
                 decoration: BoxDecoration(
-                  color: MainColors.warningColor(context)!.withOpacity(.1),
+                  color: MainColors.warningColor(context)!.withOpacity(.2),
                   borderRadius: BorderRadius.circular(kRadiusSmall),
                   border: Border.all(
-                    color: MainColors.warningColor(context)!.withOpacity(.2),
+                    color: MainColors.warningColor(context)!.withOpacity(.4),
                     width: 2.r,
                   ),
                 ),
@@ -101,7 +101,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                   LanguageStrings.chooseLocationTitle,
                   style: TextStyle(
                     color: MainColors.disableColor(context),
-                    fontSize: 12.sp,
+                    fontSize: 14.sp,
                   ),
                 ),
               ),
@@ -125,7 +125,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                   LanguageStrings.confirmLocation,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16.sp,
+                    fontSize: 17.sp,
                   ),
                 ),
               ),

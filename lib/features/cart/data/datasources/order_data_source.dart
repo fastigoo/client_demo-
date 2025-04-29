@@ -16,6 +16,7 @@ abstract interface class OrderDataSource {
     required List<CartItemEntity> cartItems,
     required int deliveryFee,
     required double distance,
+    required String fcm,
   });
 
   Future<DeliveryFeeModel> calculateDeliveryFee({
@@ -49,6 +50,7 @@ class OrderDataSourceImplement implements OrderDataSource {
     required List<CartItemEntity> cartItems,
     required int deliveryFee,
     required double distance,
+    required String fcm,
   }) async {
     try {
       Dio dio = Dio();
@@ -62,7 +64,7 @@ class OrderDataSourceImplement implements OrderDataSource {
           'items': cartItems.map((e) => e.toJson()).toList(),
           'delivery_fee': deliveryFee,
           'distance': distance,
-          'fcm': "tfhdfhfghdfghfgh" * 20,
+          'fcm': fcm,
         },
         options: Options(
           headers: {

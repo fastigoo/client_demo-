@@ -101,7 +101,7 @@ class CartScreen extends GetView<CartController> {
                           ),
                         ),
                         Text(
-                          '${controller.getTotalPrice()} ${LanguageStrings.dzd}',
+                          '${controller.getTotalPrice().toStringAsFixed(2)} ${LanguageStrings.dzd}',
                           style: TextStyles.mediumLabelTextStyle(context).copyWith(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.dashed,

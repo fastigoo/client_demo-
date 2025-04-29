@@ -22,6 +22,7 @@ class OrderRepositoryImplement implements OrderRepository {
     required List<CartItemEntity> cartItems,
     required int deliveryFee,
     required double distance,
+    String? fcm,
   }) async {
     try {
       final result = await orderDataSource.placeOrder(
@@ -32,6 +33,7 @@ class OrderRepositoryImplement implements OrderRepository {
         cartItems: cartItems,
         deliveryFee: deliveryFee,
         distance: distance,
+        fcm: '',
       );
       return Right(result);
     } on Exception {

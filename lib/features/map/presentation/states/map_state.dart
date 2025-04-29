@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
+import 'package:learning/features/cart/presentation/states/cart_controller.dart';
 import 'package:learning/features/map/domain/usecases/get_address_from_latlng_usecase.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 
@@ -139,7 +140,7 @@ class MapState extends GetxController {
         },
         (OrderCustomerLocationEntity address) {
           this.address = address;
-          Get.find<FreeOrderController>().updateAddress(address);
+          _updateControllers(address);
         },
       );
     } catch (e) {
@@ -149,11 +150,17 @@ class MapState extends GetxController {
     }
   }
 
+  void _updateControllers(address) {
+    Get.find<FreeOrderController>().updateAddress(address: address, pos: getMarkerPosition());
+    Get.find<CartController>().updateAddress(address: address, pos: getMarkerPosition());
+  }
+
   void setOrderPos(LatLng point) async {
     orderPos = point;
     mapController.move(point, 15);
     update();
   }
+
   LatLng getMarkerPosition() {
     final result = orderPos ?? LatLng(currentPos!.latitude, currentPos!.longitude);
     return result;

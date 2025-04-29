@@ -34,6 +34,10 @@ class StorageManager {
     return prefs!.setString(StorageKey.tokenKey, token);
   }
 
+  Future<void> saveFcmToken({required String token}) {
+    return prefs!.setString(StorageKey.fcmTokenKey, token);
+  }
+
   Future<void> setString({required String key, required String value}) async {
     await prefs!.setString(key, value);
   }
@@ -58,6 +62,10 @@ class StorageManager {
   // get Data
   String? getToken() {
     return prefs?.getString(StorageKey.tokenKey);
+  }
+
+  String? getFcmToken() {
+    return prefs?.getString(StorageKey.fcmTokenKey);
   }
 
   String? getStringValue({required String key}) => prefs?.getString(key) ?? '';

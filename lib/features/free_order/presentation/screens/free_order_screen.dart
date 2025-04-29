@@ -50,22 +50,15 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                   child: Container(
                                     width: 50.r,
                                     height: 50.r,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: MainColors.whiteColor,
-                                      border: Border.fromBorderSide(
-                                        BorderSide(
-                                          color: MainColors.primaryColor,
-                                          width: 2,
-                                        ),
-                                      ),
+                                      color: MainColors.cardColor(context),
                                     ),
                                     child: Center(
                                       child: FaIcon(
                                         TranslationUtil.isRtl()
                                             ? FontAwesomeIcons.chevronRight
                                             : FontAwesomeIcons.chevronLeft,
-                                        color: MainColors.primaryColor,
                                         size: 20.r,
                                       ),
                                     ),
@@ -79,20 +72,13 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                         child: Container(
                                           width: 50.r,
                                           height: 50.r,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: MainColors.whiteColor,
-                                            border: Border.fromBorderSide(
-                                              BorderSide(
-                                                color: MainColors.primaryColor,
-                                                width: 2,
-                                              ),
-                                            ),
+                                            color: MainColors.cardColor(context),
                                           ),
                                           child: Center(
                                             child: FaIcon(
                                               FontAwesomeIcons.fileZipper,
-                                              color: MainColors.primaryColor,
                                               size: 20.r,
                                             ),
                                           ),

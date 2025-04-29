@@ -1,5 +1,6 @@
 class StorageKey {
   static const tokenKey = 'token';
+  static const fcmTokenKey = 'fcmToken';
   static const themeKey = 'theme';
   static const userKey = 'userKey';
   static const userIdKey = 'userIdKey';

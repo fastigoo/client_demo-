@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
 import 'package:learning/core/resources/language_strings.dart';
@@ -25,6 +26,8 @@ class FreeOrderController extends GetxController {
   List<FreeOrderItemModel> items = [];
 
   OrderCustomerLocationEntity? address;
+  double lat = 0.0;
+  double long = 0.0;
 
   @override
   void onInit() {
@@ -72,8 +75,10 @@ class FreeOrderController extends GetxController {
     selectedUnite.value = unites[0];
   }
 
-  void updateAddress(OrderCustomerLocationEntity address) {
+  void updateAddress({required OrderCustomerLocationEntity address, required LatLng pos}) {
     this.address = address;
+    lat = pos.latitude;
+    long = pos.longitude;
     update();
   }
 
@@ -82,9 +87,9 @@ class FreeOrderController extends GetxController {
       isLoading.value = true;
       var response = await _addFreeOrderUsecase.call(
         phone: phoneController.text,
-        latitude: 36.46545645,
-        longitude: 6.4435435,
-        fcm: "fcm_token",
+        latitude: lat,
+        longitude: long,
+        fcm: StorageManager.instance.getFcmToken() ?? "",
         items: items,
       );
       response.fold(

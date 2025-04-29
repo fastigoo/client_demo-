@@ -1,7 +1,7 @@
 // const String port = '8080';
 // const String host = 'http://165.232.87.86';
 const String port = '8000';
-const String ipAddress = "192.168.1.53";
+const String ipAddress = "192.168.1.55";
 const String host = 'http://$ipAddress';
 const String wsHost = 'ws://$ipAddress:8000/ws/client/';
 const String version = 'v1';

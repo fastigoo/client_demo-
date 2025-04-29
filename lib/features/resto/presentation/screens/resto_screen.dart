@@ -30,226 +30,224 @@ class RestoScreen extends GetView<RestoController> {
             onRefresh: () async {
               controller.refreshData();
             },
-            child: Scrollbar(
-              child: SingleChildScrollView(
-                controller: controller.scrollController,
-                padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: kSpacingMedium.r),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
-                            SizedBox(width: kSpacingSmall.r),
-                            Text(
-                              LanguageStrings.milaAlgeria,
-                              style: TextStyles.mediumBodyTextStyle(context),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
-                                ? GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(Routes.ORDERS);
-                                    },
-                                    child: Container(
-                                      width: 50.r,
-                                      height: 50.r,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: MainColors.cardColor(context),
-                                      ),
-                                      child: Center(
-                                        child: FaIcon(
-                                          FontAwesomeIcons.ellipsis,
-                                          size: 20.r,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(),
-                            SizedBox(width: kSpacingSmall.r),
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.SETTINGS);
-                              },
-                              child: Container(
-                                width: 50.r,
-                                height: 50.r,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: MainColors.cardColor(context),
-                                ),
-                                child: Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.gear,
-                                    size: 20.r,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: kSpacingMedium.r),
-                    Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                        color: MainColors.primaryColor,
-                        borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                      ),
-                      padding: EdgeInsets.all(kSpacingMedium.r),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+            child: SingleChildScrollView(
+              controller: controller.scrollController,
+              padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: kSpacingSmall.r),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.plus,
-                                size: 20.r,
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: kSpacingSmall.r),
-                              Text(
-                                LanguageStrings.freeOrder,
-                                style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                                  color: MainColors.whiteColor,
-                                ),
-                              ),
-                            ],
-                          ),
+                          FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
+                          SizedBox(width: kSpacingSmall.r),
                           Text(
-                            LanguageStrings.freeOrderDescription,
-                            style: TextStyles.smallBodyTextStyle(context).copyWith(
-                              color: MainColors.whiteColor,
-                            ),
-                          ),
-                          SizedBox(height: kSpacingMedium.r),
-                          GestureDetector(
-                            onTap: () {
-                              Get.toNamed(Routes.FREE_ORDER);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
-                              decoration: BoxDecoration(
-                                color: MainColors.secondColor,
-                                borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    LanguageStrings.freeOrder,
-                                    style: TextStyles.smallLabelTextStyle(context).copyWith(
-                                      color: MainColors.whiteColor,
-                                    ),
-                                  ),
-                                  FaIcon(
-                                    TranslationUtil.isRtl() ? FontAwesomeIcons.chevronLeft : FontAwesomeIcons.chevronRight,
-                                    size: 16.r,
-                                    color: MainColors.whiteColor,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            LanguageStrings.milaAlgeria,
+                            style: TextStyles.mediumBodyTextStyle(context),
                           ),
                         ],
                       ),
+                      Row(
+                        children: [
+                          StorageManager.instance.getIntValue(key: StorageKey.userIdKey) != 0
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.ORDERS);
+                                  },
+                                  child: Container(
+                                    width: 50.r,
+                                    height: 50.r,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: MainColors.cardColor(context),
+                                    ),
+                                    child: Center(
+                                      child: FaIcon(
+                                        FontAwesomeIcons.ellipsis,
+                                        size: 20.r,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                          SizedBox(width: kSpacingSmall.r),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.SETTINGS);
+                            },
+                            child: Container(
+                              width: 50.r,
+                              height: 50.r,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: MainColors.cardColor(context),
+                              ),
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.gear,
+                                  size: 20.r,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: kSpacingMedium.r),
+                  Container(
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                      color: MainColors.primaryColor,
+                      borderRadius: BorderRadius.circular(kRadiusSmall.r),
                     ),
-                    SizedBox(height: kSpacingMedium.r),
-                    Row(
+                    padding: EdgeInsets.all(kSpacingMedium.r),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                        Row(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.plus,
+                              size: 20.r,
+                              color: Colors.white,
                             ),
-                            child: TextInputComponent(
-                              controller: controller.searchController,
-                              hint: LanguageStrings.searchInputHint,
-                              contentPadding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
-                              borderRadius: kRadiusMedium.r,
-                              onChange: (value) {
-                                controller.onSearchChanged();
-                              },
+                            SizedBox(width: kSpacingSmall.r),
+                            Text(
+                              LanguageStrings.freeOrder,
+                              style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                                color: MainColors.whiteColor,
+                              ),
                             ),
+                          ],
+                        ),
+                        Text(
+                          LanguageStrings.freeOrderDescription,
+                          style: TextStyles.smallBodyTextStyle(context).copyWith(
+                            color: MainColors.whiteColor,
                           ),
                         ),
-                        SizedBox(width: kSpacingSmall.r),
+                        SizedBox(height: kSpacingMedium.r),
                         GestureDetector(
                           onTap: () {
-                            controller.searchRestaurants();
+                            Get.toNamed(Routes.FREE_ORDER);
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                              color: MainColors.primaryColor,
+                              color: MainColors.secondColor,
+                              borderRadius: BorderRadius.circular(kRadiusSmall.r),
                             ),
-                            child: Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.magnifyingGlass,
-                                color: MainColors.whiteColor,
-                                size: 20.r,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  LanguageStrings.freeOrder,
+                                  style: TextStyles.smallLabelTextStyle(context).copyWith(
+                                    color: MainColors.whiteColor,
+                                  ),
+                                ),
+                                FaIcon(
+                                  TranslationUtil.isRtl() ? FontAwesomeIcons.chevronLeft : FontAwesomeIcons.chevronRight,
+                                  size: 16.r,
+                                  color: MainColors.whiteColor,
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: kSpacingMedium.r),
-                    Container(
-                      margin: EdgeInsets.only(bottom: kSpacingMedium.r),
-                      constraints: BoxConstraints(
-                        minHeight: Get.height,
+                  ),
+                  SizedBox(height: kSpacingMedium.r),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                          ),
+                          child: TextInputComponent(
+                            controller: controller.searchController,
+                            hint: LanguageStrings.searchInputHint,
+                            contentPadding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
+                            borderRadius: kRadiusSmall.r,
+                            onChange: (value) {
+                              controller.onSearchChanged();
+                            },
+                          ),
+                        ),
                       ),
-                      child: controller.isLoading.isFalse
-                          ? controller.getRestaurantsList.isNotEmpty
-                              ? GetBuilder(
-                                  init: controller,
-                                  id: StorageKey.allRestaurantsKey,
-                                  builder: (controller) {
-                                    return ListView.separated(
-                                      itemBuilder: (c, i) => RestoComponent(
-                                        item: controller.getRestaurantsList[i],
-                                      ),
-                                      separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
-                                      itemCount: controller.getRestaurantsList.length,
-                                      shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
-                                    );
-                                  },
-                                )
-                              : SizedBox(
-                                  height: 1.sh - 200.h,
-                                  child: EmptyComponent(
-                                    text: LanguageStrings.noDataFound,
-                                  ),
-                                )
-                          : const RestaurantAnimation(),
+                      SizedBox(width: kSpacingSmall.r),
+                      GestureDetector(
+                        onTap: () {
+                          controller.searchRestaurants();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: kSpacingMedium.r, vertical: kSpacingMedium.r),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                            color: MainColors.primaryColor,
+                          ),
+                          child: Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.magnifyingGlass,
+                              color: MainColors.whiteColor,
+                              size: 20.r,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: kSpacingMedium.r),
+                  Container(
+                    margin: EdgeInsets.only(bottom: kSpacingMedium.r),
+                    constraints: BoxConstraints(
+                      minHeight: Get.height,
                     ),
-                    Obx(
-                      () => Center(
-                        child: controller.isLoadingMore.isTrue
-                            ? Padding(
-                                padding: EdgeInsets.only(bottom: kSpacingMedium.h, top: kSpacingMedium.h),
-                                child: CircularProgressIndicator(
-                                  color: MainColors.primaryColor,
-                                  strokeWidth: 2.r,
+                    child: controller.isLoading.isFalse
+                        ? controller.getRestaurantsList.isNotEmpty
+                            ? GetBuilder(
+                                init: controller,
+                                id: StorageKey.allRestaurantsKey,
+                                builder: (controller) {
+                                  return ListView.separated(
+                                    itemBuilder: (c, i) => RestoComponent(
+                                      item: controller.getRestaurantsList[i],
+                                    ),
+                                    separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
+                                    itemCount: controller.getRestaurantsList.length,
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                  );
+                                },
+                              )
+                            : SizedBox(
+                                height: 1.sh - 200.h,
+                                child: EmptyComponent(
+                                  text: LanguageStrings.noDataFound,
                                 ),
                               )
-                            : const SizedBox(),
-                      ),
+                        : const RestaurantAnimation(),
+                  ),
+                  Obx(
+                    () => Center(
+                      child: controller.isLoadingMore.isTrue
+                          ? Padding(
+                              padding: EdgeInsets.only(bottom: kSpacingMedium.h, top: kSpacingMedium.h),
+                              child: CircularProgressIndicator(
+                                color: MainColors.primaryColor,
+                                strokeWidth: 2.r,
+                              ),
+                            )
+                          : const SizedBox(),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

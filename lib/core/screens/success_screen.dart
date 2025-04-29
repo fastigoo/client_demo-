@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +12,7 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/routes/app_pages.dart';
 
-class SuccessScreen extends StatelessWidget {
+class SuccessScreen extends StatefulWidget {
   final String successTitle;
   final String successDesc;
   final String successBtn;
@@ -23,6 +25,11 @@ class SuccessScreen extends StatelessWidget {
   });
 
   @override
+  State<SuccessScreen> createState() => _SuccessScreenState();
+}
+
+class _SuccessScreenState extends State<SuccessScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
@@ -34,37 +41,51 @@ class SuccessScreen extends StatelessWidget {
           decoration: const BoxDecoration(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: kSpacingXLarge.r),
+              Container(
+                color: Colors.transparent,
+                height: 50.h,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.offAllNamed(Routes.RESTO);
+                      },
+                      child: Container(
+                        width: 50.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: MainColors.textColor(context)!,
+                            width: 1.w,
+                          ),
+                        ),
+                        child: Center(
+                          child: FaIcon(
+                            FontAwesomeIcons.xmark,
+                            color: MainColors.textColor(context)!,
+                            size: 25.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Image.asset(
                 ResourceManager.getAssetResource(successImage, type: ResourceType.image),
-                width: 125.w,
+                width: 150.w,
               ),
-              SizedBox(height: kSpacingXLarge.r),
-              Center(
-                child: Text(
-                  LanguageStrings.success,
-                  style: TextStyles.largeLabelTextStyle(context).copyWith(),
-                ),
-              ),
-              SizedBox(height: kSpacingMedium.r),
-              Center(
-                child: Text(
-                  LanguageStrings.successMessage,
-                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    fontSize: 17.sp,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: kSpacingXLarge.r),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: MainColors.primaryColor,
+                  backgroundColor: MainColors.successColor(context),
                   minimumSize: Size(1.sw, 55.h),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                    borderRadius: BorderRadius.circular(kRadiusSmall.r),
                   ),
                 ),
                 onPressed: () {

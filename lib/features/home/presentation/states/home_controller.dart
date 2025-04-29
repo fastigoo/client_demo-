@@ -6,6 +6,8 @@ import 'package:learning/features/home/domain/usecases/get_restaurant_menu_items
 
 class HomeController extends GetxController {
   int? restaurantId;
+  String? restaurantName;
+
   RxBool menuIsLoading = false.obs;
   RxBool itemsIsLoading = false.obs;
 
@@ -21,7 +23,8 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    restaurantId = Get.arguments;
+    restaurantId = Get.arguments['restaurantId'];
+    restaurantName = Get.arguments['restaurantName'];
     menuItems.clear();
     getRestaurantMenus();
   }

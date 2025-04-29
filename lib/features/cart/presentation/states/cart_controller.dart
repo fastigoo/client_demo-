@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/objects/entities/customer_location_entity.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
@@ -34,6 +36,15 @@ class CartController extends GetxController {
   RxBool isPlacingOrder = false.obs;
 
   PlaceOrderEntity? orderEntity;
+
+  OrderCustomerLocationEntity? address;
+
+  void updateAddress({required OrderCustomerLocationEntity address, required LatLng pos}) {
+    this.address = address;
+    lat = pos.latitude;
+    long = pos.longitude;
+    update();
+  }
 
   @override
   void onInit() {
@@ -105,11 +116,13 @@ class CartController extends GetxController {
   void placeOrder({required int deliveryFee, required double distance}) async {
     List<CartItemEntity> items = [];
     for (var item in cartItems) {
-      items.add(CartItemEntity(
-        itemId: item.itemId,
-        quantity: item.quantity,
-        price: item.price,
-      ));
+      items.add(
+        CartItemEntity(
+          itemId: item.itemId,
+          quantity: item.quantity,
+          price: item.price,
+        ),
+      );
     }
 
     try {
@@ -122,6 +135,7 @@ class CartController extends GetxController {
         long: long,
         deliveryFee: deliveryFee,
         distance: distance,
+        fcm: StorageManager.instance.getFcmToken(),
       );
       response.fold(
         (l) {
@@ -134,7 +148,7 @@ class CartController extends GetxController {
           StorageManager.instance.setInt(key: StorageKey.userIdKey, value: order.userId);
           StorageManager.instance.setInt(key: StorageKey.clientIdKey, value: order.clientId);
           StorageManager.instance.setString(key: StorageKey.userPhoneKey, value: phoneController.text);
-          Get.toNamed(Routes.PLACE_ORDER, arguments: order.orderId);
+          Get.offAndToNamed(Routes.PLACE_ORDER, arguments: order.orderId);
         },
       );
     } catch (e) {
@@ -158,25 +172,24 @@ class CartController extends GetxController {
         },
         (DeliveryFeeEntity value) async {
           showModalBottomSheet(
-            context: Get.context!,
-            isScrollControlled: true,
-            backgroundColor: Colors.transparent,
-            builder: (context) {
-              final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
-              return SafeArea(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                    bottom: bottomPadding,
+              context: Get.context!,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) {
+                final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+                return SafeArea(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                      bottom: bottomPadding,
+                    ),
+                    child: ConfirmOrderComponent(
+                      phoneController: phoneController,
+                      formKey: formKey,
+                      deliveryFeeEntity: value,
+                    ),
                   ),
-                  child: ConfirmOrderComponent(
-                    phoneController: phoneController,
-                    formKey: formKey,
-                    deliveryFeeEntity: value,
-                  ),
-                ),
-              );
-            }
-          );
+                );
+              });
         },
       );
     } catch (e) {

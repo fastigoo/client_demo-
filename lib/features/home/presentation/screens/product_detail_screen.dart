@@ -51,15 +51,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                             left: TranslationUtil.isRtl() ? null : 20.w,
                             child: SafeArea(
                               child: Container(
-                                width: 45.w,
-                                height: 45.w,
+                                width: 50.w,
+                                height: 50.w,
                                 decoration: BoxDecoration(
-                                  color: MainColors.primaryColor,
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(
-                                    color: MainColors.whiteColor,
-                                    width: 1,
-                                  ),
+                                  color: MainColors.cardColor(context),
+                                  shape: BoxShape.circle,
                                 ),
                                 child: Center(
                                   child: IconButton(
@@ -68,7 +64,6 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                     },
                                     icon: FaIcon(
                                       TranslationUtil.isRtl() ? FontAwesomeIcons.chevronRight : FontAwesomeIcons.chevronLeft,
-                                      color: MainColors.whiteColor,
                                       size: 20.r,
                                     ),
                                   ),
@@ -107,8 +102,6 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                       color: MainColors.primaryColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25.sp,
-                                      decoration: TextDecoration.underline,
-                                      decorationStyle: TextDecorationStyle.dashed,
                                     ),
                                   ).paddingSymmetric(horizontal: kSpacingMedium.r),
                                   if (controller.initialProductDetailModel!.variants != null) ...{
@@ -142,7 +135,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                                 minWidth: 65.w,
                                               ),
                                               decoration: BoxDecoration(
-                                                color: !controller.isSameVariant(controller.initialProductDetailModel!.variants![index].menuItemVariantId)
+                                                color: !controller.isSameVariant(
+                                                        controller.initialProductDetailModel!.variants![index].menuItemVariantId)
                                                     ? MainColors.cardColor(context)
                                                     : MainColors.primaryColor,
                                                 borderRadius: BorderRadius.circular(kRadiusSmall.r),
@@ -152,11 +146,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                                   crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     FaIcon(
-                                                      FontAwesomeIcons.utensils,
-                                                      color:
-                                                          !controller.isSameVariant(controller.initialProductDetailModel!.variants![index].menuItemVariantId)
-                                                              ? MainColors.textColor(context)
-                                                              : MainColors.whiteColor,
+                                                      FontAwesomeIcons.cubesStacked,
+                                                      color: !controller.isSameVariant(controller
+                                                              .initialProductDetailModel!.variants![index].menuItemVariantId)
+                                                          ? MainColors.textColor(context)
+                                                          : MainColors.whiteColor,
                                                       size: 25.r,
                                                     ),
                                                     // Icon(Icons.bowl, color: index != 0 ? MainColors.textColor(context) : MainColors.whiteColor, size: 15.r
@@ -168,8 +162,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                                         Text(
                                                           controller.initialProductDetailModel!.variants![index].name,
                                                           style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                                            color: !controller
-                                                                    .isSameVariant(controller.initialProductDetailModel!.variants![index].menuItemVariantId)
+                                                            color: !controller.isSameVariant(controller.initialProductDetailModel!
+                                                                    .variants![index].menuItemVariantId)
                                                                 ? MainColors.textColor(context)
                                                                 : MainColors.whiteColor,
                                                             fontSize: 12.sp,
@@ -179,8 +173,8 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                                         Text(
                                                           "${controller.initialProductDetailModel!.variants![index].price} ${LanguageStrings.dzd}",
                                                           style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                                                            color: !controller
-                                                                    .isSameVariant(controller.initialProductDetailModel!.variants![index].menuItemVariantId)
+                                                            color: !controller.isSameVariant(controller.initialProductDetailModel!
+                                                                    .variants![index].menuItemVariantId)
                                                                 ? MainColors.textColor(context)
                                                                 : MainColors.whiteColor,
                                                             fontSize: 15.sp,
@@ -283,8 +277,11 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                   ),
                 ),
               )
-            : const Center(
-                child: CircularProgressIndicator(),
+            : Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.r,
+                  color: MainColors.primaryColor,
+                ),
               ),
       ),
     );

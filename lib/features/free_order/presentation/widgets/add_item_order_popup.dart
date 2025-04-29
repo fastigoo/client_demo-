@@ -123,7 +123,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                           child: Center(
                             child: FaIcon(
                               FontAwesomeIcons.minus,
-                              color: MainColors.secondColor,
+                              color: MainColors.whiteColor,
                               size: 20.r,
                             ),
                           ),
@@ -144,7 +144,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                           child: Center(
                             child: FaIcon(
                               FontAwesomeIcons.plus,
-                              color: MainColors.secondColor,
+                              color: MainColors.whiteColor,
                               size: 20.r,
                             ),
                           ),
@@ -173,8 +173,8 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                             borderRadius: BorderRadius.circular(kRadiusMedium.r),
                             border: controller.unites[i] == controller.selectedUnite.value
                                 ? Border.all(
-                                    color: MainColors.primaryColor,
-                                    width: 2.w,
+                                    color: MainColors.blackColor,
+                                    width: 1.w,
                                   )
                                 : null,
                           ),
@@ -184,7 +184,9 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                           ),
                           child: Text(
                             controller.unites[i],
-                            style: TextStyles.smallBodyTextStyle(context),
+                            style: TextStyles.smallBodyTextStyle(context).copyWith(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

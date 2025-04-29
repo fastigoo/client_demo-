@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -30,15 +29,14 @@ class MapScreen extends GetView<MapState> {
           ],
         ),
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            controller.getAddressFromLatLng();
-            Get.back();
-          }
-        ),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              controller.getAddressFromLatLng();
+              Get.back();
+            }),
         titleSpacing: 0,
         actions: [
           GestureDetector(
@@ -86,24 +84,23 @@ class MapScreen extends GetView<MapState> {
                         urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       ),
                       GetBuilder(
-                        init: controller,
-                        builder: (controller) {
-                          return MarkerLayer(
-                            markers: [
-                              Marker(
-                                width: 25,
-                                height: 25,
-                                point: controller.getMarkerPosition(),
-                                child: const FaIcon(
-                                  FontAwesomeIcons.mapPin,
-                                  color: MainColors.blackColor,
-                                   size: 35,
+                          init: controller,
+                          builder: (controller) {
+                            return MarkerLayer(
+                              markers: [
+                                Marker(
+                                  width: 25,
+                                  height: 25,
+                                  point: controller.getMarkerPosition(),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.mapPin,
+                                    color: MainColors.errorColor(context),
+                                    size: 35,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        }
-                      ),
+                              ],
+                            );
+                          }),
                     ],
                   )
                 : const Center(

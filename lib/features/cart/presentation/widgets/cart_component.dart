@@ -70,7 +70,7 @@ class CartComponent extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${item.price * item.quantity} ${LanguageStrings.dzd}',
+                          '${(item.price * item.quantity).toStringAsFixed(2)} ${LanguageStrings.dzd}',
                           style: TextStyles.mediumBodyTextStyle(context).copyWith(
                             color: MainColors.textColor(context),
                             fontWeight: FontWeight.w400,
@@ -95,10 +95,7 @@ class CartComponent extends StatelessWidget {
                                 height: 30.r,
                                 decoration: BoxDecoration(
                                   color: MainColors.backgroundColor(context),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5.r),
-                                    bottomLeft: Radius.circular(5.r),
-                                  ),
+                                  borderRadius: BorderRadius.circular(5.r),
                                   border: Border.all(
                                     color: MainColors.textColor(context)!.withOpacity(0.2),
                                     width: 1,
@@ -116,19 +113,6 @@ class CartComponent extends StatelessWidget {
                             Container(
                               constraints: BoxConstraints(
                                 minWidth: 30.r,
-                              ),
-                              decoration: BoxDecoration(
-                                color: MainColors.transparentColor,
-                                border: Border(
-                                  top: BorderSide(
-                                    color: MainColors.textColor(context)!.withOpacity(0.2),
-                                    width: 1,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: MainColors.textColor(context)!.withOpacity(0.2),
-                                    width: 1,
-                                  ),
-                                ),
                               ),
                               height: 30.r,
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -150,10 +134,7 @@ class CartComponent extends StatelessWidget {
                                 height: 30.r,
                                 decoration: BoxDecoration(
                                   color: MainColors.backgroundColor(context),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(5.r),
-                                    bottomRight: Radius.circular(5.r),
-                                  ),
+                                  borderRadius: BorderRadius.circular(5.r),
                                   border: Border.all(
                                     color: MainColors.textColor(context)!.withOpacity(0.2),
                                     width: 1,

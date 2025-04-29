@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,14 +6,21 @@ import 'package:get/get.dart';
 import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/localization/translation.dart';
 import 'package:learning/core/localization/translation_reader.dart';
+import 'package:learning/core/services/notification_service.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/theme_styles.dart';
 import 'package:learning/injection.dart';
 import 'package:learning/routes/app_pages.dart';
+import 'firebase_options.dart';
 
-void main() async  {
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await StorageManager.initStorage();
+  await NotificationService().init();
   await injectionInit();
   await TranslationReader.initialize();
   await TranslationUtil.initialize();

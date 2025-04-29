@@ -19,14 +19,13 @@ class BackComponent extends StatelessWidget {
       child: Container(
         width: 50.r,
         height: 50.r,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: MainColors.whiteColor,
+          color: MainColors.cardColor(context)!,
         ),
         child: Center(
           child: FaIcon(
             TranslationUtil.isRtl() ? FontAwesomeIcons.chevronRight : FontAwesomeIcons.chevronLeft,
-            color: MainColors.primaryColor,
             size: 20.r,
           ),
         ),
