@@ -23,6 +23,7 @@ const String arrowSmallRightIcon = "arrow_small_right.svg";
 // Images
 const String logoImg = "logo.png";
 const String noneImg = 'no-photo.png';
+const String nullImg = 'null.png';
 const String emptyImage = 'empty.png';
 const String offerBg = 'offer_bg.jpg';
 const String pendingImage = 'pending_image.png';

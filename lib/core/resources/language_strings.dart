@@ -150,6 +150,8 @@ class LanguageStrings {
 
   static String get cartEmptyMessage => "Cart empty message".tr;
 
+  static String get cartAddSuccess => "Cart add success".tr;
+
   static String get heyWelcomeBack => "Hey, welcome back".tr;
 
   static String get items => "Items".tr;

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/components/others/network_image_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
@@ -52,10 +53,8 @@ class RestoComponent extends StatelessWidget {
                 ),
                 child: Hero(
                   tag: item.imageUrl,
-                  child: Image.network(
-                    ResourceManager.getNetworkResource(item.imageUrl),
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                  child: CacheNetworkImageComponent(
+                    imageUrl: ResourceManager.getNetworkResource(item.imageUrl),
                   ),
                 ),
               ),

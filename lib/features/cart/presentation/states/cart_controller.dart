@@ -16,6 +16,7 @@ import 'package:learning/features/cart/domain/usecases/place_order_usecase.dart'
 import 'package:learning/features/cart/presentation/states/map_controller.dart';
 import 'package:learning/features/cart/presentation/widgets/confirm_order_component.dart';
 import 'package:learning/routes/app_pages.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class CartController extends GetxController {
   TextEditingController phoneController = TextEditingController(text: "0");
@@ -69,6 +70,7 @@ class CartController extends GetxController {
       cartItems[existingItemIndex].quantity += 1;
     } else {
       cartItems.add(cartEntity);
+      showToast(message: LanguageStrings.cartAddSuccess, gravity: ToastGravity.CENTER);
     }
     update();
   }
@@ -172,24 +174,25 @@ class CartController extends GetxController {
         },
         (DeliveryFeeEntity value) async {
           showModalBottomSheet(
-              context: Get.context!,
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              builder: (context) {
-                final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
-                return SafeArea(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                      bottom: bottomPadding,
-                    ),
-                    child: ConfirmOrderComponent(
-                      phoneController: phoneController,
-                      formKey: formKey,
-                      deliveryFeeEntity: value,
-                    ),
+            context: Get.context!,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (context) {
+              final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+              return SafeArea(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: bottomPadding,
                   ),
-                );
-              });
+                  child: ConfirmOrderComponent(
+                    phoneController: phoneController,
+                    formKey: formKey,
+                    deliveryFeeEntity: value,
+                  ),
+                ),
+              );
+            },
+          );
         },
       );
     } catch (e) {

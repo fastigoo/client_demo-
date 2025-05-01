@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/empty_component.dart';
 import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
@@ -56,89 +55,85 @@ class CartScreen extends GetView<CartController> {
                       ),
               ),
               SizedBox(height: kSpacingMedium.h),
-              Container(
-                padding: EdgeInsets.all(kSpacingSmall.r),
-                decoration: BoxDecoration(
-                  color: MainColors.cardColor(context),
-                  border: Border(
-                    top: BorderSide(
-                      color: MainColors.primaryColor.withOpacity(.2),
-                      width: 1,
-                    ),
+              SafeArea(
+                child: Container(
+                  padding: EdgeInsets.all(kSpacingSmall.r),
+                  decoration: BoxDecoration(
+                    color: MainColors.cardColor(context),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          LanguageStrings.items,
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            LanguageStrings.items,
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            controller.cartItems.length.toString(),
+                            style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.dashed,
+                              decorationThickness: 2,
+                              fontSize: 18.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            LanguageStrings.total,
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            '${controller.getTotalPrice().toStringAsFixed(2)} ${LanguageStrings.dzd}',
+                            style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.dashed,
+                              decorationThickness: 2,
+                              fontSize: 18.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: kSpacingSmall.h),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MainColors.primaryColor,
+                          minimumSize: Size(double.infinity, 50.h),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kRadiusSmall.r),
                           ),
                         ),
-                        Text(
-                          controller.cartItems.length.toString(),
+                        onPressed: () async {
+                          await controller.onMapCreated();
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (context) => const SafeArea(child: SelectMapPopupComponent()),
+                          );
+                        },
+                        child: Text(
+                          LanguageStrings.selectAddress,
                           style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                            decoration: TextDecoration.underline,
-                            decorationStyle: TextDecorationStyle.dashed,
-                            decorationThickness: 2,
-                            fontSize: 18.sp,
+                            color: Colors.white,
+                            fontSize: 16.sp,
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          LanguageStrings.total,
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          '${controller.getTotalPrice().toStringAsFixed(2)} ${LanguageStrings.dzd}',
-                          style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                            decoration: TextDecoration.underline,
-                            decorationStyle: TextDecorationStyle.dashed,
-                            decorationThickness: 2,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: kSpacingSmall.h),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: MainColors.primaryColor,
-                        minimumSize: Size(double.infinity, 50.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(kRadiusSmall.r),
                         ),
                       ),
-                      onPressed: () async {
-                        await controller.onMapCreated();
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => const SafeArea(child: SelectMapPopupComponent()),
-                        );
-                      },
-                      child: Text(
-                        LanguageStrings.selectAddress,
-                        style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                          color: Colors.white,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: kSpacingSmall.h),
-                  ],
+                      SizedBox(height: kSpacingSmall.h),
+                    ],
+                  ),
                 ),
               ),
             ],

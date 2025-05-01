@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -67,10 +68,21 @@ class ProductComponent extends StatelessWidget {
               borderRadius: BorderRadius.circular(kRadiusSmall.r),
               child: Hero(
                 tag: item.imageUrl,
-                child: Image.network(
-                  ResourceManager.getNetworkResource(item.imageUrl),
+                child: Image(
+                  image: CachedNetworkImageProvider(
+                    ResourceManager.getNetworkResource(item.imageUrl),
+                  ),
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Icon(Icons.error),
+                  ),
+                  loadingBuilder: (context, child, loadingProgress) =>
+                      loadingProgress == null
+                          ? child
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            ),
                 ),
               ),
             ),

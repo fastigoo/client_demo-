@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning/core/components/others/network_image_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
@@ -165,8 +166,8 @@ class _CartWidgetState extends State<CartWidget> with SingleTickerProviderStateM
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                                    child: Image.network(
-                                      ResourceManager.getNetworkResource(
+                                    child: CacheNetworkImageComponent(
+                                      imageUrl: ResourceManager.getNetworkResource(
                                         controller.cartItems[i].image,
                                       ),
                                       fit: BoxFit.cover,
