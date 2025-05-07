@@ -13,6 +13,7 @@ import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
 import 'package:learning/features/cart/presentation/states/place_order_controller.dart';
 import 'package:learning/routes/app_pages.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PlaceOrderScreen extends GetView<PlaceOrderController> {
@@ -35,6 +36,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                           padding: EdgeInsets.all(kSpacingMedium.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text.rich(
                                 TextSpan(
@@ -59,44 +61,45 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                   Get.offAndToNamed(Routes.RESTO);
                                 },
                                 child: Container(
-                                  height: 40.w,
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: kSpacingMedium.r,
-                                    vertical: kSpacingXSmall.r,
-                                  ),
+                                  height: 45.r,
+                                  width: 45.r,
                                   decoration: BoxDecoration(
-                                    color: MainColors.primaryColor,
-                                    borderRadius: BorderRadius.circular(kRadiusSmall.r),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: MainColors.textColor(context)!,
+                                      width: 2,
+                                    ),
                                   ),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        LanguageStrings.back,
-                                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(width: kSpacingXSmall.w),
-                                      FaIcon(
-                                        FontAwesomeIcons.xmark,
-                                        color: Colors.white,
-                                        size: 20.r,
-                                      ),
-                                    ],
+                                  child: Center(
+                                    child: FaIcon(
+                                      FontAwesomeIcons.xmark,
+                                      color: MainColors.textColor(context),
+                                      size: 20.r,
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        // Expanded(
+                        //   child: Image.asset(
+                        //     ResourceManager.getAssetResource(
+                        //       pendingImage,
+                        //       type: ResourceType.image,
+                        //     ),
+                        //     width: 120.h,
+                        //     height: 120.w,
+                        //   ),
+                        // ),
                         Expanded(
-                          child: Image.asset(
+                          child: Lottie.asset(
                             ResourceManager.getAssetResource(
-                              pendingImage,
+                              "waiting.json",
                               type: ResourceType.image,
                             ),
-                            width: 120.h,
-                            height: 120.w,
+                            width: 200.h,
+                            height: 200.w,
                           ),
                         ),
                         Container(

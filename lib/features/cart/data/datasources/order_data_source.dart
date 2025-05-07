@@ -73,8 +73,6 @@ class OrderDataSourceImplement implements OrderDataSource {
         ),
       );
 
-      // print(response.data);
-
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
         return PlaceOrderModel.fromJson(response.data);
       }

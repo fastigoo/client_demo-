@@ -127,6 +127,8 @@ class CartController extends GetxController {
       );
     }
 
+    final String fcmToken = StorageManager.instance.getFcmToken() ?? "";
+
     try {
       isPlacingOrder.value = true;
       var response = await placeOrderUseCase.execute(
@@ -137,7 +139,7 @@ class CartController extends GetxController {
         long: long,
         deliveryFee: deliveryFee,
         distance: distance,
-        fcm: StorageManager.instance.getFcmToken(),
+        fcm: fcmToken,
       );
       response.fold(
         (l) {

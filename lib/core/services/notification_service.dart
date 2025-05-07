@@ -6,6 +6,8 @@ import 'package:learning/routes/app_pages.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  final NotificationService notificationService = NotificationService();
+  await notificationService._showLocalNotification(message);
   Get.to(Routes.INITIAL);
 }
 
@@ -28,7 +30,6 @@ class NotificationService {
     );
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-    // Create a notification channel for Android
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
       'your_channel_id',
       'your_channel_name',
@@ -70,8 +71,8 @@ class NotificationService {
 
   Future<void> _showLocalNotification(RemoteMessage message) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'order_channel_id', // Channel ID
-      'order_name', // Channel Name
+      'order_channel_id',
+      'order_name',
       importance: Importance.max,
       priority: Priority.high,
     );

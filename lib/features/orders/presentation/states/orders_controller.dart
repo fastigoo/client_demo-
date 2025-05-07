@@ -107,6 +107,12 @@ class OrdersController extends GetxController {
     }
   }
 
+  void refreshData() {
+    page = 1;
+    maxPage = 1;
+    getOrders();
+  }
+
   void deleteOrder(int orderId) async {
     try {
       var response = await _deleteOrderUseCase.execute(orderId: orderId);

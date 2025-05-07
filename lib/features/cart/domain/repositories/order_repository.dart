@@ -15,7 +15,7 @@ abstract interface class OrderRepository {
     required List<CartItemEntity> cartItems,
     required int deliveryFee,
     required double distance,
-    String? fcm,
+    required String fcm,
   });
 
   Future<Either<Failure, DeliveryFeeEntity>> calculateDeliveryFee({
