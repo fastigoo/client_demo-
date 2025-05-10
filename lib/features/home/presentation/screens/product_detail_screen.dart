@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,7 +30,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
         () => controller.isLoading.isFalse
             ? SingleChildScrollView(
                 child: SizedBox(
-                  height: 1.sh,
+                  height: 1.sh - MediaQuery.of(context).padding.top,
                   child: Column(
                     children: [
                       Stack(
@@ -37,7 +38,7 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                           GetBuilder(
                               init: controller,
                               id: StatesIds.productDetail,
-                              builder: (controller) {
+                              builder: (ProductDetailController controller) {
                                 return AspectRatio(
                                   aspectRatio: 9 / 9,
                                   child: Hero(
@@ -251,33 +252,10 @@ class ProductDetailScreen extends GetView<ProductDetailController> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(width: 10.w),
-                                        Container(
-                                          width: 50.w,
-                                          height: 50.h,
-                                          decoration: BoxDecoration(
-                                            color: MainColors.primaryColor.withOpacity(.1),
-                                            borderRadius: BorderRadius.circular(kRadiusSmall.r),
-                                          ),
-                                          child: Center(
-                                            child: SvgPicture.asset(
-                                              ResourceManager.getAssetResource(
-                                                heartIcon,
-                                                type: ResourceType.svg,
-                                              ),
-                                              width: 20.w,
-                                              colorFilter: const ColorFilter.mode(
-                                                MainColors.primaryColor,
-                                                BlendMode.srcIn,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                       ],
                                     ).paddingSymmetric(horizontal: kSpacingMedium.r),
                                   ),
                                 ),
-                                SizedBox(height: kSpacingXLarge.h * 2),
                               ],
                             ),
                           );

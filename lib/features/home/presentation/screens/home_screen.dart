@@ -217,7 +217,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   children: [
                                     for (int i = 0; i < controller.restaurantMenus.length; i++) ...{
                                       if (controller.menuItems.isEmpty) ...{
-                                        const EmptyComponent(),
+                                        EmptyComponent(
+                                          text: LanguageStrings.noDataFound,
+                                        ),
                                       } else ...{
                                         WaterfallFlow.builder(
                                           itemCount: controller.menuItems.length,

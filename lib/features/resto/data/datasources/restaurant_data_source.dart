@@ -19,6 +19,7 @@ class RestaurantDataSourceImplement implements RestaurantDataSource {
       );
       return RestaurantsModel.fromJson(response.data);
     } catch (e) {
+      print(e);
       rethrow;
     }
   }
