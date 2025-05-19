@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
@@ -7,6 +8,7 @@ import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/cart/domain/usecases/delete_order_usecase.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_item_list_entity.dart';
 import 'package:learning/features/free_order/domain/entities/free_order_res_entity.dart';
+import 'package:learning/features/free_order/domain/usecases/delete_free_order_usecase.dart';
 import 'package:learning/features/free_order/domain/usecases/get_all_free_orders_usecase.dart';
 import 'package:learning/features/free_order/domain/usecases/get_free_order_detail_usecase.dart';
 
@@ -16,7 +18,7 @@ class FreeOrdersController extends GetxController {
   RxBool isDetailLoading = false.obs;
   FreeOrderResEntity? freeOrderResEntity;
   final _allFreeOrdersUsecase = Get.find<GetAllFreeOrdersUsecase>();
-  final _deleteOrderUseCase = Get.find<DeleteOrderUseCase>();
+  final _deleteOrderUseCase = Get.find<DeleteFreeOrderUsecase>();
   final _freeOrderDetailUsecase = Get.find<GetFreeOrderDetailUsecase>();
 
   int page = 1;
@@ -92,13 +94,13 @@ class FreeOrdersController extends GetxController {
 
   void deleteFreeOrder(int orderId) async {
     try {
-      var response = await _deleteOrderUseCase.execute(orderId: orderId);
+      var response = await _deleteOrderUseCase.call(orderId: orderId);
       response.fold(
         (l) {
           showToast(message: l.toString());
         },
-        (String message) async {
-          showToast(message: message);
+        (Unit unit) async {
+          showToast(message: "Successfully deleted");
           freeOrderResEntity!.orders.removeWhere((element) => element.freeOrderId == orderId);
           update();
         },

@@ -4,6 +4,6 @@ import 'package:learning/features/cart/presentation/states/place_order_controlle
 class PlaceOrderBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(PlaceOrderController(), permanent: true);
+    Get.put(PlaceOrderController());
   }
 }

@@ -11,7 +11,7 @@ class FreeOrderItemListModel extends FreeOrderItemListEntity {
   factory FreeOrderItemListModel.fromJson(Map<String, dynamic> json) {
     return FreeOrderItemListModel(
       freeOrderItemId: json['free_order_item_id'],
-      name: json['name'],
+      name: json['item_name'],
       quantity: json['quantity'],
       unit: json['unit'],
     );
@@ -20,7 +20,7 @@ class FreeOrderItemListModel extends FreeOrderItemListEntity {
   Map<String, dynamic> toJson() {
     return {
       'free_order_item_id': freeOrderItemId,
-      'name': name,
+      'item_name': name,
       'quantity': quantity,
       'unit': unit,
     };

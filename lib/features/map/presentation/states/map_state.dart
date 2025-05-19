@@ -152,10 +152,12 @@ class MapState extends GetxController {
 
   void _updateControllers(address) {
     Get.find<FreeOrderController>().updateAddress(address: address, pos: getMarkerPosition());
-    Get.find<CartController>().updateAddress(address: address, pos: getMarkerPosition());
+    Get.put(CartController()).updateAddress(address: address, pos: getMarkerPosition());
+    // Get.find<CartController>().updateAddress(address: address, pos: getMarkerPosition());
   }
 
   void setOrderPos(LatLng point) async {
+    await getAddressFromLatLng();
     orderPos = point;
     mapController.move(point, 15);
     update();

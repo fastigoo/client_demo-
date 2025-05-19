@@ -144,25 +144,25 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: 45.r,
-                      height: 45.r,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: MainColors.primaryColor,
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.rotate,
-                          color: MainColors.primaryColor,
-                          size: 20.r,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: kSpacingSmall.w),
+                    // Container(
+                    //   width: 45.r,
+                    //   height: 45.r,
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     border: Border.all(
+                    //       color: MainColors.primaryColor,
+                    //       width: 2,
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //     child: FaIcon(
+                    //       FontAwesomeIcons.rotate,
+                    //       color: MainColors.primaryColor,
+                    //       size: 20.r,
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(width: kSpacingSmall.w),
                     GestureDetector(
                       onTap: () {
                         _controller.deleteFreeOrder(widget.freeOrderItemEntity.freeOrderId);

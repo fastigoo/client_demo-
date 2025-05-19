@@ -207,7 +207,7 @@ class RestoScreen extends GetView<RestoController> {
                   Container(
                     margin: EdgeInsets.only(bottom: kSpacingMedium.r),
                     constraints: BoxConstraints(
-                      minHeight: Get.height,
+                      minHeight: controller.getRestaurantsList.isNotEmpty ? Get.height : 400.h,
                     ),
                     child: controller.isLoading.isFalse
                         ? controller.getRestaurantsList.isNotEmpty
@@ -227,7 +227,7 @@ class RestoScreen extends GetView<RestoController> {
                                 },
                               )
                             : SizedBox(
-                                height: 1.sh - 200.h,
+                                height: 400.h,
                                 child: EmptyComponent(
                                   text: LanguageStrings.noDataFound,
                                 ),

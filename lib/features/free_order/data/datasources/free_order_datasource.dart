@@ -21,10 +21,12 @@ abstract interface class FreeOrderDatasource {
 }
 
 class FreeOrderDatasourceImplement implements FreeOrderDatasource {
+
+  Dio dio = Dio();
+
   @override
   Future<FreeOrderResModel> getFreeOrders({required int userId, required int page, int limit = 10}) async {
     try {
-      Dio dio = Dio();
       Response response = await dio.get(
         '$allFreeOrderUrl?user_id=$userId&page_num=$page&page_size=$limit',
         options: Options(
@@ -42,7 +44,6 @@ class FreeOrderDatasourceImplement implements FreeOrderDatasource {
   @override
   Future<List<FreeOrderItemListModel>> getFreeOrderList({required int id}) async {
     try {
-      Dio dio = Dio();
       Response response = await dio.get(
         '$freeOrderDetailUrl/$id',
         options: Options(
@@ -66,7 +67,6 @@ class FreeOrderDatasourceImplement implements FreeOrderDatasource {
     required List<FreeOrderItemModel> items,
   }) async {
     try {
-      Dio dio = Dio();
       Response response = await dio.post(
         addFreeOrderUrl,
         data: {
@@ -91,7 +91,6 @@ class FreeOrderDatasourceImplement implements FreeOrderDatasource {
   @override
   Future<Unit> deleteFreeOrders({required int orderId}) async {
     try {
-      Dio dio = Dio();
       Response response = await dio.delete(
         '$deleteFreeOrderUrl/$orderId',
         options: Options(

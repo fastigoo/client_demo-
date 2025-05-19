@@ -106,28 +106,53 @@ class SelectMapPopupComponent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: kSpacingSmall),
-              ElevatedButton(
-                onPressed: () {
-                  controller.calculateOrderDeliveryFee();
-                  Get.back();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: MainColors.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(kRadiusSmall),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: kSpacingSmall,
-                  ),
-                  minimumSize: Size(double.infinity, 45.h),
-                ),
-                child: Text(
-                  LanguageStrings.confirmLocation,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17.sp,
-                  ),
-                ),
+              Obx(
+                () => controller.isPlacingOrder.isFalse
+                    ? ElevatedButton(
+                        onPressed: () {
+                          controller.calculateOrderDeliveryFee();
+                          Get.back();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: MainColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(kRadiusSmall),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: kSpacingSmall,
+                          ),
+                          minimumSize: Size(double.infinity, 45.h),
+                        ),
+                        child: Text(
+                          LanguageStrings.confirmLocation,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17.sp,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: 45.h + kSpacingSmall / 2,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: kSpacingSmall,
+                        ),
+                        decoration: BoxDecoration(
+                          color: MainColors.backgroundColor(context),
+                          borderRadius: BorderRadius.circular(kRadiusSmall),
+                        ),
+                        child: Center(
+                          child: SizedBox(
+                            height: 20.h,
+                            width: 20.w,
+                            child: const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                MainColors.primaryColor,
+                              ),
+                              strokeWidth: 3,
+                            ),
+                          ),
+                        ),
+                      ),
               ),
             ],
           ),
