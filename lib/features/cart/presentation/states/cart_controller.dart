@@ -130,6 +130,10 @@ class CartController extends GetxController {
     final String fcmToken = StorageManager.instance.getFcmToken() ?? "";
 
     try {
+      // if (lat == 0.0 || long == 0.0) {
+      //   Get.toNamed(Routes.MAP);
+      //   return;
+      // }
       isPlacingOrder.value = true;
       var response = await placeOrderUseCase.execute(
         phone: phoneController.text,

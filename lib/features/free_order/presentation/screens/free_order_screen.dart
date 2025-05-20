@@ -56,9 +56,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     ),
                                     child: Center(
                                       child: FaIcon(
-                                        TranslationUtil.isRtl()
-                                            ? FontAwesomeIcons.chevronRight
-                                            : FontAwesomeIcons.chevronLeft,
+                                        TranslationUtil.isRtl() ? FontAwesomeIcons.chevronRight : FontAwesomeIcons.chevronLeft,
                                         size: 20.r,
                                       ),
                                     ),
@@ -256,55 +254,78 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                 ),
               ),
               SizedBox(height: kSpacingMedium.r),
-              Row(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: MainColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                      ),
-                      minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
-                    ),
-                    onPressed: () {
-                      if (controller.items.isEmpty) {
-                        showToast(message: LanguageStrings.pleaseAddItemsToYourOrder);
-                        return;
-                      }
-                      if (controller.formKey.currentState!.validate()) {
-                        controller.addFreeOrder();
-                      }
-                    },
-                    child: Text(
-                      LanguageStrings.placeOrder,
-                      style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                        color: MainColors.whiteColor,
-                        fontSize: 16.r,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: kSpacingSmall.r),
-                  GestureDetector(
-                    onTap: () {
-                      _onTap(controller: controller, context: context);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF657C6A),
-                        borderRadius: BorderRadius.circular(kRadiusMedium.r),
-                      ),
-                      width: 50.r,
-                      height: 50.r,
-                      child: Center(
-                        child: FaIcon(
-                          FontAwesomeIcons.plus,
-                          color: MainColors.whiteColor,
-                          size: 20.r,
+              Obx(
+                () => controller.isLoading.isFalse
+                    ? Row(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: MainColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                              ),
+                              minimumSize: Size(1.sw - (kSpacingMedium.w * 6).w, 50.r),
+                            ),
+                            onPressed: () {
+                              if (controller.items.isEmpty) {
+                                showToast(message: LanguageStrings.pleaseAddItemsToYourOrder);
+                                return;
+                              }
+                              if (controller.formKey.currentState!.validate()) {
+                                controller.addFreeOrder();
+                              }
+                            },
+                            child: Text(
+                              LanguageStrings.placeOrder,
+                              style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                color: MainColors.whiteColor,
+                                fontSize: 16.r,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: kSpacingSmall.r),
+                          GestureDetector(
+                            onTap: () {
+                              _onTap(controller: controller, context: context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF657C6A),
+                                borderRadius: BorderRadius.circular(kRadiusMedium.r),
+                              ),
+                              width: 50.r,
+                              height: 50.r,
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: MainColors.whiteColor,
+                                  size: 20.r,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(
+                        height: 50.r,
+                        width: 1.sw,
+                        decoration: BoxDecoration(
+                          color: MainColors.backgroundColor(context),
+                          borderRadius: BorderRadius.circular(kRadiusSmall),
+                        ),
+                        child: Center(
+                          child: SizedBox(
+                            height: 20.h,
+                            width: 20.w,
+                            child: const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                MainColors.primaryColor,
+                              ),
+                              strokeWidth: 3,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
               ),
               SizedBox(height: kSpacingSmall.r),
             ],
