@@ -100,6 +100,5 @@ class CheckedElementComponent extends StatelessWidget {
         .fadeIn(duration: 900.ms, delay: 50.ms)
         .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.1))
         .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad);
-    ;
   }
 }

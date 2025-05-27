@@ -1,6 +1,5 @@
 import 'package:learning/features/home/data/models/variant_model.dart';
 import 'package:learning/features/home/domain/entities/item_detail_entity.dart';
-import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
 
 class ItemDetailModel extends ItemDetailEntity {
   ItemDetailModel({

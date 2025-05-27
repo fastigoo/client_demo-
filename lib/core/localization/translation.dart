@@ -6,6 +6,7 @@ class Translation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
     "en" : TranslationReader.en!,
+    "fr" : TranslationReader.fr!,
     "ar" : TranslationReader.ar!,
   };
 }

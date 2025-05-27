@@ -21,7 +21,7 @@ class ThemeUtil {
   }
 
   static Future<void> initialize() async {
-    String? theme = await StorageManager.instance.getStringValue(key: StorageKey.themeKey);
+    String? theme = StorageManager.instance.getStringValue(key: StorageKey.themeKey);
     if (theme != null) {
       isDarkMode =
           StorageManager.instance.getStringValue(key: StorageKey.themeKey) == 'dark';

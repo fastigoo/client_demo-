@@ -1,9 +1,4 @@
-import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
 
-import 'package:dio/dio.dart' as dio;
-import 'package:get/get.dart';
 //
 // class HttpClientService {
 //   static final String _baseUrl = Uri.encodeFull(_baseUrl);

@@ -55,7 +55,7 @@ class ResourceManager {
   }
 
   static getNetworkResource(String name) {
-    return "$host:$port$name";
+    return "$host$name";
   }
 }
 

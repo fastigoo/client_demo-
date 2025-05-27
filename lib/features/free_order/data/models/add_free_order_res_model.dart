@@ -1,6 +1,4 @@
-import 'package:learning/features/free_order/data/models/free_order_item_model.dart';
 import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
-import 'package:learning/features/free_order/domain/entities/free_order_res_entity.dart';
 
 class AddFreeOrderResModel extends AddFreeOrderResEntity {
   AddFreeOrderResModel({

@@ -1,6 +1,4 @@
-import 'package:learning/features/cart/data/models/place_order_model.dart';
 import 'package:learning/features/orders/domain/entities/normal_order_entity.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
 
 class NormalOrderModel extends NormalOrderEntity {
   NormalOrderModel({

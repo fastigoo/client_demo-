@@ -46,7 +46,7 @@ class HomeController extends GetxController {
           getMenuItems();
         },
       );
-    } catch (e) {} finally {
+    } finally {
       menuIsLoading.value = false;
     }
   }

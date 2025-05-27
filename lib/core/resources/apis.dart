@@ -1,18 +1,23 @@
-// const String port = '8080';
-// const String host = 'http://165.232.87.86';
-const String port = '8000';
-const String ipAddress = "192.168.1.58";
-const String host = 'http://$ipAddress';
-const String wsHost = 'ws://$ipAddress:8000/ws/client/';
+// Localhost API configuration
+// const String port = '8000';
+// const String ipAddress = "192.168.1.58";
+// const String host = 'http://$ipAddress';
+// const String wsHost = 'ws://$ipAddress:8000/ws/client/';
+// const String version = 'v1';
+// const String api = 'api';
+
+
+// Server API configuration
+const String host = 'https://www.fastiigo.com';
+const String wsHost = 'ws://www.fastiigo.com/ws/client/';
 const String version = 'v1';
 const String api = 'api';
 
-
-const baseUrl = '$host:$port/$api/$version';
+const baseUrl = '$host/$api/$version';
 
 
 // Restaurant API
-const String allRestaurantUrl = '$baseUrl/restaurants/get_all';
+const String allRestaurantUrl = '$baseUrl/restaurant/get_all';
 
 const String allRestaurantMenuUrl = '$baseUrl/restaurant_menu/get_all';
 const String allRestaurantMenuItemsUrl = '$baseUrl/restaurant_menu_item/get_all';

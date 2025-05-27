@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/helper/theme_util.dart';
 import 'package:learning/core/helper/translation_util.dart';
 import 'package:learning/core/localization/translation.dart';
 import 'package:learning/core/localization/translation_reader.dart';
@@ -13,7 +14,6 @@ import 'package:learning/injection.dart';
 import 'package:learning/routes/app_pages.dart';
 import 'firebase_options.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,6 +22,7 @@ Future<void> main() async {
   await StorageManager.initStorage();
   await NotificationService().init();
   await injectionInit();
+  await ThemeUtil.initialize();
   await TranslationReader.initialize();
   await TranslationUtil.initialize();
   SystemChrome.setPreferredOrientations([
@@ -64,7 +65,7 @@ class MyApp extends StatelessWidget {
             locale: TranslationUtil.currentLang,
             fallbackLocale: const Locale('en'),
             // themeMode: ThemeUtil.currentTheme,
-            themeMode: ThemeMode.light,
+            themeMode: ThemeUtil.currentTheme,
             theme: ThemeStyles.lightTheme,
             darkTheme: ThemeStyles.darkTheme,
             builder: (context, child) {

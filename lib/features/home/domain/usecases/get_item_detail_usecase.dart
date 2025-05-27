@@ -2,7 +2,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:learning/core/error/failures.dart';
 import 'package:learning/features/home/domain/entities/item_detail_entity.dart';
-import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
 import 'package:learning/features/home/domain/repositories/home_repository.dart';
 
 class GetItemDetailUseCase {

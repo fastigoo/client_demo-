@@ -9,27 +9,19 @@ class TranslationUtil {
   static void changeLang({required String lang}) {
     StorageManager.instance.setString(key: StorageKey.languageKey, value: lang);
     Locale? newLocale = Locale(lang);
-    if (newLocale != null) {
-      Get.updateLocale(newLocale);
-      currentLang = newLocale;
-      // home page
-      // profile page
-    } else {
-      print('Invalid locale: $lang');
-    }
+    Get.updateLocale(newLocale);
+    currentLang = newLocale;
+    // home page
+    // profile page
   }
 
   static Future<void> initialize() async {
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
     String lang = StorageManager.instance.getStringValue(key: StorageKey.languageKey) ?? 'ar';
     try {
       Locale? newLocale = Locale(lang);
-      if (newLocale != null) {
-        Get.updateLocale(newLocale);
-        currentLang = newLocale;
-      } else {
-        print('Invalid locale: $lang');
-      }
+      Get.updateLocale(newLocale);
+      currentLang = newLocale;
     } catch (e) {
       print('Error initializing translation: $e');
     }

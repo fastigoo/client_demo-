@@ -8,8 +8,6 @@ import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
 import 'package:learning/features/free_order/domain/usecases/add_free_order_usecase.dart';
-import 'package:learning/features/map/presentation/screens/map_screen.dart';
-import 'package:learning/features/map/presentation/states/map_state.dart';
 import 'package:learning/routes/app_pages.dart';
 
 class FreeOrderController extends GetxController {

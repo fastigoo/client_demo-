@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,19 +44,24 @@ class SelectMapPopupComponent extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      width: 122,
-                      height: 45.h,
-                      decoration: BoxDecoration(
-                        color: MainColors.inputColor(context),
-                        borderRadius: BorderRadius.circular(kRadiusSmall),
-                      ),
-                      child: Center(
-                        child: Text(
-                          LanguageStrings.currentLocation,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: MainColors.disableColor(context),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.MAP);
+                      },
+                      child: Container(
+                        width: 122,
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                          color: MainColors.inputColor(context),
+                          borderRadius: BorderRadius.circular(kRadiusSmall),
+                        ),
+                        child: Center(
+                          child: Text(
+                            LanguageStrings.currentLocation,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: MainColors.disableColor(context),
+                            ),
                           ),
                         ),
                       ),

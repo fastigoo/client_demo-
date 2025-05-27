@@ -1,8 +1,5 @@
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/others/network_image_component.dart';
@@ -11,7 +8,6 @@ import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/services/resource_manager.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/home/presentation/screens/home_screen.dart';
 import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
 import 'package:learning/routes/app_pages.dart';
 

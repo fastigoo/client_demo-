@@ -118,7 +118,7 @@ class ProductComponent extends StatelessWidget {
                             LanguageStrings.addToCart,
                             style: TextStyles.mediumBodyTextStyle(context).copyWith(
                               color: Colors.white,
-                              fontSize: 14.sp,
+                              fontSize: 12.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
