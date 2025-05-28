@@ -25,9 +25,11 @@ class FreeOrderController extends GetxController {
 
   List<FreeOrderItemModel> items = [];
 
-  OrderCustomerLocationEntity? address;
   double lat = 0.0;
   double long = 0.0;
+
+  bool isDefaultAddress() =>
+      lat == 0.0 && long == 0.0;
 
   @override
   void onInit() {
@@ -75,8 +77,7 @@ class FreeOrderController extends GetxController {
     selectedUnite.value = unites[0];
   }
 
-  void updateAddress({required OrderCustomerLocationEntity address, required LatLng pos}) {
-    this.address = address;
+  void updateAddress({required LatLng pos}) {
     lat = pos.latitude;
     long = pos.longitude;
     update();

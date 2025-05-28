@@ -9,6 +9,7 @@ import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/styles/text_styles.dart';
+import 'package:learning/features/cart/presentation/states/map_controller.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 import 'package:learning/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -113,8 +114,15 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                     init: controller,
                                     builder: (controller) {
                                       return GestureDetector(
-                                        onTap: () {
-                                          Get.toNamed(Routes.MAP);
+                                        onTap: () async {
+                                          try {
+                                            await Get.put(MapStreetController()).getCurrentLocation();
+                                            Get.toNamed(Routes.MAP);
+                                          } catch (e) {
+                                            showToast(
+                                                message:
+                                                    "Location permission denied or not enabled. Please enable location services.");
+                                          }
                                         },
                                         child: Container(
                                           padding: EdgeInsets.all(kSpacingMedium.r - 3),
@@ -126,11 +134,12 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                controller.address == null
-                                                    ? LanguageStrings.currentLocation
-                                                    : "${controller.address!.city} - ${controller.address!.road}",
+                                                !controller.isDefaultAddress()
+                                                    ? "${controller.lat}, ${controller.long}"
+                                                    : LanguageStrings.currentLocation,
                                                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                                   color: MainColors.whiteColor,
+                                                  fontSize: 13.r,
                                                 ),
                                               ),
                                               FaIcon(
@@ -199,7 +208,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                 ? ListView.separated(
                                     itemBuilder: (c, i) => Container(
                                       decoration: BoxDecoration(
-                                        color: MainColors.whiteColor,
+                                        color: MainColors.inputColor(context),
                                         borderRadius: BorderRadius.circular(kRadiusSmall.r),
                                       ),
                                       padding: EdgeInsets.all(kSpacingSmall.r + 2),

@@ -2,10 +2,8 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/objects/entities/customer_location_entity.dart';
 import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/features/map/domain/usecases/get_address_from_latlng_usecase.dart';
 import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
 
 class MapState extends GetxController {
@@ -22,7 +20,6 @@ class MapState extends GetxController {
   final mapController = MapController();
 
   final isLoadingAddress = false.obs;
-  final _getAddressesUseCase = Get.find<GetAddressFromLatLngUseCase>();
   OrderCustomerLocationEntity? address;
 
   @override
@@ -119,7 +116,6 @@ class MapState extends GetxController {
     if (currentPos != null) {
       Future.delayed(const Duration(milliseconds: 100), () {
         mapController.move(LatLng(currentPos!.latitude, currentPos!.longitude), 15);
-        getAddressFromLatLng();
       });
     } else {
       Get.snackbar(
@@ -130,35 +126,9 @@ class MapState extends GetxController {
     }
   }
 
-  Future<void> getAddressFromLatLng() async {
-    try {
-      isLoadingAddress.value = true;
-      final response = await _getAddressesUseCase.call(latLng: getMarkerPosition());
-      response.fold(
-        (l) {
-          showToast(message: l.toString());
-        },
-        (OrderCustomerLocationEntity address) {
-          this.address = address;
-          _updateControllers(address);
-        },
-      );
-    } catch (e) {
-      showToast(message: 'Error: $e');
-    } finally {
-      isLoadingAddress.value = false;
-    }
-  }
-
-  void _updateControllers(address) {
-    Get.put(FreeOrderController()).updateAddress(address: address, pos: getMarkerPosition());
-    Get.put(CartController()).updateAddress(address: address, pos: getMarkerPosition());
-    // Get.find<FreeOrderController>().updateAddress(address: address, pos: getMarkerPosition());
-    // Get.find<CartController>().updateAddress(address: address, pos: getMarkerPosition());
-  }
-
   void setOrderPos(LatLng point) async {
-    await getAddressFromLatLng();
+    Get.put(FreeOrderController()).updateAddress(pos: getMarkerPosition());
+    Get.put(CartController()).updateAddress(pos: getMarkerPosition());
     orderPos = point;
     mapController.move(point, 15);
     update();

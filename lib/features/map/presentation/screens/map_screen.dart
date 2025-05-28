@@ -34,7 +34,6 @@ class MapScreen extends GetView<MapState> {
             color: Colors.white,
           ),
           onPressed: () {
-            controller.getAddressFromLatLng();
             Get.back();
           },
         ),
@@ -42,7 +41,6 @@ class MapScreen extends GetView<MapState> {
         actions: [
           GestureDetector(
             onTap: () {
-              controller.getAddressFromLatLng();
               Get.back();
             },
             child: Container(

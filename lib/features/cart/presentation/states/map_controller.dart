@@ -29,7 +29,7 @@ class MapStreetController extends GetxController {
     isMapReady.value = false;
     _serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!_serviceEnabled) {
-      return Future.error('Location service disabled');
+      await Geolocator.openLocationSettings();
     }
     _permission = await Geolocator.checkPermission();
     if (_permission == LocationPermission.denied) {

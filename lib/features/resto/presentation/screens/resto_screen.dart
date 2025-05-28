@@ -219,7 +219,7 @@ class RestoScreen extends GetView<RestoController> {
                                     itemBuilder: (c, i) => RestoComponent(
                                       item: controller.getRestaurantsList[i],
                                     ),
-                                    separatorBuilder: (c, i) => SizedBox(height: kSpacingSmall.h),
+                                    separatorBuilder: (c, i) => SizedBox(height: kSpacingLarge.h),
                                     itemCount: controller.getRestaurantsList.length,
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
@@ -228,8 +228,13 @@ class RestoScreen extends GetView<RestoController> {
                               )
                             : SizedBox(
                                 height: 400.h,
-                                child: EmptyComponent(
-                                  text: LanguageStrings.noDataFound,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.refreshData();
+                                  },
+                                  child: EmptyComponent(
+                                    text: LanguageStrings.noDataFound,
+                                  ),
                                 ),
                               )
                         : const RestaurantAnimation(),

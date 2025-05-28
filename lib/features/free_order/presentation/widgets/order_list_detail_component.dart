@@ -18,7 +18,7 @@ class OderListDetailComponent extends StatelessWidget {
         ListView.separated(
           itemBuilder: (c, i) => Container(
             decoration: BoxDecoration(
-              color: MainColors.blackColor.withOpacity(.05),
+              color: MainColors.cardColor(context),
               borderRadius: BorderRadius.circular(10.r),
               border: Border.all(
                 color: MainColors.blackColor.withOpacity(.1),

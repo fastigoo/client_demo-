@@ -40,8 +40,11 @@ class CartController extends GetxController {
 
   OrderCustomerLocationEntity? address;
 
-  void updateAddress({required OrderCustomerLocationEntity address, required LatLng pos}) {
-    this.address = address;
+  bool isSameAddress() {
+    return lat == 0.0 && long == 0.0;
+  }
+
+  void updateAddress({required LatLng pos}) {
     lat = pos.latitude;
     long = pos.longitude;
     update();

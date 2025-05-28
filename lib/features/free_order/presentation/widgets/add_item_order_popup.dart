@@ -19,6 +19,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
+          color: MainColors.inputColor(context),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(kRadiusMedium.r),
             topRight: Radius.circular(kRadiusMedium.r),
@@ -33,6 +34,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
             children: [
               TextFormField(
                 controller: controller.nameController,
+                style: TextStyles.mediumBodyTextStyle(context),
                 validator: Validators.compose([
                   Validators.required(LanguageStrings.itemNameIsRequired),
                 ]),
@@ -50,7 +52,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                     vertical: kSpacingMedium.r,
                   ),
                   filled: true,
-                  fillColor: MainColors.whiteColor,
+                  fillColor: MainColors.backgroundColor(context),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(kRadiusMedium.r),
@@ -71,6 +73,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      style: TextStyles.mediumBodyTextStyle(context),
                       controller: controller.quantityController,
                       validator: Validators.compose([
                         Validators.required(LanguageStrings.quantityIsRequired),
@@ -90,7 +93,7 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                           vertical: kSpacingMedium.r,
                         ),
                         filled: true,
-                        fillColor: MainColors.whiteColor,
+                        fillColor: MainColors.backgroundColor(context),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(kRadiusMedium.r),
@@ -173,8 +176,8 @@ class AddFreeOrderItemPopup extends StatelessWidget {
                             borderRadius: BorderRadius.circular(kRadiusMedium.r),
                             border: controller.unites[i] == controller.selectedUnite.value
                                 ? Border.all(
-                                    color: MainColors.blackColor,
-                                    width: 1.w,
+                                    color: MainColors.inputColor(context)!,
+                                    width: 2.w,
                                   )
                                 : null,
                           ),

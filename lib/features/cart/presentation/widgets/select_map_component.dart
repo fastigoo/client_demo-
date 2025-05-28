@@ -57,7 +57,7 @@ class SelectMapPopupComponent extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            LanguageStrings.currentLocation,
+                            controller.isSameAddress() ? LanguageStrings.currentLocation : '${controller.lat}, ${controller.long}',
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: MainColors.disableColor(context),

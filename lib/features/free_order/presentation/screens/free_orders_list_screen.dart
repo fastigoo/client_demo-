@@ -43,14 +43,13 @@ class FreeOrdersListScreen extends GetView<FreeOrdersController> {
                           child: Container(
                             width: 50.r,
                             height: 50.r,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: MainColors.whiteColor,
+                              color: MainColors.cardColor(context),
                             ),
                             child: Center(
                               child: FaIcon(
                                 FontAwesomeIcons.plus,
-                                color: MainColors.primaryColor,
                                 size: 20.r,
                               ),
                             ),
@@ -133,7 +132,7 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem> {
         duration: const Duration(milliseconds: 300),
         padding: EdgeInsets.all(kSpacingMedium.r),
         decoration: BoxDecoration(
-          color: MainColors.whiteColor,
+          color: MainColors.inputColor(context),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(

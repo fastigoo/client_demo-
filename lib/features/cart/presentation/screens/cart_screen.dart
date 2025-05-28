@@ -120,7 +120,7 @@ class CartScreen extends GetView<CartController> {
                                   onPressed: () async {
                                     await controller.onMapCreated();
                                     showModalBottomSheet(
-                                      context: context,
+                                      context: Get.context!,
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
                                       builder: (context) => const SafeArea(child: SelectMapPopupComponent()),

@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class MapBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MapState>(() => MapState());
+    Get.put(MapState());
   }
 }

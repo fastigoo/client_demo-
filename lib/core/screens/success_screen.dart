@@ -30,7 +30,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFFFF),
+      backgroundColor: MainColors.backgroundColor(context),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(kSpacingMedium.r),
