@@ -9,6 +9,7 @@ import 'package:learning/core/localization/translation.dart';
 import 'package:learning/core/localization/translation_reader.dart';
 import 'package:learning/core/services/notification_service.dart';
 import 'package:learning/core/services/storage_manager.dart';
+import 'package:learning/core/states/internet_state.dart';
 import 'package:learning/core/styles/theme_styles.dart';
 import 'package:learning/injection.dart';
 import 'package:learning/routes/app_pages.dart';
@@ -37,6 +38,7 @@ Future<void> main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+  Get.put<InternetCheckerState>(InternetCheckerState());
   runApp(const MyApp());
 }
 

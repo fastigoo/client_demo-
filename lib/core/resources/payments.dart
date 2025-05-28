@@ -1,5 +1,3 @@
-
-
 class Payments {
   static const String stripeTitle = 'Stripe';
   static const String paypalTitle = 'PayPal';

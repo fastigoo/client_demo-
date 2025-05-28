@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:learning/core/states/internet_state.dart';
 import 'package:learning/features/cart/data/datasources/order_data_source.dart';
 import 'package:learning/features/cart/data/repositories/order_repository_implement.dart';
 import 'package:learning/features/cart/domain/repositories/order_repository.dart';
@@ -30,6 +31,9 @@ import 'package:learning/features/resto/domain/repositories/restaurant_repositor
 import 'package:learning/features/resto/domain/usecases/all_restaurant_usecase.dart';
 
 Future<void> injectionInit() async {
+
+  // Init
+
   // Restaurant
   Get.put<RestaurantDataSource>(RestaurantDataSourceImplement());
   Get.put<RestaurantRepository>(RestaurantRepositoryImplement(remote: Get.find<RestaurantDataSource>()));

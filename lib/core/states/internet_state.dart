@@ -1,35 +1,22 @@
-import 'dart:async';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
+import 'package:learning/core/screens/no_internet_connection_screen.dart';
 
 class InternetCheckerState extends GetxController {
-
-  var isConnectedToInternet = false.obs;
-  StreamSubscription? internetStreamSubscription;
-  //
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   internetStreamSubscription = InternetConnection().onStatusChange.listen((event) {
-  //     switch (event) {
-  //       case InternetStatus.connected:
-  //         isConnectedToInternet.value = true;
-  //         break;
-  //       case InternetStatus.disconnected:
-  //         isConnectedToInternet.value = false;
-  //         break;
-  //       default:
-  //         isConnectedToInternet.value = false;
-  //         break;
-  //     }
-  //     // print('Internet Status: $isConnectedToInternet');
-  //     update();
-  //   });
-  // }
+  final Connectivity _connectivity = Connectivity();
 
   @override
-  void onClose() {
-    internetStreamSubscription?.cancel();
-    super.onClose();
+  void onInit() {
+    super.onInit();
+    _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  void _updateConnectionStatus(List<ConnectivityResult> results) {
+    final isDisconnected = results.every((result) => result == ConnectivityResult.none);
+    if (isDisconnected) {
+      Get.to(() => const NoInternetConnectionScreen());
+    } else {
+      Get.back();
+    }
   }
 }

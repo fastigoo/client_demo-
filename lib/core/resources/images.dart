@@ -29,6 +29,7 @@ const String offerBg = 'offer_bg.jpg';
 const String pendingImage = 'pending_image.png';
 
 const String successImage = 'checked.png';
+const String noWifiImage = 'no-wifi.png';
 
 //
 //

@@ -108,7 +108,7 @@ class ConfirmOrderComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${deliveryFeeEntity.getNormalizedDistance().toStringAsFixed(2)} ${deliveryFeeEntity.isNormalizedDistance() ? LanguageStrings.kg : LanguageStrings.m}",
+                  "${deliveryFeeEntity.getNormalizedDistance().toStringAsFixed(2)} ${deliveryFeeEntity.isNormalizedDistance() ? LanguageStrings.km : LanguageStrings.m}",
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,

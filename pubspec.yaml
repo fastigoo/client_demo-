@@ -37,7 +37,7 @@ dependencies:
   flutter_animate: ^4.3.0
   lottie: any
   web_socket_channel: ^3.0.2
-
+  connectivity_plus: ^6.1.4
 
   # Map
   flutter_map_location_marker: ^9.0.0

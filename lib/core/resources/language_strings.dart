@@ -2,6 +2,10 @@ import 'package:get/get.dart';
 
 class LanguageStrings {
 
+  static String get noInternetConnection => "No internet connection".tr;
+
+  static String get noInternetConnectionMessage => "No internet connection message".tr;
+
   static String get milaAlgeria => "Mila Algeria".tr;
 
   static String get ok => "OK".tr;
