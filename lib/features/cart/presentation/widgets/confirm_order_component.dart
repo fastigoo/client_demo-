@@ -112,8 +112,8 @@ class ConfirmOrderComponent extends StatelessWidget {
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
-                    decorationStyle: TextDecorationStyle.dashed,
-                    decorationThickness: 3,
+                    decorationStyle: TextDecorationStyle.dotted,
+                    decorationThickness: 2,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: MainColors.primaryColor,
@@ -139,8 +139,8 @@ class ConfirmOrderComponent extends StatelessWidget {
                         style: TextStyles.mediumBodyTextStyle(context).copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: MainColors.primaryColor,
-                          decorationStyle: TextDecorationStyle.dashed,
-                          decorationThickness: 3,
+                          decorationStyle: TextDecorationStyle.dotted,
+                          decorationThickness: 2,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                           color: MainColors.primaryColor,
@@ -164,8 +164,8 @@ class ConfirmOrderComponent extends StatelessWidget {
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: MainColors.primaryColor,
-                    decorationStyle: TextDecorationStyle.dashed,
-                    decorationThickness: 3,
+                    decorationStyle: TextDecorationStyle.dotted,
+                    decorationThickness: 2,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: MainColors.primaryColor,
@@ -191,8 +191,8 @@ class ConfirmOrderComponent extends StatelessWidget {
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         decoration: TextDecoration.underline,
                         decorationColor: MainColors.primaryColor,
-                        decorationStyle: TextDecorationStyle.dashed,
-                        decorationThickness: 3,
+                        decorationStyle: TextDecorationStyle.dotted,
+                        decorationThickness: 2,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                         color: MainColors.primaryColor,

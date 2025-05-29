@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/apis.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/states_ids.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
@@ -38,21 +39,49 @@ class OrdersController extends GetxController {
       }
     });
     getOrders();
-    int clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
-    webSocketChannels = WebSocketService().connect(wsHost, clientId);
-    webSocketChannels.stream.listen(
-      (message) {
-        Map<String, dynamic> data = jsonDecode(message);
-        // order_status_id
-        if (orderResEntity.orders.any((element) => element.orderId == data['order_id'])) {
-          int index = orderResEntity.orders.indexWhere((element) => element.orderId == data['order_id']);
-          orderResEntity.orders[index].orderStatusValue = data['order_status_value'];
-          update([StatesIds.ordersList]);
-        }
-      },
-      onError: (error) {},
-      onDone: () {},
-    );
+    _connectToWebSocket();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    webSocketChannels.sink.close();
+    super.onClose();
+  }
+
+  final WebSocketService _webSocketService = WebSocketService();
+  void _connectToWebSocket() async  {
+    try {
+      final clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
+      await _webSocketService.connect(wsHost, clientId, onMessage: (message) {
+        debugPrint('WebSocket message: $message');
+      });
+
+      // channel.stream.listen(
+      //   (message) {
+      //     debugPrint('Raw message: $message');
+      //
+      //     try {
+      //       final data = jsonDecode(message) as Map<String, dynamic>;
+      //       debugPrint('Parsed data: $data');
+      //
+      //       final orderId = data['order_id'];
+      //       if (orderResEntity.orders.any((o) => o.orderId == orderId)) {
+      //         final index = orderResEntity.orders.indexWhere((o) => o.orderId == orderId);
+      //         orderResEntity.orders[index].orderStatusValue = data['order_status_value'];
+      //         update([StatesIds.ordersList]);
+      //       }
+      //     } catch (e) {
+      //       debugPrint('Message parsing error: $e');
+      //     }
+      //   },
+      //   onError: (error) => debugPrint('WebSocket stream error: $error'),
+      //   onDone: () => debugPrint('WebSocket stream closed'),
+      // );
+    } catch (e) {
+      debugPrint('WebSocket connection error: $e');
+      // Add retry logic or UI notification
+    }
   }
 
   void getOrders() async {
@@ -65,7 +94,7 @@ class OrdersController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (OrderResEntity order) async {
           orderResEntity = order;
@@ -74,7 +103,7 @@ class OrdersController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }
@@ -92,7 +121,7 @@ class OrdersController extends GetxController {
         );
         response.fold(
           (l) {
-            showToast(message: l.toString());
+            showToast(message: LanguageStrings.somethingWentWrong);
           },
           (OrderResEntity order) async {
             orderResEntity.orders.addAll(order.orders);
@@ -100,7 +129,7 @@ class OrdersController extends GetxController {
           },
         );
       } catch (e) {
-        showToast(message: e.toString());
+        showToast(message: LanguageStrings.somethingWentWrong);
       } finally {
         isLoadingMore.value = false;
       }
@@ -118,7 +147,7 @@ class OrdersController extends GetxController {
       var response = await _deleteOrderUseCase.execute(orderId: orderId);
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (String message) async {
           showToast(message: message);
@@ -127,7 +156,7 @@ class OrdersController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     }
   }
 }

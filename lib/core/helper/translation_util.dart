@@ -4,7 +4,7 @@ import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 
 class TranslationUtil {
-  static Locale? currentLang = const Locale('en');
+  static Locale? currentLang = const Locale('ar');
 
   static void changeLang({required String lang}) {
     StorageManager.instance.setString(key: StorageKey.languageKey, value: lang);

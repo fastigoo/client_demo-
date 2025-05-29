@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
 import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
@@ -83,7 +84,7 @@ class RestoController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }
@@ -109,7 +110,7 @@ class RestoController extends GetxController {
             },
           );
         } catch (e) {
-          showToast(message: e.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         } finally {
           isLoadingMore.value = false;
         }
@@ -134,7 +135,7 @@ class RestoController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }

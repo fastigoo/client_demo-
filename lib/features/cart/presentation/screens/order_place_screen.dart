@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learning/core/components/others/dashed_rect.dart';
+import 'package:learning/core/components/phone_numbers_component.dart';
 import 'package:learning/core/resources/constants.dart';
 import 'package:learning/core/resources/images.dart';
 import 'package:learning/core/resources/language_strings.dart';
@@ -82,16 +83,6 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                             ],
                           ),
                         ),
-                        // Expanded(
-                        //   child: Image.asset(
-                        //     ResourceManager.getAssetResource(
-                        //       pendingImage,
-                        //       type: ResourceType.image,
-                        //     ),
-                        //     width: 120.h,
-                        //     height: 120.w,
-                        //   ),
-                        // ),
                         Expanded(
                           child: Lottie.asset(
                             ResourceManager.getAssetResource(
@@ -127,21 +118,7 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                   fontSize: 13.sp,
                                 ),
                               ),
-                              SizedBox(height: kSpacingSmall.h),
-                              Text(
-                                "${LanguageStrings.orderWillbeDelivered} ${LanguageStrings.to}",
-                                style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                                  color: MainColors.whiteColor,
-                                  fontSize: 17.sp,
-                                ),
-                              ),
-                              Text(
-                                "${controller.orderDetail!.customerLocation.country} - ${controller.orderDetail!.customerLocation.road} - ${controller.orderDetail!.customerLocation.city}",
-                                style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                  color: MainColors.whiteColor.withOpacity(.75),
-                                  fontSize: 13.sp,
-                                ),
-                              ),
+
                               SizedBox(height: kSpacingXSmall.h),
                               Divider(
                                 height: kSpacingXLarge.h,
@@ -329,12 +306,12 @@ class PlaceOrderScreen extends GetView<PlaceOrderController> {
                                     children: [
                                       GestureDetector(
                                         onTap: () async {
-                                          final Uri phoneUri = Uri(scheme: 'tel', path: "0770119922");
-                                          if (await canLaunchUrl(phoneUri)) {
-                                            await launchUrl(phoneUri);
-                                          } else {
-                                            throw 'Could not launch $phoneUri';
-                                          }
+                                          showModalBottomSheet(
+                                            context: Get.context!,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            builder: (context) => const SafeArea(child: PhoneNumbersComponent()),
+                                          );
                                         },
                                         child: Container(
                                           height: 45.h,

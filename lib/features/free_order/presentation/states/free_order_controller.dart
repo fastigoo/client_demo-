@@ -99,7 +99,7 @@ class FreeOrderController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: "${LanguageStrings.error}: $l");
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (AddFreeOrderResEntity res) {
           StorageManager.instance.setInt(key: StorageKey.userIdKey, value: res.userId);
@@ -109,7 +109,7 @@ class FreeOrderController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: "${LanguageStrings.error}: $e");
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }

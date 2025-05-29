@@ -133,10 +133,6 @@ class CartController extends GetxController {
     final String fcmToken = StorageManager.instance.getFcmToken() ?? "";
 
     try {
-      // if (lat == 0.0 || long == 0.0) {
-      //   Get.toNamed(Routes.MAP);
-      //   return;
-      // }
       isPlacingOrder.value = true;
       var response = await placeOrderUseCase.execute(
         phone: phoneController.text,
@@ -150,7 +146,7 @@ class CartController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (PlaceOrderEntity order) async {
           orderEntity = order;
@@ -163,7 +159,7 @@ class CartController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isPlacingOrder.value = false;
     }
@@ -179,7 +175,7 @@ class CartController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (DeliveryFeeEntity value) async {
           showModalBottomSheet(
@@ -205,7 +201,7 @@ class CartController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isPlacingOrder.value = false;
     }

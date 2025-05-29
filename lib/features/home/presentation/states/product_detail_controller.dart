@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/states_ids.dart';
 import 'package:learning/features/home/domain/entities/item_detail_entity.dart';
 import 'package:learning/features/home/domain/entities/variant_entity.dart';
@@ -56,7 +57,7 @@ class ProductDetailController extends GetxController {
       final response = await _itemDetailUseCase.execute(itemId: itemId);
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (ItemDetailEntity item) {
           // _itemDetail = item;
@@ -71,7 +72,7 @@ class ProductDetailController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }

@@ -77,7 +77,7 @@ class FreeOrderScreen extends GetView<FreeOrderController> {
                                           ),
                                           child: Center(
                                             child: FaIcon(
-                                              FontAwesomeIcons.fileZipper,
+                                              FontAwesomeIcons.file,
                                               size: 20.r,
                                             ),
                                           ),

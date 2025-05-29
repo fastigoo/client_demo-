@@ -49,7 +49,7 @@ class FreeOrdersController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: "${LanguageStrings.error}: $l");
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (FreeOrderResEntity value) {
           freeOrderResEntity = value;
@@ -58,7 +58,7 @@ class FreeOrdersController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: "${LanguageStrings.error}: $e");
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }
@@ -76,7 +76,7 @@ class FreeOrdersController extends GetxController {
         );
         response.fold(
           (l) {
-            showToast(message: l.toString());
+            showToast(message: LanguageStrings.somethingWentWrong);
           },
           (FreeOrderResEntity value) async {
             freeOrderResEntity?.orders.addAll(value.orders);
@@ -84,7 +84,7 @@ class FreeOrdersController extends GetxController {
           },
         );
       } catch (e) {
-        showToast(message: e.toString());
+        showToast(message: LanguageStrings.somethingWentWrong);
       } finally {
         isLoadingMore.value = false;
       }
@@ -96,7 +96,7 @@ class FreeOrdersController extends GetxController {
       var response = await _deleteOrderUseCase.call(orderId: orderId);
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (Unit unit) async {
           showToast(message: "Successfully deleted");
@@ -105,7 +105,7 @@ class FreeOrdersController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     }
   }
 
@@ -116,14 +116,14 @@ class FreeOrdersController extends GetxController {
       var response = await _freeOrderDetailUsecase.call(id: id);
       response.fold(
         (l) {
-          showToast(message: "${LanguageStrings.error}: $l");
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (List<FreeOrderItemListEntity> value) {
           freeOrderItemList = value;
         },
       );
     } catch (e) {
-      showToast(message: "${LanguageStrings.error}: $e");
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isDetailLoading.value = false;
     }

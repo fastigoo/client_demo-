@@ -8,13 +8,12 @@
 
 
 // Server API configuration
-const String host = 'https://www.fastiigo.com';
+const String host = 'http://www.fastiigo.com';
 const String wsHost = 'ws://www.fastiigo.com/ws/client/';
 const String version = 'v1';
 const String api = 'api';
 
 const baseUrl = '$host/$api/$version';
-
 
 // Restaurant API
 const String allRestaurantUrl = '$baseUrl/restaurant/get_all';

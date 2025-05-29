@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/apis.dart';
-import 'package:learning/core/resources/states_ids.dart';
+import 'package:learning/core/resources/language_strings.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/services/web_socket_service.dart';
@@ -22,28 +20,47 @@ class PlaceOrderController extends GetxController {
   // int status = 1;
 
   late WebSocketChannel webSocketChannels;
+  WebSocketService webSocketService = WebSocketService();
 
   @override
   void onInit() {
     super.onInit();
     orderId = Get.arguments;
     getOrderDetail();
-    int clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
-    webSocketChannels = WebSocketService().connect(wsHost, clientId);
-    webSocketChannels.stream.listen(
-      (message) {
-        Map<String, dynamic> data = jsonDecode(message);
-        // order_status_id
-        if (orderDetail!.orderId == data['order_id']) {
-          orderDetail!.orderStatus.id = data['order_status_id'];
-          orderDetail!.orderStatus.value = data['order_status_value'];
-          // status = data['order_status_id'];
-          update([StatesIds.orderDetail]);
-        }
-      },
-      onError: (error) {},
-      onDone: () {},
-    );
+    _connectToWebSocket();
+  }
+
+  @override
+  void onClose() {
+    webSocketChannels.sink.close();
+    super.onClose();
+  }
+
+  _connectToWebSocket() async {
+    try {
+      int clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
+      await webSocketService.connect(wsHost, clientId,
+        onMessage: (message) {
+          print('WebSocket message: $message');
+        },
+      );
+      // webSocketChannels.stream.listen(
+      //   (message) {
+      //     print(message);
+      //     Map<String, dynamic> data = jsonDecode(message);
+      //     print(data);
+      //     if (orderDetail!.orderId == data['order_id']) {
+      //       orderDetail!.orderStatus.id = data['order_status_id'];
+      //       orderDetail!.orderStatus.value = data['order_status_value'];
+      //       update([StatesIds.orderDetail]);
+      //     }
+      //   },
+      //   onError: (error) {},
+      //   onDone: () {},
+      // );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<void> getOrderDetail() async {
@@ -54,7 +71,7 @@ class PlaceOrderController extends GetxController {
       );
       response.fold(
         (l) {
-          showToast(message: l.toString());
+          showToast(message: LanguageStrings.somethingWentWrong);
         },
         (OrderDetailEntity order) async {
           orderDetail = order;
@@ -62,7 +79,7 @@ class PlaceOrderController extends GetxController {
         },
       );
     } catch (e) {
-      showToast(message: e.toString());
+      showToast(message: LanguageStrings.somethingWentWrong);
     } finally {
       isLoading.value = false;
     }

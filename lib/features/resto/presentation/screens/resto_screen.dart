@@ -42,7 +42,7 @@ class RestoScreen extends GetView<RestoController> {
                     children: [
                       Row(
                         children: [
-                          FaIcon(FontAwesomeIcons.mapLocation, size: 20.r),
+                          FaIcon(FontAwesomeIcons.mapPin, size: 20.r),
                           SizedBox(width: kSpacingSmall.r),
                           Text(
                             LanguageStrings.milaAlgeria,
@@ -66,7 +66,7 @@ class RestoScreen extends GetView<RestoController> {
                                     ),
                                     child: Center(
                                       child: FaIcon(
-                                        FontAwesomeIcons.ellipsis,
+                                        FontAwesomeIcons.file,
                                         size: 20.r,
                                       ),
                                     ),
@@ -87,7 +87,7 @@ class RestoScreen extends GetView<RestoController> {
                               ),
                               child: Center(
                                 child: FaIcon(
-                                  FontAwesomeIcons.gear,
+                                  FontAwesomeIcons.gears,
                                   size: 20.r,
                                 ),
                               ),
@@ -111,7 +111,7 @@ class RestoScreen extends GetView<RestoController> {
                         Row(
                           children: [
                             FaIcon(
-                              FontAwesomeIcons.plus,
+                              FontAwesomeIcons.squarePlus,
                               size: 20.r,
                               color: Colors.white,
                             ),
@@ -196,7 +196,7 @@ class RestoScreen extends GetView<RestoController> {
                             child: FaIcon(
                               FontAwesomeIcons.magnifyingGlass,
                               color: MainColors.whiteColor,
-                              size: 20.r,
+                              size: 17.r,
                             ),
                           ),
                         ),

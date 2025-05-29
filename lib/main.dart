@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: GetMaterialApp(
+            navigatorKey: Get.key,
             transitionDuration: const Duration(milliseconds: 300),
             defaultTransition: Transition.noTransition,
             debugShowCheckedModeBanner: false,
