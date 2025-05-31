@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:learning/core/helper/utils.dart';
 import 'package:learning/core/resources/apis.dart';
 import 'package:learning/core/resources/language_strings.dart';
+import 'package:learning/core/resources/states_ids.dart';
 import 'package:learning/core/resources/storage_keys.dart';
 import 'package:learning/core/services/storage_manager.dart';
 import 'package:learning/core/services/web_socket_service.dart';
@@ -39,9 +42,17 @@ class PlaceOrderController extends GetxController {
   _connectToWebSocket() async {
     try {
       int clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
-      await webSocketService.connect(wsHost, clientId,
+      await webSocketService.connect(
+        wsHost,
+        clientId,
         onMessage: (message) {
-          print('WebSocket message: $message');
+          print(message);
+          Map<String, dynamic> data = jsonDecode(message);
+          if (orderDetail!.orderId == data['order_id']) {
+            orderDetail!.orderStatus.id = data['order_status_id'];
+            orderDetail!.orderStatus.value = data['order_status_value'];
+            update([StatesIds.orderDetail]);
+          }
         },
       );
       // webSocketChannels.stream.listen(

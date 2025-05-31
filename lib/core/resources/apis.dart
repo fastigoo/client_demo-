@@ -9,7 +9,7 @@
 
 // Server API configuration
 const String host = 'http://www.fastiigo.com';
-const String wsHost = 'ws://www.fastiigo.com/ws/client/';
+const String wsHost = 'wss://www.fastiigo.com/ws/client/';
 const String version = 'v1';
 const String api = 'api';
 

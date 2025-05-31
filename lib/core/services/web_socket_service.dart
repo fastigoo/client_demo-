@@ -27,7 +27,6 @@ class WebSocketService {
     await disconnect();
 
     try {
-      debugPrint('Connecting to WebSocket: $fullUrl');
       _channel = IOWebSocketChannel.connect(fullUrl);
       _currentUrl = fullUrl;
 

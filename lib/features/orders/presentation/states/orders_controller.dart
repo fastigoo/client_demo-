@@ -50,39 +50,40 @@ class OrdersController extends GetxController {
   }
 
   final WebSocketService _webSocketService = WebSocketService();
-  void _connectToWebSocket() async  {
+
+  void _connectToWebSocket() async {
     try {
       final clientId = StorageManager.instance.getIntValue(key: StorageKey.clientIdKey);
-      await _webSocketService.connect(wsHost, clientId, onMessage: (message) {
-        debugPrint('WebSocket message: $message');
-      });
-
-      // channel.stream.listen(
-      //   (message) {
-      //     debugPrint('Raw message: $message');
-      //
-      //     try {
-      //       final data = jsonDecode(message) as Map<String, dynamic>;
-      //       debugPrint('Parsed data: $data');
-      //
-      //       final orderId = data['order_id'];
-      //       if (orderResEntity.orders.any((o) => o.orderId == orderId)) {
-      //         final index = orderResEntity.orders.indexWhere((o) => o.orderId == orderId);
-      //         orderResEntity.orders[index].orderStatusValue = data['order_status_value'];
-      //         update([StatesIds.ordersList]);
-      //       }
-      //     } catch (e) {
-      //       debugPrint('Message parsing error: $e');
-      //     }
-      //   },
-      //   onError: (error) => debugPrint('WebSocket stream error: $error'),
-      //   onDone: () => debugPrint('WebSocket stream closed'),
-      // );
+      await _webSocketService.connect(
+        wsHost,
+        clientId,
+        onMessage: (message) {
+          try {
+            final data = jsonDecode(message) as Map<String, dynamic>;
+            print(data);
+            final orderId = data['order_id'];
+            if (orderResEntity.orders.any((o) => o.orderId == orderId)) {
+              final index = orderResEntity.orders.indexWhere((o) => o.orderId == orderId);
+              orderResEntity.orders[index].orderStatusValue = data['order_status_value'];
+              update([StatesIds.ordersList]);
+            }
+          } catch (e) {
+            debugPrint('Message parsing error: $e');
+          }
+        },
+      );
     } catch (e) {
       debugPrint('WebSocket connection error: $e');
-      // Add retry logic or UI notification
     }
   }
+
+  // _connectionStream() {
+  //   channel.stream.listen(
+  //     (message) {},
+  //     onError: (error) => debugPrint('WebSocket stream error: $error'),
+  //     onDone: () => debugPrint('WebSocket stream closed'),
+  //   );
+  // }
 
   void getOrders() async {
     try {
