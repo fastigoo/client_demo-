@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
             transitionDuration: const Duration(milliseconds: 300),
             defaultTransition: Transition.noTransition,
             debugShowCheckedModeBanner: false,
-            title: "Fasti Goo",
+            title: "FastiiGo",
             initialRoute: AppPages.RESTO,
             getPages: AppPages.routes,
             translations: Translation(),

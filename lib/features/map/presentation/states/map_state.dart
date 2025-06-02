@@ -116,6 +116,7 @@ class MapState extends GetxController {
     if (currentPos != null) {
       Future.delayed(const Duration(milliseconds: 100), () {
         mapController.move(LatLng(currentPos!.latitude, currentPos!.longitude), 15);
+        setOrderPos(LatLng(currentPos!.latitude, currentPos!.longitude));
       });
     } else {
       Get.snackbar(
