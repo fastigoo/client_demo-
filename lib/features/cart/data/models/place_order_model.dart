@@ -8,7 +8,6 @@ class PlaceOrderModel extends PlaceOrderEntity {
     required super.userId,
     required super.clientId,
     required super.orderStatus,
-    required super.orderCustomerLocation,
   });
 
   factory PlaceOrderModel.fromJson(Map<String, dynamic> json) {
@@ -19,9 +18,6 @@ class PlaceOrderModel extends PlaceOrderEntity {
       orderStatus: OrderStatusModel.fromJson(
         json['order_status'],
       ),
-      orderCustomerLocation: OrderCustomerLocationModel.fromJson(
-        json['customer_location'],
-      ),
     );
   }
 
@@ -31,7 +27,6 @@ class PlaceOrderModel extends PlaceOrderEntity {
       'user_id': userId,
       'client_id': clientId,
       'order_status': orderStatus,
-      'customer_location': orderCustomerLocation,
     };
   }
 }

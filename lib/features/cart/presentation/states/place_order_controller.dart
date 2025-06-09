@@ -23,7 +23,6 @@ class PlaceOrderController extends GetxController {
   // int status = 1;
 
   late WebSocketChannel webSocketChannels;
-  WebSocketService webSocketService = WebSocketService();
 
   @override
   void onInit() {
@@ -35,9 +34,11 @@ class PlaceOrderController extends GetxController {
 
   @override
   void onClose() {
-    webSocketChannels.sink.close();
+    // webSocketChannels.sink.close();
     super.onClose();
   }
+
+  WebSocketService webSocketService = WebSocketService();
 
   _connectToWebSocket() async {
     try {

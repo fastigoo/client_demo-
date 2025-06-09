@@ -45,7 +45,7 @@ class OrdersController extends GetxController {
   @override
   void onClose() {
     scrollController.dispose();
-    webSocketChannels.sink.close();
+    // webSocketChannels.sink.close();
     super.onClose();
   }
 

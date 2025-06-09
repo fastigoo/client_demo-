@@ -6,13 +6,11 @@ class PlaceOrderEntity {
   final int userId;
   final int clientId;
   final OrderStatusEntity orderStatus;
-  final OrderCustomerLocationEntity orderCustomerLocation;
 
   PlaceOrderEntity({
     required this.orderId,
     required this.userId,
     required this.clientId,
     required this.orderStatus,
-    required this.orderCustomerLocation,
   });
 }

@@ -79,6 +79,7 @@ class OrderDataSourceImplement implements OrderDataSource {
 
       throw CustomException(msg: response.data['message']);
     } catch (e) {
+      print('Error placing order: $e');
       throw CustomException(msg: e.toString());
     }
   }
@@ -106,7 +107,6 @@ class OrderDataSourceImplement implements OrderDataSource {
 
       throw CustomException(msg: response.data['message']);
     } catch (e) {
-      print('Error in calculateDeliveryFee: $e');
       throw CustomException(msg: e.toString());
     }
   }
