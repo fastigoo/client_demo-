@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/styles/main_colors.dart';
 
 class BottomSheetComponent {
   static void show(

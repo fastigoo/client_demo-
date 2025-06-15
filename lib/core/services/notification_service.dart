@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/routes/app_pages.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {

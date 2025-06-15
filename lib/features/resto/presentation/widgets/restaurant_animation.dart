@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/styles/main_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class RestaurantAnimation extends StatelessWidget {

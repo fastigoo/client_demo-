@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/empty_component.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/features/cart/presentation/widgets/cart_component.dart';
-import 'package:learning/features/cart/presentation/widgets/select_map_component.dart';
+import 'package:client/core/components/empty_component.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/cart/presentation/states/cart_controller.dart';
+import 'package:client/features/cart/presentation/widgets/cart_component.dart';
+import 'package:client/features/cart/presentation/widgets/select_map_component.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({Key? key}) : super(key: key);

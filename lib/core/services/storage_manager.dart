@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:learning/core/resources/storage_keys.dart';
+import 'package:client/core/resources/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageManager {

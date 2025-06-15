@@ -1,4 +1,4 @@
-import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
+import 'package:client/features/free_order/domain/entities/add_free_order_res_entity.dart';
 
 class AddFreeOrderResModel extends AddFreeOrderResEntity {
   AddFreeOrderResModel({

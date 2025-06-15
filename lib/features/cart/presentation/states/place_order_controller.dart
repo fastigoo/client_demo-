@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/states_ids.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/core/services/web_socket_service.dart';
-import 'package:learning/features/cart/domain/entities/order_detail_entity.dart';
-import 'package:learning/features/cart/domain/usecases/order_detail_usecase.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/states_ids.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/core/services/web_socket_service.dart';
+import 'package:client/features/cart/domain/entities/order_detail_entity.dart';
+import 'package:client/features/cart/domain/usecases/order_detail_usecase.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PlaceOrderController extends GetxController {

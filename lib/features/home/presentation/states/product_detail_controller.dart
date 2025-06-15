@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/states_ids.dart';
-import 'package:learning/features/home/domain/entities/item_detail_entity.dart';
-import 'package:learning/features/home/domain/entities/variant_entity.dart';
-import 'package:learning/features/home/domain/usecases/get_item_detail_usecase.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/states_ids.dart';
+import 'package:client/features/home/domain/entities/item_detail_entity.dart';
+import 'package:client/features/home/domain/entities/variant_entity.dart';
+import 'package:client/features/home/domain/usecases/get_item_detail_usecase.dart';
 
 class ProductDetailController extends GetxController {
   int itemId = 0;

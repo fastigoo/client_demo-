@@ -3,18 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/others/network_image_component.dart';
-import 'package:learning/core/helper/translation_util.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/states_ids.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/cart/domain/entities/cart_entity.dart';
-import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/features/home/presentation/states/product_detail_controller.dart';
+import 'package:client/core/components/others/network_image_component.dart';
+import 'package:client/core/helper/translation_util.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/states_ids.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/cart/domain/entities/cart_entity.dart';
+import 'package:client/features/cart/presentation/states/cart_controller.dart';
+import 'package:client/features/home/presentation/states/product_detail_controller.dart';
 
 class ProductDetailScreen extends GetView<ProductDetailController> {
   const ProductDetailScreen({

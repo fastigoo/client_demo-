@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/loading_animation.dart';
-import 'package:learning/core/components/others/back_component.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/states_ids.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/orders/presentation/states/orders_controller.dart';
-import 'package:learning/features/orders/presentation/widgets/order_component.dart';
+import 'package:client/core/components/loading_animation.dart';
+import 'package:client/core/components/others/back_component.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/states_ids.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/orders/presentation/states/orders_controller.dart';
+import 'package:client/features/orders/presentation/widgets/order_component.dart';
 
 class OrdersScreen extends GetView<OrdersController> {
   const OrdersScreen({super.key});

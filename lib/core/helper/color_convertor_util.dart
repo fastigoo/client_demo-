@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/styles/main_colors.dart';
 
 class ColorConvertorUtil {
   Color stringColorCodeToColor(String? color) {

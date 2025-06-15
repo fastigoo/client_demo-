@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/components/animations/animator_component.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
+import 'package:client/core/components/animations/animator_component.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
 
 class TextInputComponent extends StatelessWidget {
   FocusNode? focusNode;

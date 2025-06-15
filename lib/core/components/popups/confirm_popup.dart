@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning/core/resources/language_strings.dart';
+import 'package:client/core/resources/language_strings.dart';
 
 class ConfirmPopupComponent extends StatelessWidget {
   final String title;

@@ -1,6 +1,6 @@
-import 'package:learning/core/objects/models/customer_location_model.dart';
-import 'package:learning/core/objects/models/order_status_model.dart';
-import 'package:learning/features/cart/domain/entities/place_order_entity.dart';
+import 'package:client/core/objects/models/customer_location_model.dart';
+import 'package:client/core/objects/models/order_status_model.dart';
+import 'package:client/features/cart/domain/entities/place_order_entity.dart';
 
 class PlaceOrderModel extends PlaceOrderEntity {
   PlaceOrderModel({

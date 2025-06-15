@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
-import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
-import 'package:learning/features/resto/domain/usecases/all_restaurant_usecase.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/features/resto/domain/entities/restaurant_entity.dart';
+import 'package:client/features/resto/domain/entities/restaurants_entity.dart';
+import 'package:client/features/resto/domain/usecases/all_restaurant_usecase.dart';
 
 class RestoController extends GetxController {
   ScrollController scrollController = ScrollController();

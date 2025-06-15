@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:learning/core/error/failures.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
-import 'package:learning/features/orders/domain/repositories/orders_repository.dart';
+import 'package:client/core/error/failures.dart';
+import 'package:client/features/orders/domain/entities/orders_res_entity.dart';
+import 'package:client/features/orders/domain/repositories/orders_repository.dart';
 
 class AllOrdersUseCase {
   final OrdersRepository ordersRepository;

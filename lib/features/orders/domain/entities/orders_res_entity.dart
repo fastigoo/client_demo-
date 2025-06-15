@@ -1,4 +1,4 @@
-import 'package:learning/features/orders/domain/entities/normal_order_entity.dart';
+import 'package:client/features/orders/domain/entities/normal_order_entity.dart';
 
 class OrderResEntity {
   final int totalOrders;

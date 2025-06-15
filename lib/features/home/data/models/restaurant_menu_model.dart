@@ -1,4 +1,4 @@
-import 'package:learning/features/home/domain/entities/restaurant_menu_entity.dart';
+import 'package:client/features/home/domain/entities/restaurant_menu_entity.dart';
 
 class RestaurantMenuModel extends RestaurantMenuEntity {
   RestaurantMenuModel({

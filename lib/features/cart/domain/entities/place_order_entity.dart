@@ -1,5 +1,5 @@
-import 'package:learning/core/objects/entities/customer_location_entity.dart';
-import 'package:learning/core/objects/entities/order_status_entity.dart';
+import 'package:client/core/objects/entities/customer_location_entity.dart';
+import 'package:client/core/objects/entities/order_status_entity.dart';
 
 class PlaceOrderEntity {
   final int orderId;

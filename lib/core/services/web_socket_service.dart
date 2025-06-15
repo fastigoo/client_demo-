@@ -32,7 +32,7 @@ class WebSocketService {
 
       _subscription = _channel!.stream.listen(
         (message) {
-          debugPrint('Received: $message');
+          print('Received message: $message');
           onMessage?.call(message);
         },
         onError: (error) {

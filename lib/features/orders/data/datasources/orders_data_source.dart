@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/features/orders/data/models/order_res_model.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/features/orders/data/models/order_res_model.dart';
 
 abstract interface class OrdersDataSource {
   Future<OrderResModel> getOrders({required int userId, required int page, int limit = 10});

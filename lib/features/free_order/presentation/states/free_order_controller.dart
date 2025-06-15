@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/objects/entities/customer_location_entity.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/features/free_order/domain/entities/add_free_order_res_entity.dart';
-import 'package:learning/features/free_order/domain/usecases/add_free_order_usecase.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/objects/entities/customer_location_entity.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/features/free_order/domain/entities/add_free_order_res_entity.dart';
+import 'package:client/features/free_order/domain/usecases/add_free_order_usecase.dart';
+import 'package:client/routes/app_pages.dart';
 
 class FreeOrderController extends GetxController {
   RxBool isLoading = false.obs;

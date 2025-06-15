@@ -1,10 +1,10 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:learning/core/error/failures.dart';
-import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
-import 'package:learning/features/cart/domain/entities/place_order_entity.dart';
-import 'package:learning/features/cart/domain/repositories/order_repository.dart';
+import 'package:client/core/error/failures.dart';
+import 'package:client/features/cart/domain/entities/cart_item_entity.dart';
+import 'package:client/features/cart/domain/entities/place_order_entity.dart';
+import 'package:client/features/cart/domain/repositories/order_repository.dart';
 
 class PlaceOrderUseCase {
   final OrderRepository repository;

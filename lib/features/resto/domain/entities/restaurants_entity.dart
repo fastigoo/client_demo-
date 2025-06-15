@@ -1,4 +1,4 @@
-import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
+import 'package:client/features/resto/domain/entities/restaurant_entity.dart';
 
 class RestaurantsEntity {
   final int totalCount;

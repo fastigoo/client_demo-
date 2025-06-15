@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/features/home/data/models/item_detail_model.dart';
-import 'package:learning/features/home/data/models/menu_item_model.dart';
-import 'package:learning/features/home/data/models/restaurant_menu_model.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/features/home/data/models/item_detail_model.dart';
+import 'package:client/features/home/data/models/menu_item_model.dart';
+import 'package:client/features/home/data/models/restaurant_menu_model.dart';
 
 abstract interface class HomeDataSource {
   Future<List<RestaurantMenuModel>> getRestaurantMenus({required int restaurantId});

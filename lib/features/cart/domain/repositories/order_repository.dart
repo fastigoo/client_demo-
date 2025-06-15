@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:learning/core/error/failures.dart';
-import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
-import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
-import 'package:learning/features/cart/domain/entities/order_detail_entity.dart';
-import 'package:learning/features/cart/domain/entities/place_order_entity.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
+import 'package:client/core/error/failures.dart';
+import 'package:client/features/cart/domain/entities/cart_item_entity.dart';
+import 'package:client/features/cart/domain/entities/delivery_fee_entity.dart';
+import 'package:client/features/cart/domain/entities/order_detail_entity.dart';
+import 'package:client/features/cart/domain/entities/place_order_entity.dart';
+import 'package:client/features/orders/domain/entities/orders_res_entity.dart';
 
 abstract interface class OrderRepository {
   Future<Either<Failure, PlaceOrderEntity>> placeOrder({

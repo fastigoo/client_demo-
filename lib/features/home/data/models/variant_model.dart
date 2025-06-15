@@ -1,4 +1,4 @@
-import 'package:learning/features/home/domain/entities/variant_entity.dart';
+import 'package:client/features/home/domain/entities/variant_entity.dart';
 
 class VariantModel extends VariantEntity {
   VariantModel({

@@ -1,19 +1,20 @@
+import 'package:client/core/helper/theme_util.dart';
+import 'package:client/core/helper/translation_util.dart';
+import 'package:client/core/localization/translation.dart';
+import 'package:client/core/localization/translation_reader.dart';
+import 'package:client/core/services/notification_service.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/core/states/internet_state.dart';
+import 'package:client/core/styles/theme_styles.dart';
+import 'package:client/firebase_options.dart';
+import 'package:client/injection.dart';
+import 'package:client/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/helper/theme_util.dart';
-import 'package:learning/core/helper/translation_util.dart';
-import 'package:learning/core/localization/translation.dart';
-import 'package:learning/core/localization/translation_reader.dart';
-import 'package:learning/core/services/notification_service.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/core/states/internet_state.dart';
-import 'package:learning/core/styles/theme_styles.dart';
-import 'package:learning/injection.dart';
-import 'package:learning/routes/app_pages.dart';
-import 'firebase_options.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.routes,
             translations: Translation(),
             locale: TranslationUtil.currentLang,
-            fallbackLocale: const Locale('en'),
+            fallbackLocale: const Locale('ar'),
             // themeMode: ThemeUtil.currentTheme,
             themeMode: ThemeUtil.currentTheme,
             theme: ThemeStyles.lightTheme,

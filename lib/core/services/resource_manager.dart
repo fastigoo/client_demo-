@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/core/resources/images.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/core/resources/images.dart';
 
 class ResourceManager {
   static Future<String> getResource(String name, {ResourceType? type}) async {

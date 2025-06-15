@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:learning/core/error/failures.dart';
-import 'package:learning/features/orders/data/datasources/orders_data_source.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
-import 'package:learning/features/orders/domain/repositories/orders_repository.dart';
+import 'package:client/core/error/failures.dart';
+import 'package:client/features/orders/data/datasources/orders_data_source.dart';
+import 'package:client/features/orders/domain/entities/orders_res_entity.dart';
+import 'package:client/features/orders/domain/repositories/orders_repository.dart';
 
 class OrdersRepositoryImplement implements OrdersRepository {
   final OrdersDataSource ordersDataSource;

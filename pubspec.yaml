@@ -1,61 +1,56 @@
-name: learning
+name: client
 description: "A new Flutter project."
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: ^3.8.1
 
 dependencies:
   flutter:
     sdk: flutter
 
-
-  # application icon and splash
-  flutter_native_splash: ^2.1.6
-
-
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.6
 
   dartz: ^0.10.1
-  get: ^4.6.6
-  dio: ^5.4.3+1
+  get: ^4.7.2
+  dio: ^5.8.0+1
   font_awesome_flutter: ^10.8.0
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.1.0
   shimmer: ^3.0.0
-  cached_network_image: ^3.4.0
-  wc_form_validators: ^1.0.1
+  cached_network_image: ^3.4.1
+  wc_form_validators: ^1.1.0
   flutter_screenutil: ^5.9.3
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.5.3
   url_launcher: ^6.3.1
   google_fonts: ^6.2.1
-  waterfall_flow: ^3.1.0
-  nb_utils: ^7.0.3
+  waterfall_flow: ^3.1.1
+  nb_utils: ^7.1.4
+  lottie: ^3.3.1
+  flutter_animate: ^4.5.2
   flutter_switch: ^0.3.2
-  flutter_animate: ^4.3.0
-  lottie: any
-  web_socket_channel: ^3.0.2
+  web_socket_channel: ^3.0.3
   connectivity_plus: ^6.1.4
 
-  # Map
-  flutter_map_location_marker: ^9.0.0
-  geolocator: ^12.0.0
-  flutter_map: ^7.0.2
+  # MAP
+  flutter_map_location_marker: ^10.1.0
+  geolocator: ^14.0.1
+  flutter_map: ^8.1.1
   latlong2: ^0.9.1
 
+
   # Firebase
-  firebase_core: ^3.4.0
-  firebase_messaging: ^15.1.0
-  firebase_analytics: ^11.3.0
-  flutter_local_notifications: ^18.0.1
+  firebase_core: ^3.14.0
+  firebase_messaging: ^15.2.7
+  flutter_local_notifications: ^19.2.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.3
 
 flutter_launcher_icons:
@@ -63,6 +58,7 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/icon/icon.png"
   min_sdk_android: 21
+
 
 flutter_native_splash:
   color: "#FFFFFF"
@@ -73,10 +69,10 @@ flutter_native_splash:
     image: "assets/image/splash.png"
   web: false
 
+
 flutter:
 
   uses-material-design: true
-
 
   assets:
     - assets/translation/
@@ -84,12 +80,13 @@ flutter:
     - assets/svg/
     - assets/icon/
     - assets/font/
+  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+  # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  # https://flutter.dev/to/asset-from-package
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -107,6 +104,3 @@ flutter:
         - asset: assets/font/s6.ttf
         - asset: assets/font/s7.ttf
         - asset: assets/font/s8.ttf
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

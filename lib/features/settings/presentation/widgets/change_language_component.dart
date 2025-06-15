@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/buttons/checked_element_component.dart';
-import 'package:learning/core/components/buttons/icon_button_component.dart';
-import 'package:learning/core/helper/translation_util.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
+import 'package:client/core/components/buttons/checked_element_component.dart';
+import 'package:client/core/components/buttons/icon_button_component.dart';
+import 'package:client/core/helper/translation_util.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
 
 class ChangeAppLangWindowComponent extends StatefulWidget {
   const ChangeAppLangWindowComponent({

@@ -1,4 +1,4 @@
-import 'package:learning/core/objects/entities/order_status_entity.dart';
+import 'package:client/core/objects/entities/order_status_entity.dart';
 
 class OrderStatusModel extends OrderStatusEntity {
   OrderStatusModel({

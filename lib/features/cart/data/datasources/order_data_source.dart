@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:learning/core/error/exceptions.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/features/cart/data/models/delivery_fee_model.dart';
-import 'package:learning/features/cart/data/models/order_detail_model.dart';
-import 'package:learning/features/cart/data/models/place_order_model.dart';
-import 'package:learning/features/cart/domain/entities/cart_item_entity.dart';
-import 'package:learning/features/orders/data/models/order_res_model.dart';
+import 'package:client/core/error/exceptions.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/features/cart/data/models/delivery_fee_model.dart';
+import 'package:client/features/cart/data/models/order_detail_model.dart';
+import 'package:client/features/cart/data/models/place_order_model.dart';
+import 'package:client/features/cart/domain/entities/cart_item_entity.dart';
+import 'package:client/features/orders/data/models/order_res_model.dart';
 
 abstract interface class OrderDataSource {
   Future<PlaceOrderModel> placeOrder({

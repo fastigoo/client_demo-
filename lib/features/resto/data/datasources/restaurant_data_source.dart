@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/features/resto/data/models/restaurants_model.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/features/resto/data/models/restaurants_model.dart';
 
 abstract interface class RestaurantDataSource {
   Future<RestaurantsModel> getRestaurants({required int page, required int perPage, String name = ""});

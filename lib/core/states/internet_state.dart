@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/screens/no_internet_connection_screen.dart';
+import 'package:client/core/screens/no_internet_connection_screen.dart';
 
 class InternetCheckerState extends GetxController {
   final Connectivity _connectivity = Connectivity();

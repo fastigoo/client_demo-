@@ -1,9 +1,9 @@
+import 'package:client/core/error/exceptions.dart';
+import 'package:client/core/error/failures.dart';
+import 'package:client/features/resto/data/datasources/restaurant_data_source.dart';
+import 'package:client/features/resto/domain/entities/restaurants_entity.dart';
+import 'package:client/features/resto/domain/repositories/restaurant_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:learning/core/error/exceptions.dart';
-import 'package:learning/core/error/failures.dart';
-import 'package:learning/features/resto/data/datasources/restaurant_data_source.dart';
-import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
-import 'package:learning/features/resto/domain/repositories/restaurant_repository.dart';
 
 class RestaurantRepositoryImplement implements RestaurantRepository {
   final RestaurantDataSource remote;

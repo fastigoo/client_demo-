@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning/core/components/slider_list_animation_component.dart';
+import 'package:client/core/components/slider_list_animation_component.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);

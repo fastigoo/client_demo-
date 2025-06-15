@@ -1,5 +1,5 @@
-import 'package:learning/features/orders/data/models/normal_order_model.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
+import 'package:client/features/orders/data/models/normal_order_model.dart';
+import 'package:client/features/orders/domain/entities/orders_res_entity.dart';
 
 class OrderResModel extends OrderResEntity {
   OrderResModel({

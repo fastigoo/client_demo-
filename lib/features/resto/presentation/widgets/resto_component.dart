@@ -2,14 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/others/network_image_component.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/resto/domain/entities/restaurant_entity.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/components/others/network_image_component.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/resto/domain/entities/restaurant_entity.dart';
+import 'package:client/routes/app_pages.dart';
 
 class RestoComponent extends StatelessWidget {
   final RestaurantEntity item;

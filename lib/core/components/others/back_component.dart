@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/helper/translation_util.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/helper/translation_util.dart';
+import 'package:client/core/styles/main_colors.dart';
 
 class BackComponent extends StatelessWidget {
   const BackComponent({

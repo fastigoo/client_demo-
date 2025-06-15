@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learning/features/map/presentation/states/map_state.dart';
+import 'package:client/features/map/presentation/states/map_state.dart';
 
 class MapScreen extends GetView<MapState> {
   const MapScreen({super.key});

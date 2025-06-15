@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/states_ids.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/core/services/web_socket_service.dart';
-import 'package:learning/features/cart/domain/usecases/all_orders_usecase.dart';
-import 'package:learning/features/cart/domain/usecases/delete_order_usecase.dart';
-import 'package:learning/features/orders/domain/entities/orders_res_entity.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/states_ids.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/core/services/web_socket_service.dart';
+import 'package:client/features/cart/domain/usecases/all_orders_usecase.dart';
+import 'package:client/features/cart/domain/usecases/delete_order_usecase.dart';
+import 'package:client/features/orders/domain/entities/orders_res_entity.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class OrdersController extends GetxController {
@@ -59,8 +59,8 @@ class OrdersController extends GetxController {
         clientId,
         onMessage: (message) {
           try {
-            final data = jsonDecode(message) as Map<String, dynamic>;
-            print(data);
+            // print(message);
+            final data = jsonDecode(message);
             final orderId = data['order_id'];
             if (orderResEntity.orders.any((o) => o.orderId == orderId)) {
               final index = orderResEntity.orders.indexWhere((o) => o.orderId == orderId);

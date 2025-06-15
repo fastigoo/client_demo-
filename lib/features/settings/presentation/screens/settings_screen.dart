@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/inputs/switch_component.dart';
-import 'package:learning/core/components/popups/bottm_sheet_component.dart';
-import 'package:learning/core/helper/theme_util.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/settings/presentation/states/settings_controller.dart';
-import 'package:learning/features/settings/presentation/widgets/change_language_component.dart';
+import 'package:client/core/components/inputs/switch_component.dart';
+import 'package:client/core/components/popups/bottm_sheet_component.dart';
+import 'package:client/core/helper/theme_util.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/settings/presentation/states/settings_controller.dart';
+import 'package:client/features/settings/presentation/widgets/change_language_component.dart';
 
 class SettingsScreen extends GetView<SettingsController> {
   const SettingsScreen({super.key});

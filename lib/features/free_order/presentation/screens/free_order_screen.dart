@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/empty_component.dart';
-import 'package:learning/core/helper/translation_util.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/cart/presentation/states/map_controller.dart';
-import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/components/empty_component.dart';
+import 'package:client/core/helper/translation_util.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/cart/presentation/states/map_controller.dart';
+import 'package:client/features/free_order/presentation/states/free_order_controller.dart';
+import 'package:client/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/features/free_order/presentation/widgets/add_item_order_popup.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/features/free_order/presentation/widgets/add_item_order_popup.dart';
+import 'package:client/routes/app_pages.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
 class FreeOrderScreen extends GetView<FreeOrderController> {

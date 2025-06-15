@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
-import 'package:learning/features/free_order/domain/entities/free_order_item_list_entity.dart';
-import 'package:learning/features/free_order/domain/entities/free_order_res_entity.dart';
-import 'package:learning/features/free_order/domain/usecases/delete_free_order_usecase.dart';
-import 'package:learning/features/free_order/domain/usecases/get_all_free_orders_usecase.dart';
-import 'package:learning/features/free_order/domain/usecases/get_free_order_detail_usecase.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
+import 'package:client/features/free_order/domain/entities/free_order_item_list_entity.dart';
+import 'package:client/features/free_order/domain/entities/free_order_res_entity.dart';
+import 'package:client/features/free_order/domain/usecases/delete_free_order_usecase.dart';
+import 'package:client/features/free_order/domain/usecases/get_all_free_orders_usecase.dart';
+import 'package:client/features/free_order/domain/usecases/get_free_order_detail_usecase.dart';
 
 class FreeOrdersController extends GetxController {
   RxBool isLoading = false.obs;

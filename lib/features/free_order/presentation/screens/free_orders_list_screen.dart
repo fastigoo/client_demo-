@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/components/empty_component.dart';
-import 'package:learning/core/components/loading_animation.dart';
-import 'package:learning/core/components/others/back_component.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/components/empty_component.dart';
+import 'package:client/core/components/loading_animation.dart';
+import 'package:client/core/components/others/back_component.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/styles/main_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/free_order/domain/entities/free_order_item_entity.dart';
-import 'package:learning/features/free_order/presentation/states/free_orders_controller.dart';
-import 'package:learning/features/free_order/presentation/widgets/order_list_detail_component.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/free_order/domain/entities/free_order_item_entity.dart';
+import 'package:client/features/free_order/presentation/states/free_orders_controller.dart';
+import 'package:client/features/free_order/presentation/widgets/order_list_detail_component.dart';
+import 'package:client/routes/app_pages.dart';
 
 class FreeOrdersListScreen extends GetView<FreeOrdersController> {
   const FreeOrdersListScreen({

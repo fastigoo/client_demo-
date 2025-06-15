@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:learning/core/objects/models/customer_location_model.dart';
-import 'package:learning/core/resources/apis.dart';
+import 'package:client/core/objects/models/customer_location_model.dart';
+import 'package:client/core/resources/apis.dart';
 
 abstract interface class MapDataSource {
   Future<OrderCustomerLocationModel> getAddressFromlatlng({required LatLng latLng});

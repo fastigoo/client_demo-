@@ -1,5 +1,5 @@
-import 'package:learning/features/resto/data/models/restaurant_model.dart';
-import 'package:learning/features/resto/domain/entities/restaurants_entity.dart';
+import 'package:client/features/resto/data/models/restaurant_model.dart';
+import 'package:client/features/resto/domain/entities/restaurants_entity.dart';
 
 class RestaurantsModel extends RestaurantsEntity {
   RestaurantsModel({

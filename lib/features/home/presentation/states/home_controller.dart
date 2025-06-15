@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:learning/core/helper/utils.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
-import 'package:learning/features/home/domain/entities/restaurant_menu_entity.dart';
-import 'package:learning/features/home/domain/usecases/get_all_restaurant_menus_usecase.dart';
-import 'package:learning/features/home/domain/usecases/get_restaurant_menu_items_usecase.dart';
+import 'package:client/core/helper/utils.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/features/home/domain/entities/menu_item_entity.dart';
+import 'package:client/features/home/domain/entities/restaurant_menu_entity.dart';
+import 'package:client/features/home/domain/usecases/get_all_restaurant_menus_usecase.dart';
+import 'package:client/features/home/domain/usecases/get_restaurant_menu_items_usecase.dart';
 
 class HomeController extends GetxController {
   int? restaurantId;

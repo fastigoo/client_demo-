@@ -1,4 +1,4 @@
-import 'package:learning/features/map/presentation/states/map_state.dart';
+import 'package:client/features/map/presentation/states/map_state.dart';
 import 'package:get/get.dart';
 
 class MapBinding extends Bindings {

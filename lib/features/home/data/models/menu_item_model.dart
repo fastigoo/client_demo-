@@ -1,4 +1,4 @@
-import 'package:learning/features/home/domain/entities/menu_item_entity.dart';
+import 'package:client/features/home/domain/entities/menu_item_entity.dart';
 
 class MenuItemModel extends MenuItemEntity {
   MenuItemModel({

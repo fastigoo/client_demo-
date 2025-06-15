@@ -1,4 +1,4 @@
-import 'package:learning/core/objects/entities/order_restaurant_entity.dart';
+import 'package:client/core/objects/entities/order_restaurant_entity.dart';
 
 class OrderRestaurantModel extends OrderRestaurantEntity {
   OrderRestaurantModel({

@@ -1,4 +1,4 @@
-import 'package:learning/features/cart/domain/entities/delivery_fee_entity.dart';
+import 'package:client/features/cart/domain/entities/delivery_fee_entity.dart';
 
 class DeliveryFeeModel extends DeliveryFeeEntity {
   DeliveryFeeModel({

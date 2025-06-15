@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:learning/core/resources/apis.dart';
-import 'package:learning/features/free_order/data/models/add_free_order_res_model.dart';
-import 'package:learning/features/free_order/data/models/free_order_item_list_model.dart';
-import 'package:learning/features/free_order/data/models/free_order_model.dart';
-import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
+import 'package:client/core/resources/apis.dart';
+import 'package:client/features/free_order/data/models/add_free_order_res_model.dart';
+import 'package:client/features/free_order/data/models/free_order_item_list_model.dart';
+import 'package:client/features/free_order/data/models/free_order_model.dart';
+import 'package:client/features/free_order/presentation/states/free_order_controller.dart';
 
 abstract interface class FreeOrderDatasource {
   Future<FreeOrderResModel> getFreeOrders({required int userId, required int page, int limit = 10});

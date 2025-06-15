@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:learning/core/objects/entities/customer_location_entity.dart';
-import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/features/free_order/presentation/states/free_order_controller.dart';
+import 'package:client/core/objects/entities/customer_location_entity.dart';
+import 'package:client/features/cart/presentation/states/cart_controller.dart';
+import 'package:client/features/free_order/presentation/states/free_order_controller.dart';
 
 class MapState extends GetxController {
   final isMapReady = false.obs;

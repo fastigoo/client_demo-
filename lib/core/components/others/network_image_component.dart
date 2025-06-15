@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:learning/core/components/loading_animation.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/services/resource_manager.dart';
+import 'package:client/core/components/loading_animation.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/services/resource_manager.dart';
 
 class CacheNetworkImageComponent extends StatelessWidget {
   final String imageUrl;

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:learning/features/orders/presentation/states/orders_controller.dart';
+import 'package:client/features/orders/presentation/states/orders_controller.dart';
 
 class OrdersBinding extends Bindings {
   @override

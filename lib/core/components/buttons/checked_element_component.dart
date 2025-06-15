@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 

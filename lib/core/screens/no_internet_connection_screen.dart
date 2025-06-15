@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/resources/constants.dart';
+import 'package:client/core/resources/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:learning/core/resources/images.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/services/resource_manager.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/resources/images.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/services/resource_manager.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/routes/app_pages.dart';
 
 class NoInternetConnectionScreen extends StatefulWidget {
   const NoInternetConnectionScreen({

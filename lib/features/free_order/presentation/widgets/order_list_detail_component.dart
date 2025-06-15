@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/core/styles/text_styles.dart';
-import 'package:learning/features/free_order/domain/entities/free_order_item_list_entity.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/core/styles/text_styles.dart';
+import 'package:client/features/free_order/domain/entities/free_order_item_list_entity.dart';
 
 class OderListDetailComponent extends StatelessWidget {
   final List<FreeOrderItemListEntity> freeOrderItemList;

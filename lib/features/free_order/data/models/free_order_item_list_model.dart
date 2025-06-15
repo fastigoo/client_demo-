@@ -1,4 +1,4 @@
-import 'package:learning/features/free_order/domain/entities/free_order_item_list_entity.dart';
+import 'package:client/features/free_order/domain/entities/free_order_item_list_entity.dart';
 
 class FreeOrderItemListModel extends FreeOrderItemListEntity {
   FreeOrderItemListModel({

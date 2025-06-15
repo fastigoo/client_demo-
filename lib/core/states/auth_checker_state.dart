@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
-import 'package:learning/core/resources/storage_keys.dart';
-import 'package:learning/core/services/storage_manager.dart';
+import 'package:client/core/resources/storage_keys.dart';
+import 'package:client/core/services/storage_manager.dart';
 
 class AuthCheckerState extends GetxController{
 

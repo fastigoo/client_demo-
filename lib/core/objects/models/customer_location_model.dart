@@ -1,4 +1,4 @@
-import 'package:learning/core/objects/entities/customer_location_entity.dart';
+import 'package:client/core/objects/entities/customer_location_entity.dart';
 
 class OrderCustomerLocationModel extends OrderCustomerLocationEntity {
   OrderCustomerLocationModel({

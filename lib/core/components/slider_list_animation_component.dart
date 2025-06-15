@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learning/features/animations/presentation/screens/animation_one.dart';
+import 'package:client/features/animations/presentation/screens/animation_one.dart';
 
 class SlideAnimatedListComponent extends StatefulWidget {
   final List<Widget> items;

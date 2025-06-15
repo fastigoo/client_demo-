@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/resources/language_strings.dart';
-import 'package:learning/core/styles/main_colors.dart';
-import 'package:learning/features/cart/presentation/states/cart_controller.dart';
-import 'package:learning/routes/app_pages.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/resources/language_strings.dart';
+import 'package:client/core/styles/main_colors.dart';
+import 'package:client/features/cart/presentation/states/cart_controller.dart';
+import 'package:client/routes/app_pages.dart';
 
 class SelectMapPopupComponent extends StatelessWidget {
   const SelectMapPopupComponent({

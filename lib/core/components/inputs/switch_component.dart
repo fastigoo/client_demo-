@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/styles/main_colors.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class SwitchComponent extends StatelessWidget {

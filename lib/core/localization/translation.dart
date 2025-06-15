@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:learning/core/localization/translation_reader.dart';
+import 'package:client/core/localization/translation_reader.dart';
 
 class Translation extends Translations {
 

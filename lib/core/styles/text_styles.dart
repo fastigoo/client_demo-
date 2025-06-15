@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learning/core/resources/constants.dart';
-import 'package:learning/core/styles/main_colors.dart';
+import 'package:client/core/resources/constants.dart';
+import 'package:client/core/styles/main_colors.dart';
 
 class TextStyles {
   static TextStyle smallBodyTextStyle(BuildContext context) => TextStyle(
